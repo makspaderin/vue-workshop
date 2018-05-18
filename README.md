@@ -1,4 +1,4 @@
-# Cloubi example Vue product theme
+# Cloubi default Vue product theme
 
 Default Vue.js product theme
 
@@ -19,3 +19,5 @@ Default Vue.js product theme
 Copy user.properties.template as user.properties and change local.server.deploy.dir property so it points to your local Cloubi 2 deploy directory.
 
 `npm run deploy:local` will build and deploy product theme to your local Cloubi 2.
+
+
