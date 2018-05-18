@@ -1,0 +1,22 @@
+@import '_variables';
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: $commonViewBgColor;
+}
+
+.cloubi-navigation-menu-page {
+    border-radius: 2em;
+}
+
+.cloubi-navigation-menu-page-image {
+    border-radius: 1em;
+    margin: 10px;
+}
+
+.breadcrump-container {
+    display: inline-block;
+}
