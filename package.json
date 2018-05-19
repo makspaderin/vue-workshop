@@ -24,6 +24,7 @@
         "copy-webpack-plugin": "^4.5.1",
         "css-loader": "^0.28.7",
         "extract-text-webpack-plugin": "^4.0.0-beta.0",
+        "cloubi2-default-product-theme-components-vue": "file://../cloubi2-default-product-theme-components-vue",
         "file-loader": "^1.1.11",
         "line-by-line": "^0.1.6",
         "node-sass": "^4.8.3",
