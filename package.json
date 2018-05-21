@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "deploy:local": "npm run build && node build/deploy.js",
+        "deploy:local": "npm run build && node build/deploy-local.js",
         "build": "webpack --progress --hide-modules --config build/webpack.prod.js --mode production",
-        "deploy": "npm run build && node build/deploy-local.js"
+        "deploy": "npm run build && node build/deploy.js"
     },
     "author": "",
     "license": "ISC",
