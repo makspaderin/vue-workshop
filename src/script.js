@@ -1,11 +1,17 @@
 import setUpPublicPath from './public-path'
 import './style.scss'
 import Vue from 'vue'
-
-import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
-import MainMenuPage from 'cloubi2-default-product-theme-components-vue/src/components/MainMenuPage'
+import Vuex from 'vuex'
 
 import Placeholder from './components/Placeholder';
+import MenuPage from './components/MenuPage';
+import { createStore } from './store';
+
+import MaterialApiWrapper from './util/MaterialApiWrapper';
+
+import { MaterialApiWrapper as ComponentMaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+
+Vue.use(Vuex);
 
 setUpPublicPath.then(() => {
 
@@ -13,12 +19,17 @@ setUpPublicPath.then(() => {
         
         const materialApi = new MaterialApiWrapper(material);
 
+        const componentMaterialApi = new ComponentMaterialApiWrapper(material);
+
+        const store = createStore(materialApi);
+
         material.registerPageContentTypeRenderer('navigation/menu', function(page, contentId, callback) {
           
           console.log('navigation/menu render =>');
 
           let mainMenu = new Vue({
-            render: h => h(MainMenuPage, { props: {pageId: page.id, pageTitle: page.title, materialApi} })
+            store,
+            render: h => h(MenuPage, { props: {pageId: page.id, pageTitle: page.title} })
           });
     
           mainMenu.$mount();
@@ -29,6 +40,10 @@ setUpPublicPath.then(() => {
           callback();
          
         });
+
+        material.onPageChange((page) => {
+          store.dispatch('pages/setCurrentPage', page);
+        });
     
         // Wait until material is fully loaded and we know what the current page is.
         material.onMaterialReady(function() {
@@ -36,15 +51,16 @@ setUpPublicPath.then(() => {
               // If frame is enabled, show it
 
             new Vue({
+              store,
               el: document.getElementById('top-content'),
-              render: h => h(Placeholder, {props: {materialApi:materialApi}})
+              render: h => h(Placeholder, {props: {materialApi:componentMaterialApi}})
             });
 
             // The blank navigation model does not load current page automatically,
             // in case we wanted to add some custom rendering logic to it.
             // But now we just load the current page.
             material.getCurrentPage(function(page) {
-                material.changePage(page.id);
+              material.changePage(page.id);
             });
           }
         });

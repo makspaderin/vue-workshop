@@ -17,6 +17,7 @@ export default {
   },
 
   created: function(){
+    console.log('Placeholder:created!');
   }
 }
 </script>
