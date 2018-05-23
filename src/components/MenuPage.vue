@@ -10,7 +10,7 @@
 
 <script>
 
-import MainMenuGrid from 'cloubi2-default-product-theme-components-vue/src/components/MainMenuPage/MainMenuGrid'
+import { MainMenuGrid } from 'cloubi2-default-product-theme-components-vue'
 import { Actions } from '../store/types';
 import { mapGetters, mapState } from 'vuex';
 

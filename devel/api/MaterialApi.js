@@ -1,7 +1,7 @@
 import material from './fakematerial.json';
 import { setTimeout } from 'timers';
 
-var currentPageId = "121";
+var currentPageId = "1";
 var onPageStartsLoadingListeners = [];
 var onPageChangeListeners = []
 

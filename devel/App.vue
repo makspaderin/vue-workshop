@@ -1,46 +1,45 @@
 <template>
-  <div class="cb-app">
-    <div class="cb-frame">
-      <navbar
-        :material-api="materialApi"/>
-      <sidebar 
-        :material-api="materialApi" />
-    </div>
-    <content-positioner>
-      <div class="container">
-        <div class="cb-app container">
-          <div class="cb-container">
-            <menu-page 
-              page-title="Welcome"
-              page-id="1"/>
-          </div>
-        </div>
-      </div>
-    </content-positioner>
+  <div>
+    <theme-topbar
+      :event-bus="eventBus"
+      :material-api="materialApi"     
+    />
+    <theme-frame
+      :event-bus="eventBus"
+      :material-api="materialApi"
+    />
   </div>
 </template>
 
 <script>
 
-import MenuPage from '../src/components/MenuPage';
-import Placeholder from '../src/components/Placeholder';
+import Vue from 'vue'
+import VDragged from 'v-dragged';
+
+import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
+
+import ThemeTopbar from '../src/components/ThemeTopbar';
+import ThemeFrame from '../src/components/ThemeFrame';
+
+Vue.use(VDragged);
+Vue.use(ProductThemeComponents);
 
 export default {
 
   components: {
-    'menu-page': MenuPage,
-    'place-holder': Placeholder    
+    'theme-topbar': ThemeTopbar,
+    'theme-frame': ThemeFrame
   },
 
   props: {
-    materialApi: { type: Object, required: true }
+    materialApi: { type: Object, required: true },
+    eventBus: { type:Object, default: () => new Vue() }
   }
 
 }
-
 </script>
 
-<style scoped>
+<style>
 
 .cb-app {
   background:#ededf0;
@@ -67,5 +66,4 @@ export default {
   left:0;
   z-index: 1;
 }
-
 </style>

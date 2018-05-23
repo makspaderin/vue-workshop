@@ -1,0 +1,74 @@
+<template>
+  <div>
+    <div class="cb-frame">
+      <theme-sidebar
+        :event-bus="eventBus"
+        :material-api="materialApi"
+      />
+      <content-positioner 
+        sidebar-position="left"
+        :event-bus="eventBus">
+        <ruler 
+          :event-bus="eventBus"/>
+      </content-positioner>
+    </div>
+    <content-positioner
+      sidebar-position="left"
+      :event-bus="eventBus">
+      <div class="container">
+        <div class="cb-app container">
+          <div class="cb-container">
+            <div id="content-mount">Default Content</div>
+          </div>
+        </div>
+      </div>
+    </content-positioner>
+  </div>
+</template>
+
+<script>
+
+import ThemeSidebar from './ThemeSidebar';
+
+export default {
+
+  components: {
+    'theme-sidebar': ThemeSidebar
+  },
+
+  props: {
+    materialApi: { type: Object, required: true },
+    eventBus: { type:Object, default: () => new Vue() }
+  }
+
+}
+</script>
+
+<style>
+
+.cb-app {
+  background:#ededf0;
+  margin-top: 100px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: solid;
+  z-index: 100;
+}
+
+.cb-container {
+  margin: 10px;
+  border: solid;
+}
+
+.cb-frame {
+  position:fixed;
+  width:100%;
+  height:0;
+  top:0;
+  left:0;
+  z-index: 1;
+}
+</style>

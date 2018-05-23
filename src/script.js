@@ -3,15 +3,21 @@ import './style.scss'
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import Placeholder from './components/Placeholder';
-import MenuPage from './components/MenuPage';
+// import MenuPage from './components/MenuPage';
 import { createStore } from './store';
 
-import MaterialApiWrapper from './util/MaterialApiWrapper';
+import ThemeTopbar from './components/ThemeTopbar';
+import ThemeFrame from './components/ThemeFrame';
 
-import { MaterialApiWrapper as ComponentMaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
 
 Vue.use(Vuex);
+
+import VDragged from 'v-dragged';
+import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
+
+Vue.use(VDragged);
+Vue.use(ProductThemeComponents);
 
 setUpPublicPath.then(() => {
 
@@ -19,27 +25,32 @@ setUpPublicPath.then(() => {
         
         const materialApi = new MaterialApiWrapper(material);
 
-        const componentMaterialApi = new ComponentMaterialApiWrapper(material);
-
         const store = createStore(materialApi);
 
-        material.registerPageContentTypeRenderer('navigation/menu', function(page, contentId, callback) {
-          
-          console.log('navigation/menu render =>');
+        const eventBus = new Vue();
 
-          let mainMenu = new Vue({
-            store,
-            render: h => h(MenuPage, { props: {pageId: page.id, pageTitle: page.title} })
-          });
+        /**
+         * Register your own stores as modules here, with registerModule
+         * Ex. store.registerModule('', myModule);
+         */
+
+        // material.registerPageContentTypeRenderer('navigation/menu', function(page, contentId, callback) {
+          
+        //   console.log('navigation/menu render =>');
+
+        //   let mainMenu = new Vue({
+        //     store,
+        //     render: h => h(MenuPage, { props: {pageId: page.id, pageTitle: page.title} })
+        //   });
     
-          mainMenu.$mount();
+        //   mainMenu.$mount();
     
-          var content = document.getElementById(contentId);
-          content.appendChild(mainMenu.$el);
+        //   var content = document.getElementById(contentId);
+        //   content.appendChild(mainMenu.$el);
     
-          callback();
+        //   callback();
          
-        });
+        // });
 
         material.onPageChange((page) => {
           store.dispatch('pages/setCurrentPage', page);
@@ -53,9 +64,24 @@ setUpPublicPath.then(() => {
             new Vue({
               store,
               el: document.getElementById('top-content'),
-              render: h => h(Placeholder, {props: {materialApi:componentMaterialApi}})
+              render: h => h(ThemeTopbar, {props: {materialApi:materialApi,eventBus}})
             });
 
+            const contentElement = document.getElementById('content');
+            
+            let frame = new Vue({
+              store,
+              render: h => h(ThemeFrame, { props: {materialApi:materialApi,eventBus} })
+            });
+      
+            let contentParentElement = contentElement.parentElement;
+
+            frame.$mount();
+            contentParentElement.appendChild(frame.$el);
+
+            let contentMountElement = document.getElementById('content-mount');
+            contentMountElement.parentElement.replaceChild(contentElement, contentMountElement);
+                    
             // The blank navigation model does not load current page automatically,
             // in case we wanted to add some custom rendering logic to it.
             // But now we just load the current page.

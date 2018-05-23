@@ -13,7 +13,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "vue": "^2.5.16"
+        "vue": "^2.5.16",
+        "v-dragged": "0.0.5"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
