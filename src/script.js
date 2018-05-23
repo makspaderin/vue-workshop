@@ -8,6 +8,7 @@ import { createStore } from './store';
 
 import ThemeTopbar from './components/ThemeTopbar';
 import ThemeFrame from './components/ThemeFrame';
+import ThemeMenu from './components/ThemeMenu';
 
 import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
 
@@ -34,23 +35,23 @@ setUpPublicPath.then(() => {
          * Ex. store.registerModule('', myModule);
          */
 
-        // material.registerPageContentTypeRenderer('navigation/menu', function(page, contentId, callback) {
+        material.registerPageContentTypeRenderer('navigation/menu', function(page, contentId, callback) {
           
-        //   console.log('navigation/menu render =>');
+          console.log('navigation/menu render =>');
 
-        //   let mainMenu = new Vue({
-        //     store,
-        //     render: h => h(MenuPage, { props: {pageId: page.id, pageTitle: page.title} })
-        //   });
+          let themeMenu = new Vue({
+            store,
+            render: h => h(ThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi} })
+          });
     
-        //   mainMenu.$mount();
+          themeMenu.$mount();
     
-        //   var content = document.getElementById(contentId);
-        //   content.appendChild(mainMenu.$el);
+          var content = document.getElementById(contentId);
+          content.appendChild(themeMenu.$el);
     
-        //   callback();
+          callback();
          
-        // });
+        });
 
         material.onPageChange((page) => {
           store.dispatch('pages/setCurrentPage', page);

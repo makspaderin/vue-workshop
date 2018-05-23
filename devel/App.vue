@@ -1,13 +1,22 @@
 <template>
-  <div>
-    <theme-topbar
-      :event-bus="eventBus"
-      :material-api="materialApi"     
-    />
-    <theme-frame
-      :event-bus="eventBus"
-      :material-api="materialApi"
-    />
+  <div class="cb-app">
+    <div v-if="page.contentType==='navigation/menu'">
+      <theme-menu
+        :material-api="materialApi"
+        :pageId="page.id"
+        :pageTitle="page.title"
+      />
+    </div>
+    <div v-else>
+      <theme-topbar
+        :event-bus="eventBus"
+        :material-api="materialApi"     
+      />
+      <theme-frame
+        :event-bus="eventBus"
+        :material-api="materialApi"
+      />
+    </div>
   </div>
 </template>
 
@@ -20,6 +29,7 @@ import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue
 
 import ThemeTopbar from '../src/components/ThemeTopbar';
 import ThemeFrame from '../src/components/ThemeFrame';
+import ThemeMenu from '../src/components/ThemeMenu';
 
 Vue.use(VDragged);
 Vue.use(ProductThemeComponents);
@@ -28,12 +38,31 @@ export default {
 
   components: {
     'theme-topbar': ThemeTopbar,
-    'theme-frame': ThemeFrame
+    'theme-frame': ThemeFrame,
+    'theme-menu': ThemeMenu
   },
 
   props: {
     materialApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() }
+  },
+
+  data: function() {
+    return {
+      page: {
+        id: '1',
+        title: 'Foo'
+      }
+    };
+  },
+
+  mounted: function() {
+    const self = this;
+    this.materialApi.onPageChange((page) => {
+      console.log('onPageChanged:');
+      console.log(page);
+      self.page = page;
+    });
   }
 
 }
@@ -43,7 +72,7 @@ export default {
 
 .cb-app {
   background:#ededf0;
-  margin-top: 100px;
+  margin-top: 0px;
   top: 0px;
   left: 0px;
   width: 100%;

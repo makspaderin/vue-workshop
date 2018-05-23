@@ -6,6 +6,7 @@ import MaterialApi from './api/MaterialApi';
 import { createStore } from '../src/store';
 
 import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+import materialApi from './api/MaterialApi';
 
 Vue.use(Vuex);
 
@@ -21,14 +22,25 @@ const app = new Vue({
 
 // mount some content...
 
-let contentMountElement = document.getElementById('content-mount');
+// materialApiWrapper.onPageChange(page => {
 
-let contentDiv = document.createElement("div");
-let contentText = document.createTextNode("new replacement element.");
-contentDiv.appendChild(contentText);
+//   if (page.contentType !== 'navigation/menu') {
 
-contentMountElement.parentElement.replaceChild(contentDiv, contentMountElement);
+//     let contentMountElement = document.getElementById('content-mount');
+
+//     let contentDiv = document.createElement("div");
+//     let contentText = document.createTextNode("new replacement element.");
+//     contentDiv.appendChild(contentText);
+    
+//     contentMountElement.parentElement.replaceChild(contentDiv, contentMountElement);
+            
+//   }
+
+// });
 
 
 // set default page
+materialApi.getCurrentPage(function(page) {
+  materialApi.changePage(page.id);
+});
 
