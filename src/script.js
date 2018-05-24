@@ -62,11 +62,11 @@ setUpPublicPath.then(() => {
             if (settings.frameEnabled) {
               // If frame is enabled, show it
 
-            new Vue({
+            /*new Vue({
               store,
               el: document.getElementById('top-content'),
               render: h => h(ThemeTopbar, {props: {materialApi:materialApi,eventBus}})
-            });
+            });*/
 
             const contentElement = document.getElementById('content');
             

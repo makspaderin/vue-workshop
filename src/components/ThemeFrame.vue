@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="cb-frame">
+      <theme-topbar 
+        :event-bus="eventBus"
+        :material-api="materialApi"
+      />
       <theme-sidebar
         :event-bus="eventBus"
         :material-api="materialApi"
@@ -15,11 +19,9 @@
     <content-positioner
       sidebar-position="left"
       :event-bus="eventBus">
-      <div class="container">
-        <div class="cb-app container">
-          <div class="cb-container">
-            <div id="content-mount">Default Content</div>
-          </div>
+      <div class="cb-app container">
+        <div class="cb-container">
+          <div id="content-mount">Default Content</div>
         </div>
       </div>
     </content-positioner>
@@ -29,11 +31,13 @@
 <script>
 
 import ThemeSidebar from './ThemeSidebar';
+import ThemeTopbar from './ThemeTopbar';
 
 export default {
 
   components: {
-    'theme-sidebar': ThemeSidebar
+    'theme-sidebar': ThemeSidebar,
+    'theme-topbar': ThemeTopbar
   },
 
   props: {

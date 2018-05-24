@@ -1,8 +1,7 @@
 <template>
   <sidebar
     position="left" 
-    :event-bus="eventBus"
-    :material-api="materialApi">
+    :event-bus="eventBus">
     <template>
       <div class="cb-sidebar-column">
         SideBar
