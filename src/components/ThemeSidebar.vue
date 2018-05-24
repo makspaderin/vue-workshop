@@ -4,7 +4,6 @@
     :event-bus="eventBus">
     <template>
       <div class="cb-sidebar-column">
-        SideBar
         <nav-level-heading
           :material-api="materialApi" />
         <material-accordion
@@ -26,7 +25,9 @@ export default {
   props: {
     materialApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() }
-  }
+  },
+
+
 
 }
 </script>

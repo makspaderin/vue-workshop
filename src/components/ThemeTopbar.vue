@@ -3,16 +3,18 @@
     :is-transparent="isRoot">
     <template slot="left-content">
       <sidebar-switch 
+        :class="[{'cb-hidden': isRoot}]"
         :event-bus="eventBus" />
       <home-button
+        :class="[{'cb-hidden': isRoot}]"
         :material-api="materialApi" />
     </template>
     <template slot="center-content">
       <product-heading
+        :class="[{'cb-hidden': isRoot}]"
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
-      Topbar...
       <ruler-button 
         :event-bus="eventBus"/>
     </template>
@@ -52,6 +54,7 @@ export default {
     $pageChanged: function(page) {
       if(page.breadcrump.length === 1){
         this.isRoot = true;
+        this.eventBus.$emit('sidebar-open-changed', false);
       }
       else {
         this.isRoot = false;
@@ -63,5 +66,9 @@ export default {
 </script>
 
 <style>
+
+.cb-hidden {
+  display: none;
+}
 
 </style>
