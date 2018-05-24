@@ -1,5 +1,6 @@
 <template>
   <sidebar
+    sidebar-id="nav"
     position="left" 
     :event-bus="eventBus">
     <template>

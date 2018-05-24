@@ -10,7 +10,12 @@
         :event-bus="eventBus"
         :material-api="materialApi"
       />
+      <sidebar
+        sidebarId="right-sidebar"
+        position="right"
+        :event-bus="eventBus" />
       <content-positioner 
+        sidebar-id="nav"
         sidebar-position="left"
         :event-bus="eventBus">
         <page-turners
@@ -20,6 +25,7 @@
       </content-positioner>
     </div>
     <content-positioner
+      sidebar-id="nav"
       sidebar-position="left"
       :event-bus="eventBus">
       <div class="cb-app container">
