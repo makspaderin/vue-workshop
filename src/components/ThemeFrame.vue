@@ -12,6 +12,8 @@
       <content-positioner 
         sidebar-position="left"
         :event-bus="eventBus">
+        <page-turners
+          :material-api="materialApi" />
         <ruler 
           :event-bus="eventBus"/>
       </content-positioner>
