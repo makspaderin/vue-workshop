@@ -12,6 +12,8 @@
       <content-positioner 
         sidebar-position="left"
         :event-bus="eventBus">
+        <page-turners
+          :material-api="materialApi" />
         <ruler 
           :event-bus="eventBus"/>
       </content-positioner>
@@ -58,13 +60,11 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: solid;
   z-index: 100;
 }
 
 .cb-container {
   margin: 10px;
-  border: solid;
 }
 
 .cb-frame {
