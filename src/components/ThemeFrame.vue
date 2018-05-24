@@ -1,5 +1,6 @@
 <template>
   <div>
+    <theme-background/>
     <div class="cb-frame">
       <theme-topbar 
         :event-bus="eventBus"
@@ -34,12 +35,14 @@
 
 import ThemeSidebar from './ThemeSidebar';
 import ThemeTopbar from './ThemeTopbar';
+import ThemeBackground from './ThemeBackground';
 
 export default {
 
   components: {
     'theme-sidebar': ThemeSidebar,
-    'theme-topbar': ThemeTopbar
+    'theme-topbar': ThemeTopbar,
+    'theme-background': ThemeBackground
   },
 
   props: {
@@ -53,7 +56,6 @@ export default {
 <style>
 
 .cb-app {
-  background:#ededf0;
   margin-top: 100px;
   top: 0px;
   left: 0px;

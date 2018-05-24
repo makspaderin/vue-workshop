@@ -14,9 +14,7 @@ import VDragged from 'v-dragged';
 
 import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
 
-import ThemeTopbar from '../src/components/ThemeTopbar';
 import ThemeFrame from '../src/components/ThemeFrame';
-import ThemeMenu from '../src/components/ThemeMenu';
 
 Vue.use(VDragged);
 Vue.use(ProductThemeComponents);
@@ -24,9 +22,7 @@ Vue.use(ProductThemeComponents);
 export default {
 
   components: {
-    'theme-topbar': ThemeTopbar,
     'theme-frame': ThemeFrame,
-    'theme-menu': ThemeMenu
   },
 
   props: {
