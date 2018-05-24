@@ -73,7 +73,6 @@ export default {
 
   flex-direction: column;
   display: flex;
-  border: solid;
   justify-content: center;
   align-items: center;
 

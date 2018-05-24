@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App.vue';
+import ThemeMenu from '../src/components/ThemeMenu';
 
 import MaterialApi from './api/MaterialApi';
 import { createStore } from '../src/store';
@@ -22,21 +23,47 @@ const app = new Vue({
 
 // mount some content...
 
-// materialApiWrapper.onPageChange(page => {
+let contentDiv = null;
+let themeMenu = null;
 
-//   if (page.contentType !== 'navigation/menu') {
+materialApiWrapper.onPageChange(page => {
 
-//     let contentMountElement = document.getElementById('content-mount');
+  if (themeMenu) {
+    themeMenu.$el.remove();
+    themeMenu = null;
+  }
+  
+  if (contentDiv) {
+    contentDiv.remove();
+    contentDiv = null;
+  }
 
-//     let contentDiv = document.createElement("div");
-//     let contentText = document.createTextNode("new replacement element.");
-//     contentDiv.appendChild(contentText);
-    
-//     contentMountElement.parentElement.replaceChild(contentDiv, contentMountElement);
+  if (page.contentType === 'navigation/menu') {
+
+    let contentMountElement = document.getElementById('content-frame');   
+
+    themeMenu = new Vue({
+      store,
+      render: h => h(ThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi: materialApiWrapper} })
+    });
+
+    themeMenu.$mount();
+
+    contentMountElement.appendChild(themeMenu.$el);
             
-//   }
+  } else {  
 
-// });
+    let contentMountElement = document.getElementById('content-frame');   
+
+    contentDiv = document.createElement("div");
+    let contentText = document.createTextNode("new replacement element.");
+    contentDiv.appendChild(contentText);  
+    
+    contentMountElement.appendChild(contentDiv);
+    
+  }
+
+});
 
 
 // set default page

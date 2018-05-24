@@ -54,6 +54,10 @@ setUpPublicPath.then(() => {
         });
 
         material.onPageChange((page) => {
+
+          console.log('script.js onPageChange =>');
+          console.log(page);
+
           store.dispatch('pages/setCurrentPage', page);
         });
     

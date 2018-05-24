@@ -1,22 +1,9 @@
 <template>
-  <div class="cb-app">
-    <div v-if="page.contentType==='navigation/menu'">
-      <theme-menu
-        :material-api="materialApi"
-        :pageId="page.id"
-        :pageTitle="page.title"
-      />
-    </div>
-    <div v-else>
-      <theme-topbar
-        :event-bus="eventBus"
-        :material-api="materialApi"     
-      />
-      <theme-frame
-        :event-bus="eventBus"
-        :material-api="materialApi"
-      />
-    </div>
+  <div>
+    <theme-frame
+      :event-bus="eventBus"
+      :material-api="materialApi"
+    />
   </div>
 </template>
 
@@ -70,29 +57,4 @@ export default {
 
 <style>
 
-.cb-app {
-  background:#ededf0;
-  margin-top: 0px;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  border: solid;
-  z-index: 100;
-}
-
-.cb-container {
-  margin: 10px;
-  border: solid;
-}
-
-.cb-frame {
-  position:fixed;
-  width:100%;
-  height:0;
-  top:0;
-  left:0;
-  z-index: 1;
-}
 </style>

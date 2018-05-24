@@ -20,8 +20,8 @@
       sidebar-position="left"
       :event-bus="eventBus">
       <div class="cb-app container">
-        <div class="cb-container">
-          <div id="content-mount">Default Content</div>
+        <div class="cb-container" id="content-frame">
+          <div id="content-mount"></div>
         </div>
       </div>
     </content-positioner>
@@ -58,13 +58,11 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: solid;
   z-index: 100;
 }
 
 .cb-container {
   margin: 10px;
-  border: solid;
 }
 
 .cb-frame {
