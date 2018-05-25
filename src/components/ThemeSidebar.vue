@@ -5,6 +5,8 @@
     :event-bus="eventBus">
     <template>
       <div class="cb-sidebar-column">
+        <chapter-turners 
+          :material-api="materialApi" />
         <nav-level-heading
           :material-api="materialApi" />
         <material-accordion
