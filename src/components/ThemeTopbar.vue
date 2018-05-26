@@ -2,8 +2,8 @@
   <navbar
     :is-transparent="isRoot">
     <template slot="left-content">
-      <sidebar-switch 
-        sidebar-id="nav"
+      <sidepanel-switch 
+        sidepanel-id="nav"
         :class="[{'cb-hidden': isRoot}]"
         :event-bus="eventBus" />
       <home-button
@@ -18,8 +18,8 @@
     <template slot="right-content">
       <ruler-button 
         :event-bus="eventBus"/>
-      <sidebar-switch 
-        sidebar-id="right-sidebar"
+      <sidepanel-switch 
+        sidepanel-id="right-sidepanel"
         icon="star"
         :event-bus="eventBus" />
     </template>
@@ -59,7 +59,7 @@ export default {
     $pageChanged: function(page) {
       if(page.breadcrump.length === 1){
         this.isRoot = true;
-        this.eventBus.$emit('sidebar-open-changed', {isOpen: false, sidebarId: "nav"});
+        this.eventBus.$emit('sidepanel-open-changed', {isOpen: false, sidepanelId: "nav"});
       }
       else {
         this.isRoot = false;
