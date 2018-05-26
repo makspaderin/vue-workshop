@@ -1,10 +1,10 @@
 <template>
-  <sidepanel
-    sidepanel-id="nav"
+  <side-panel
+    side-panel-id="nav"
     position="left" 
     :event-bus="eventBus">
     <template>
-      <div class="cb-sidepanel-column">
+      <div class="cb-side-panel-column">
         <chapter-turners 
           :material-api="materialApi" />
         <nav-level-heading
@@ -13,14 +13,14 @@
           :material-api="materialApi" />
       </div>
     </template>
-  </sidepanel>
+  </side-panel>
 </template>
 
 <script>
 
 export default {
 
-  name: 'ThemeSidepanel',
+  name: 'ThemeSidePanel',
 
   components: {
   },
@@ -37,7 +37,7 @@ export default {
 
 <style>
 
-.cb-sidepanel-column {
+.cb-side-panel-column {
   display: flex;
   flex-direction: column;
   height: 100%;
