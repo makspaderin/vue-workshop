@@ -14,7 +14,10 @@
         side-panel-id="right-side-panel"
         position="right"
         data-cy="side-panel-right"
-        :event-bus="eventBus" />
+        :event-bus="eventBus">
+        <notes
+          :material-api="materialApi" />
+      </side-panel>
       <content-positioner 
         side-panel-id="nav"
         side-panel-position="left"
@@ -60,10 +63,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
 .cb-app {
-  margin-top: 100px;
+  margin-top: 50px;
   top: 0px;
   left: 0px;
   width: 100%;

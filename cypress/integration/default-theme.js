@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 const pageUrl = 'http://localhost:8081';
 
 describe('Component loads in dev invironment', function() {

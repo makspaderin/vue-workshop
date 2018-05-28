@@ -1,7 +1,8 @@
 {
   "froala": {
+    "includeDefault": false,
     "item": [
-      { "name": "item-full-width", "title": "Full Width"}
+      { "name": "cb-item-full-width", "title": "Full Width"}
     ]
   }
 }
