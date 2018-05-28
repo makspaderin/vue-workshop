@@ -1,6 +1,6 @@
 <template>
   <div class="cb-theme-menu">    
-    <h1>{{ pageTitle }}</h1>
+    <h1>{{ title }}</h1>
     <main-menu-grid 
       :pages="pageChildPages" 
       :last-visited-page="lastVisitedPageId"
@@ -10,11 +10,9 @@
 
 <script>
 
-import { Actions } from '../store/types';
-
 export default {
 
-  name: "MenuPage",
+  name: "ThemeMenu",
 
   props: {
     pageId: { type: String, required: true },
@@ -25,22 +23,29 @@ export default {
   data: function() {
     return {
       pageChildPages: [],
-      lastVisitedPageId: null
+      lastVisitedPageId: null,
+      title: window.document.title
     };
   },
   
   created: function() {
+
+    console.log('ThemeMenu::created');
+
     this.$loadPageChildPages()
     .then(this.resolveLastPage);
+
+    this.materialApi.onPageChange(page => {
+      this.$resolveLastPage();
+    });
   },
-  
+
   methods: {
 
     $loadPageChildPages() {
       const self = this;
       return this.materialApi.getPageChildPages(this.pageId, null)
       .then(pages => {
-        console.log(pages);
         self.pageChildPages = pages;
       });
     },
