@@ -4,6 +4,7 @@
     <template slot="left-content">
       <side-panel-switch 
         side-panel-id="nav"
+        data-cy="side-panel-switch-nav"
         :class="[{'cb-hidden': isRoot}]"
         :event-bus="eventBus" />
       <home-button
@@ -19,6 +20,7 @@
       <ruler-button 
         :event-bus="eventBus"/>
       <side-panel-switch 
+        data-cy="side-panel-switch-right"
         side-panel-id="right-side-panel"
         icon="star"
         :event-bus="eventBus" />

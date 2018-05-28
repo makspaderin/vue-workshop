@@ -87,7 +87,9 @@ var materialApi = {
           callback(parentPage.childPages.map(id => material.pages[id]));
         }
         else {
-          return this.getPageChildPages(material.root);
+          this.getPageChildPages(material.root, {}, function(pages){
+            callback(pages);
+          });
         }
       }, 20);
     },

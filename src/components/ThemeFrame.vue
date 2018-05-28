@@ -13,6 +13,7 @@
       <side-panel
         side-panel-id="right-side-panel"
         position="right"
+        data-cy="side-panel-right"
         :event-bus="eventBus" />
       <content-positioner 
         side-panel-id="nav"

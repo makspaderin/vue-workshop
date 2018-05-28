@@ -2,6 +2,7 @@
   <side-panel
     side-panel-id="nav"
     position="left" 
+    data-cy="side-panel-nav"
     :event-bus="eventBus">
     <template>
       <div class="cb-side-panel-column">
