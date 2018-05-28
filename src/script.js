@@ -59,6 +59,8 @@ setUpPublicPath.then(() => {
           console.log(page);
 
           store.dispatch('pages/setCurrentPage', page);
+
+          window.scrollTo(0,0);
         });
     
         // Wait until material is fully loaded and we know what the current page is.

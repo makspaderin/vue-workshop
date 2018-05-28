@@ -6,12 +6,18 @@
         :event-bus="eventBus"
         :material-api="materialApi"
       />
-      <theme-sidebar
+      <theme-side-panel
         :event-bus="eventBus"
         :material-api="materialApi"
       />
+      <side-panel
+        side-panel-id="right-side-panel"
+        position="right"
+        data-cy="side-panel-right"
+        :event-bus="eventBus" />
       <content-positioner 
-        sidebar-position="left"
+        side-panel-id="nav"
+        side-panel-position="left"
         :event-bus="eventBus">
         <page-turners
           :material-api="materialApi" />
@@ -20,7 +26,8 @@
       </content-positioner>
     </div>
     <content-positioner
-      sidebar-position="left"
+      side-panel-id="nav"
+      side-panel-position="left"
       :event-bus="eventBus">
       <div class="cb-app container">
         <div class="cb-container" id="content-frame">
@@ -33,14 +40,14 @@
 
 <script>
 
-import ThemeSidebar from './ThemeSidebar';
+import ThemeSidePanel from './ThemeSidePanel';
 import ThemeTopbar from './ThemeTopbar';
 import ThemeBackground from './ThemeBackground';
 
 export default {
 
   components: {
-    'theme-sidebar': ThemeSidebar,
+    'theme-side-panel': ThemeSidePanel,
     'theme-topbar': ThemeTopbar,
     'theme-background': ThemeBackground
   },

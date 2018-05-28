@@ -35,11 +35,21 @@ var materialApi = {
     },
 
     changeToNextPage: function() {
-        this.changePage('1')
+      const self = this;
+      self.getCurrentPage(function(page){
+        if(page.nextPage){
+          self.changePage(page.nextPage)
+        }
+      })
     },
 
     changeToPreviousPage: function() {
-        this.changePage('11')
+      const self = this;
+      self.getCurrentPage(function(page){
+        if(page.prevPage){
+          self.changePage(page.prevPage)
+        }
+      })
     },
 
     getCurrentPage: function(callback) {
@@ -87,7 +97,9 @@ var materialApi = {
           callback(parentPage.childPages.map(id => material.pages[id]));
         }
         else {
-          return this.getPageChildPages(material.root);
+          this.getPageChildPages(material.root, {}, function(pages){
+            callback(pages);
+          });
         }
       }, 20);
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="cb-theme-menu">    
-    <h1>{{ title }}</h1>
+    <h1 data-cy="main-menu-title">{{ title }}</h1>
     <main-menu-grid 
       :pages="pageChildPages" 
       :last-visited-page="lastVisitedPageId"
