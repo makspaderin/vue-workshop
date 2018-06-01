@@ -9,7 +9,8 @@
       <div>
         <cloubi-notes-download-button 
           class="cb-download-notes-btn"
-          :material-api="materialApi"/>
+          :material-api="materialApi"
+          :event-bus="eventBus"/>
       </div>
       <div>
         <cloubi-side-panel-switch 
@@ -21,7 +22,8 @@
     </div>
     <cloubi-notes
       class="cb-notes"
-      :material-api="materialApi" />
+      :material-api="materialApi"
+      :event-bus="eventBus" />
   </cloubi-side-panel>
 </template>
 
@@ -56,9 +58,6 @@ export default {
 .cb-download-notes-btn {
   height:$cloubi-navbar-height;
   width:$cloubi-navbar-height;
-}
-
-.cb-close-notes-btn {
 }
 
 </style>

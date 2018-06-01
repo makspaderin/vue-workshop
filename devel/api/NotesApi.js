@@ -34,8 +34,12 @@ export function createNotesApi(material){
       }, 1000);
     },
 
+    downloadPageNotes() {
+      console.log('DOWNLOAD PAGE NOTES');
+    },
+
     downloadAllNotes() {
-      console.log('DOWNLOAD NOTES')
+      console.log('DOWNLOAD ALL NOTES');
     }
   }
 }
