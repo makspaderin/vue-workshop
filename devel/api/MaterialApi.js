@@ -112,6 +112,7 @@ var materialApi = {
         callback(material.pages['11']);
       }, 500);      
     },
+
     ...notesApi,
 
 }

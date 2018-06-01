@@ -32,6 +32,10 @@ export function createNotesApi(material){
         
         callback(note);
       }, 1000);
+    },
+
+    downloadAllNotes() {
+      console.log('DOWNLOAD NOTES')
     }
   }
 }

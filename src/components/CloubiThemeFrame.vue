@@ -8,17 +8,12 @@
       />
       <theme-side-panel
         :event-bus="eventBus"
-        :material-api="materialApi"
-      />
-      <cloubi-side-panel
-        side-panel-id="right-side-panel"
-        position="right"
-        data-cy="side-panel-right"
-        :full-height="true"
-        :event-bus="eventBus">
-        <cloubi-notes
-          :material-api="materialApi" />
-      </cloubi-side-panel>
+        :material-api="materialApi"/>
+
+      <theme-notes-panel
+        :event-bus="eventBus"
+        :material-api="materialApi" />
+
       <theme-bottombar
         :event-bus="eventBus"
         :material-api="materialApi" />
@@ -52,6 +47,7 @@ import CloubiThemeSidePanel from './CloubiThemeSidePanel';
 import CloubiThemeTopbar from './CloubiThemeTopbar';
 import CloubiThemeBackground from './CloubiThemeBackground';
 import CloubiThemeBottombar from './CloubiThemeBottombar';
+import CloubiThemeNotesPanel from './CloubiThemeNotesPanel';
 
 export default {
 
@@ -59,7 +55,8 @@ export default {
     'theme-side-panel': CloubiThemeSidePanel,
     'theme-topbar': CloubiThemeTopbar,
     'theme-background': CloubiThemeBackground,
-    'theme-bottombar': CloubiThemeBottombar
+    'theme-bottombar': CloubiThemeBottombar,
+    'theme-notes-panel': CloubiThemeNotesPanel
   },
 
   props: {
@@ -71,6 +68,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../_variables.scss';
 
 .cb-app {
   margin-top: 50px;
@@ -93,6 +91,10 @@ export default {
   top:0;
   left:0;
   z-index: 1;
+}
+
+.cb-notes {
+  height: calc(100vh - #{$cloubi-navbar-height})
 }
 
 @media only screen and (max-width: 760px) {
