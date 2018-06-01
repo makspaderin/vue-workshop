@@ -14,15 +14,20 @@
         side-panel-id="right-side-panel"
         position="right"
         data-cy="side-panel-right"
+        :full-height="true"
         :event-bus="eventBus">
         <notes
           :material-api="materialApi" />
       </side-panel>
+      <theme-bottombar
+        :event-bus="eventBus"
+        :material-api="materialApi" />
       <content-positioner 
         side-panel-id="nav"
         side-panel-position="left"
         :event-bus="eventBus">
         <page-turners
+          class="cb-floating-page-turners"
           :material-api="materialApi" />
         <ruler 
           :event-bus="eventBus"/>
@@ -46,13 +51,15 @@
 import ThemeSidePanel from './ThemeSidePanel';
 import ThemeTopbar from './ThemeTopbar';
 import ThemeBackground from './ThemeBackground';
+import ThemeBottombar from './ThemeBottombar';
 
 export default {
 
   components: {
     'theme-side-panel': ThemeSidePanel,
     'theme-topbar': ThemeTopbar,
-    'theme-background': ThemeBackground
+    'theme-background': ThemeBackground,
+    'theme-bottombar': ThemeBottombar
   },
 
   props: {
@@ -86,5 +93,13 @@ export default {
   top:0;
   left:0;
   z-index: 1;
+}
+
+@media only screen and (max-width: 760px) {
+
+  .cb-floating-page-turners {
+    display: none !important;
+  }
+
 }
 </style>

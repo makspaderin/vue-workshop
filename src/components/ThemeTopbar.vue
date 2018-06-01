@@ -13,7 +13,7 @@
     </template>
     <template slot="center-content">
       <product-heading
-        :class="[{'cb-hidden': isRoot}]"
+        :class="['cb-topbar-product-heading', {'cb-hidden': isRoot}]"
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
@@ -22,7 +22,7 @@
       <side-panel-switch 
         data-cy="side-panel-switch-right"
         side-panel-id="right-side-panel"
-        icon="star"
+        icon="file"
         :event-bus="eventBus" />
     </template>
   </navbar>
@@ -76,6 +76,14 @@ export default {
 
 .cb-hidden {
   display: none;
+}
+
+@media only screen and (max-width: 760px) {
+
+  .cb-topbar-product-heading {
+    display: none !important;
+  }
+
 }
 
 </style>
