@@ -6,19 +6,19 @@ import Vuex from 'vuex'
 // import MenuPage from './components/MenuPage';
 import { createStore } from './store';
 
-import ThemeTopbar from './components/ThemeTopbar';
-import ThemeFrame from './components/ThemeFrame';
-import ThemeMenu from './components/ThemeMenu';
+import CloubiThemeTopbar from './components/CloubiThemeTopbar';
+import CloubiThemeFrame from './components/CloubiThemeFrame';
+import CloubiThemeMenu from './components/CloubiThemeMenu';
 
 import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
 
 Vue.use(Vuex);
 
 import VDragged from 'v-dragged';
-import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
+import CloubiProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
 
 Vue.use(VDragged);
-Vue.use(ProductThemeComponents);
+Vue.use(CloubiProductThemeComponents);
 
 setUpPublicPath.then(() => {
 
@@ -41,7 +41,7 @@ setUpPublicPath.then(() => {
 
           let themeMenu = new Vue({
             store,
-            render: h => h(ThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi} })
+            render: h => h(CloubiThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi} })
           });
     
           themeMenu.$mount();
@@ -78,7 +78,7 @@ setUpPublicPath.then(() => {
             
             let frame = new Vue({
               store,
-              render: h => h(ThemeFrame, { props: {materialApi:materialApi,eventBus} })
+              render: h => h(CloubiThemeFrame, { props: {materialApi:materialApi,eventBus} })
             });
       
             let contentParentElement = contentElement.parentElement;

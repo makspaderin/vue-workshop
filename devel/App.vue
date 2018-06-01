@@ -14,7 +14,7 @@ import VDragged from 'v-dragged';
 
 import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
 
-import ThemeFrame from '../src/components/ThemeFrame';
+import CloubiThemeFrame from '../src/components/CloubiThemeFrame';
 
 Vue.use(VDragged);
 Vue.use(ProductThemeComponents);
@@ -22,7 +22,7 @@ Vue.use(ProductThemeComponents);
 export default {
 
   components: {
-    'theme-frame': ThemeFrame,
+    'theme-frame': CloubiThemeFrame,
   },
 
   props: {

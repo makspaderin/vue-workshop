@@ -10,30 +10,30 @@
         :event-bus="eventBus"
         :material-api="materialApi"
       />
-      <side-panel
+      <cloubi-side-panel
         side-panel-id="right-side-panel"
         position="right"
         data-cy="side-panel-right"
         :full-height="true"
         :event-bus="eventBus">
-        <notes
+        <cloubi-notes
           :material-api="materialApi" />
-      </side-panel>
+      </cloubi-side-panel>
       <theme-bottombar
         :event-bus="eventBus"
         :material-api="materialApi" />
-      <content-positioner 
+      <cloubi-content-positioner 
         side-panel-id="nav"
         side-panel-position="left"
         :event-bus="eventBus">
-        <page-turners
+        <cloubi-page-turners
           class="cb-floating-page-turners"
           :material-api="materialApi" />
-        <ruler 
+        <cloubi-ruler 
           :event-bus="eventBus"/>
-      </content-positioner>
+      </cloubi-content-positioner>
     </div>
-    <content-positioner
+    <cloubi-content-positioner
       side-panel-id="nav"
       side-panel-position="left"
       :event-bus="eventBus">
@@ -42,24 +42,24 @@
           <div id="content-mount"></div>
         </div>
       </div>
-    </content-positioner>
+    </cloubi-content-positioner>
   </div>
 </template>
 
 <script>
 
-import ThemeSidePanel from './ThemeSidePanel';
-import ThemeTopbar from './ThemeTopbar';
-import ThemeBackground from './ThemeBackground';
-import ThemeBottombar from './ThemeBottombar';
+import CloubiThemeSidePanel from './CloubiThemeSidePanel';
+import CloubiThemeTopbar from './CloubiThemeTopbar';
+import CloubiThemeBackground from './CloubiThemeBackground';
+import CloubiThemeBottombar from './CloubiThemeBottombar';
 
 export default {
 
   components: {
-    'theme-side-panel': ThemeSidePanel,
-    'theme-topbar': ThemeTopbar,
-    'theme-background': ThemeBackground,
-    'theme-bottombar': ThemeBottombar
+    'theme-side-panel': CloubiThemeSidePanel,
+    'theme-topbar': CloubiThemeTopbar,
+    'theme-background': CloubiThemeBackground,
+    'theme-bottombar': CloubiThemeBottombar
   },
 
   props: {

@@ -1,27 +1,27 @@
 <template>
-  <navbar
+  <cloubi-navbar
     :is-light="true"
     class="cb-bottombar">
     <template slot="left-content">
-      <page-turner
+      <cloubi-page-turner
         :material-api="materialApi"
         turner-direction="previous" />
     </template>
     <template slot="center-content">
     </template>
     <template slot="right-content">
-      <page-turner
+      <cloubi-page-turner
         :material-api="materialApi"
         turner-direction="next" />
     </template>
-  </navbar>
+  </cloubi-navbar>
 </template>
 
 <script>
 
 export default {
 
-  name: 'ThemeBottombar',
+  name: 'CloubiThemeBottombar',
 
   components: {
   },

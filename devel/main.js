@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App.vue';
-import ThemeMenu from '../src/components/ThemeMenu';
+import CloubiThemeMenu from '../src/components/CloubiThemeMenu';
 
 import MaterialApi from './api/MaterialApi';
 import { createStore } from '../src/store';
@@ -44,7 +44,7 @@ materialApiWrapper.onPageChange(page => {
 
     themeMenu = new Vue({
       store,
-      render: h => h(ThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi: materialApiWrapper} })
+      render: h => h(CloubiThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi: materialApiWrapper} })
     });
 
     themeMenu.$mount();

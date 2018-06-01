@@ -8,7 +8,7 @@
 
 export default {
 
-  name: "ThemeBackground",
+  name: "CloubiThemeBackground",
 
   props: {
   },

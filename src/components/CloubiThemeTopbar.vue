@@ -1,38 +1,38 @@
 <template>
-  <navbar
+  <cloubi-navbar
     :is-transparent="isRoot">
     <template slot="left-content">
-      <side-panel-switch 
+      <cloubi-side-panel-switch 
         side-panel-id="nav"
         data-cy="side-panel-switch-nav"
         :class="[{'cb-hidden': isRoot}]"
         :event-bus="eventBus" />
-      <home-button
+      <cloubi-home-button
         :class="[{'cb-hidden': isRoot}]"
         :material-api="materialApi" />
     </template>
     <template slot="center-content">
-      <product-heading
+      <cloubi-product-heading
         :class="['cb-topbar-product-heading', {'cb-hidden': isRoot}]"
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
-      <ruler-button 
+      <cloubi-ruler-button 
         :event-bus="eventBus"/>
-      <side-panel-switch 
+      <cloubi-side-panel-switch 
         data-cy="side-panel-switch-right"
         side-panel-id="right-side-panel"
         icon="file"
         :event-bus="eventBus" />
     </template>
-  </navbar>
+  </cloubi-navbar>
 </template>
 
 <script>
 
 export default {
 
-  name: 'ThemeTopbar',
+  name: 'CloubiThemeTopbar',
 
   components: {
   },

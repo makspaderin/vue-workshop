@@ -1,7 +1,7 @@
 <template>
   <div class="cb-theme-menu">    
     <h1 data-cy="main-menu-title">{{ pageTitle }}</h1>
-    <main-menu-grid 
+    <cloubi-main-menu-grid 
       :pages="pageChildPages" 
       :last-visited-page="lastVisitedPageId"
       @click-page="onChangePage"/>  
@@ -14,7 +14,7 @@ import { Actions } from '../store/types';
 
 export default {
 
-  name: "MenuPage",
+  name: "CloubiThemeMenu",
 
   props: {
     pageId: { type: String, required: true },
