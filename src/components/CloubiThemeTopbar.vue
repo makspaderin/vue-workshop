@@ -22,7 +22,7 @@
       <cloubi-side-panel-switch 
         data-cy="side-panel-switch-right"
         side-panel-id="right-side-panel"
-        icon="file"
+        icon="file-alt"
         :event-bus="eventBus" />
     </template>
   </cloubi-navbar>

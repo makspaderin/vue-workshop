@@ -206,7 +206,6 @@ describe('Notes', function(){
     cy.get('[data-cy=notes-list-page]').children().first().find('[data-cy=note-text]').contains('Note 1');
 
     /* Edit properly */
-
     
     cy.get('[data-cy=notes-list-page]').children().first().trigger('mouseover');
     cy.get('[data-cy=notes-list-page]').children().first().find('[data-cy=edit-note-button]').click();
