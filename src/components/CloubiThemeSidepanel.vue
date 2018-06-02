@@ -30,9 +30,6 @@ export default {
     materialApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() }
   },
-
-
-
 }
 </script>
 

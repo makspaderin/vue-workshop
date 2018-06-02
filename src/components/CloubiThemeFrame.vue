@@ -20,6 +20,7 @@
       <cloubi-content-positioner 
         side-panel-id="nav"
         side-panel-position="left"
+        data-cy="cb-content-pos"
         :event-bus="eventBus">
         <cloubi-page-turners
           class="cb-floating-page-turners"

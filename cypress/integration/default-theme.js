@@ -92,19 +92,13 @@ describe('SidePanel', function() {
 
   })
 
-  it('Right panel opens and closes', function() {
+  it('Right panel opens', function() {
     cy.get('[data-cy=side-panel]').should('not.be.visible')
 
     cy.get('[data-cy=side-panel-switch-right').click()
     cy.wait(500)
 
     cy.get('[data-cy=side-panel-right]').should('be.visible')
-    cy.get('[data-cy=side-panel-nav]').should('not.be.visible')
-
-    cy.get('[data-cy=side-panel-switch-right').click()
-    cy.wait(500)
-
-    cy.get('[data-cy=side-panel-right]').should('not.be.visible')
     cy.get('[data-cy=side-panel-nav]').should('not.be.visible')
   })
 })
@@ -123,12 +117,50 @@ describe('PageTurner', function(){
   it('Changes pages', function() {
     cy.get('[data-cy=main-menu-item]').first().click()
 
-    cy.get('[data-cy=page-turner-prev]').should('not.be.visible')
-    cy.get('[data-cy=page-turner-next]').click()
+    cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-prev]').should('not.be.visible')
+    cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-next]').click()
 
-    cy.get('[data-cy=page-turner-next]').should('not.be.visible')
-    cy.get('[data-cy=page-turner-prev]').click()
+    cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-next]').should('not.be.visible')
+    cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-prev]').click()
 
-    cy.get('[data-cy=page-turner-prev]').should('not.be.visible')
+    cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-prev]').should('not.be.visible')
   })
 })
+
+describe('Notes', function(){
+  beforeEach(function() {
+    cy.visit(pageUrl);
+    cy.get('[data-cy=side-panel-switch-right]').click();
+    cy.wait(1000)
+  });
+
+  it('Shows page and all notes', function() {
+    cy.get('[data-cy=notes-list-page]').should('be.visible');
+    cy.get('[data-cy=notes-list-page]').children().should('have.length', 1);
+
+    cy.get('[data-cy=note-type-selector-all').click();
+    cy.get('[data-cy=notes-list-all]').should('be.visible');
+    cy.get('[data-cy=notes-list-all]').children().should('have.length', 2);
+
+    cy.get('[data-cy=note-type-selector-page').click();
+    cy.get('[data-cy=notes-list-page]').should('be.visible');
+    cy.get('[data-cy=notes-list-page]').children().should('have.length', 1);
+  })
+
+  it('Creates a new note', function() {
+    cy.get('[data-cy=add-note-text-field]').find('textarea').type('Nyy nööt')
+    cy.get('[data-cy=add-note-button').click()
+
+    cy.wait(1000)
+
+    cy.get('[data-cy=notes-container').find('[data-cy=note-item]').contains('Nyy nööt')
+    cy.get('[data-cy=notes-list-page]').children().should('have.length', 2);
+
+    cy.get('[data-cy=note-type-selector-all').click();
+    cy.get('[data-cy=notes-list-all]').children().should('have.length', 3);
+  });
+  
+  it('Deletes a note', function() {
+
+  });
+});
