@@ -9,15 +9,22 @@ import { createStore } from './store';
 import CloubiThemeTopbar from './components/CloubiThemeTopbar';
 import CloubiThemeFrame from './components/CloubiThemeFrame';
 import CloubiThemeMenu from './components/CloubiThemeMenu';
+import TranslationPlugin from './plugin/TranslationPlugin';
 
 import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
-
-Vue.use(Vuex);
 
 import VDragged from 'v-dragged';
 import CloubiProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
 
+// #TODO: here we register default translations from component library, 
+// this should not be here in the production code.
+// These are used by registered TranslationPlugin
+import { translations, CloubiTranslations } from 'cloubi2-default-product-theme-components-vue';
+CloubiTranslations.registerTranslations(translations);
+
+Vue.use(Vuex);
 Vue.use(VDragged);
+Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
 setUpPublicPath.then(() => {
