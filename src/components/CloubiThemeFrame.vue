@@ -22,6 +22,17 @@
         side-panel-position="left"
         data-cy="cb-content-pos"
         :event-bus="eventBus">
+        <cloubi-floatbar>
+          <cloubi-ruler-button 
+            mode="round"
+            :event-bus="eventBus" />
+          <cloubi-side-panel-switch 
+            data-cy="side-panel-switch-right"
+            side-panel-id="right-side-panel"
+            icon="file-alt"
+            mode="round"
+            :event-bus="eventBus" />
+        </cloubi-floatbar>
         <cloubi-page-turners
           class="cb-floating-page-turners"
           :material-api="materialApi" />
