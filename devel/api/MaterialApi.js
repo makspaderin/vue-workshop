@@ -1,5 +1,8 @@
 import material from './fakematerial.json';
 import { setTimeout } from 'timers';
+import { createNotesApi } from './NotesApi.js';
+
+const notesApi = createNotesApi(material);
 
 var currentPageId = "1";
 var onPageStartsLoadingListeners = [];
@@ -107,8 +110,11 @@ var materialApi = {
     getLastPage: function(callback) {
       setTimeout(() => {
         callback(material.pages['11']);
-      }, 20);      
-    }
+      }, 500);      
+    },
+
+    ...notesApi,
+
 }
 
 export default materialApi;

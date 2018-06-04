@@ -1,27 +1,27 @@
 <template>
-  <side-panel
+  <cloubi-side-panel
     side-panel-id="nav"
     position="left" 
     data-cy="side-panel-nav"
     :event-bus="eventBus">
     <template>
       <div class="cb-side-panel-column">
-        <chapter-turners 
+        <cloubi-chapter-turners 
           :material-api="materialApi" />
-        <nav-level-heading
+        <cloubi-nav-level-heading
           :material-api="materialApi" />
-        <material-accordion
+        <cloubi-material-accordion
           :material-api="materialApi" />
       </div>
     </template>
-  </side-panel>
+  </cloubi-side-panel>
 </template>
 
 <script>
 
 export default {
 
-  name: 'ThemeSidePanel',
+  name: 'CloubiThemeSidePanel',
 
   components: {
   },
@@ -30,9 +30,6 @@ export default {
     materialApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() }
   },
-
-
-
 }
 </script>
 
