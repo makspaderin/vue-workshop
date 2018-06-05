@@ -13,6 +13,9 @@ import TranslationPlugin from './plugin/TranslationPlugin';
 
 import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
 import { PlaylistApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+import { UserApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+
+import { default as userApiDev } from '../devel/api/UserApi.js'; // TODO: REMOVE THIS FOR REAL ENVIRONMENT
 
 import VDragged from 'v-dragged';
 import CloubiProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
@@ -33,9 +36,9 @@ setUpPublicPath.then(() => {
     Cloubi.load(['fi.cloubi.frontend/material', 'fi.cloubi.frontend/settings'], function(material, settings) {
         
         const materialApi = new MaterialApiWrapper(material);
-        const playlistApi = new PlaylistApiWrapper(); // TODO: suply playlist api
-        const userApi = {};
-        
+        const playlistApi = new PlaylistApiWrapper(); // TODO: supply playlist api
+        const userApi = new UserApiWrapper(userApiDev); // TODO: supply user api
+
         const store = createStore(materialApi);
 
         const eventBus = new Vue();
@@ -88,7 +91,7 @@ setUpPublicPath.then(() => {
             
             let frame = new Vue({
               store,
-              render: h => h(CloubiThemeFrame, { props: {materialApi,eventBus,playlistApi, userApi} })
+              render: h => h(CloubiThemeFrame, { props: {materialApi, eventBus, playlistApi, userApi} })
             });
       
             let contentParentElement = contentElement.parentElement;

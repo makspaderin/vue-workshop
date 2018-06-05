@@ -1,8 +1,22 @@
-.cb-item-full-width {
-  margin-left: -20vw !important;
-  width: 100vw;
+.fr-view .cloubi-froala-embed.cloubi-dfb {
+  margin-top: 0px !important;
 }
 
+.cb-item-full-width {
+  margin-left: calc(-100vw / 2 + 1140px / 2) !important;
+  margin-right: calc(-100vw / 2 + 1140px / 2) !important;
+  max-height: 60vh !important;
+  overflow: hidden !important;
+
+  img {
+    transform: translateY(-25%);
+  }
+}
+.cloubi-content-element {
+  h1, h2, h3 {
+    font-family: Montserrat,Open Sans,Helvetica,Arial,sans-serif;
+  }
+}
 .annotator-adder {
   background-image: none !important;
   background-color: #ff570c;
@@ -12,4 +26,25 @@
 .annotator-adder button {
   display: none;
   background-color: #ff570c;
+}
+
+@media only screen and (max-width: 1200px) {
+  .cb-item-full-width {
+    margin-left: calc(-100vw / 2 + 940px / 2) !important;
+    margin-right: calc(-100vw / 2 + 940px / 2) !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .cb-item-full-width {
+    margin-left: calc(-100vw / 2 + 720px / 2) !important;
+    margin-right: calc(-100vw / 2 + 720px / 2) !important;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .cb-item-full-width {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }

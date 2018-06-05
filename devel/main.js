@@ -17,6 +17,9 @@ const materialApiWrapper = new MaterialApiWrapper(materialApi);
 const playlistApiWrapper = new PlaylistApiWrapper();
 const userApiWrapper = new UserApiWrapper(userApi);
 
+console.log(userApi)
+console.log(userApiWrapper)
+
 const store = createStore(materialApiWrapper);
 
 const app = new Vue({

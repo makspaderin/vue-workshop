@@ -18,19 +18,23 @@
     </template>
     <template slot="right-content">
       <cloubi-dropdown
-      :icon-outline="true"
-      align="right"
+      align="center"
       icon="user">
         <cloubi-user 
           :user-api="userApi" />
       </cloubi-dropdown>
       <cloubi-ruler-button 
         :event-bus="eventBus"/>
-      <cloubi-side-panel-switch 
-        data-cy="side-panel-switch-right"
-        side-panel-id="right-side-panel"
-        icon="file-alt"
-        :event-bus="eventBus" />
+      
+      <cloubi-notes-counter 
+        :material-api="materialApi">  
+        <cloubi-side-panel-switch 
+          data-cy="side-panel-switch-right"
+          side-panel-id="right-side-panel"
+          icon="file-alt"
+          :event-bus="eventBus" />
+      </cloubi-notes-counter>
+
       <cloubi-dropdown 
         :pointing="false" 
         :floating="false"

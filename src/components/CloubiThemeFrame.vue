@@ -133,7 +133,7 @@ export default {
 }
 
 .cb-container {
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
 .cb-frame {
