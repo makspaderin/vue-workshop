@@ -4,7 +4,7 @@ var userApi = {
     setTimeout(() => {
       callback(
         { 
-          name: 'Teukka Salama', 
+          name: 'Johan Ludvig Runeberg', 
           email: 'email@email.com' 
         }
       );
