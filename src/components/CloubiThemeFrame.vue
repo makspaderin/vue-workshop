@@ -1,6 +1,8 @@
 <template>
   <div>
-    <theme-background/>
+    <theme-background
+      :material-api="materialApi"
+    />
     <div class="cb-frame">
       <theme-topbar 
         :event-bus="eventBus"
@@ -96,7 +98,7 @@ export default {
   data() {
     return {
       addToPlaylistDialog: false,
-      myPlaylistsDialog: false
+      myPlaylistsDialog: false,
     };
   },
 

@@ -49,6 +49,7 @@
         :pointing="false" 
         :floating="false"
         :event-bus="eventBus"
+        :icon-outline="true"
         dropdown-id="playlist"
         icon="star"
         align="right">
