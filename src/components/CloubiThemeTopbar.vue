@@ -17,6 +17,11 @@
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
+      <cloubi-dropdown
+      align="right"
+      :icon="file-alt">
+        <div class="jeb" />
+      </cloubi-dropdown>
       <cloubi-ruler-button 
         :event-bus="eventBus"/>
       <cloubi-side-panel-switch 
@@ -77,7 +82,10 @@ export default {
 .cb-hidden {
   display: none;
 }
-
+.jeb {
+  height: 500px;
+  width: 200px;
+}
 @media only screen and (max-width: 760px) {
 
   .cb-topbar-product-heading {
