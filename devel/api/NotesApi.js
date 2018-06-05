@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+
+var onNoteChangeListeners = [];
+
 export function createNotesApi(material){
   return {
     getPageNotes(callback) {
@@ -13,24 +17,42 @@ export function createNotesApi(material){
     },
     
     deleteNote(id, callback) {
+      const self = this;
+
       setTimeout(() => {
+        console.log('REMOVING')
+        const aNoteIdx = material.notes.all.findIndex((el) => {return el.id === id});
+        material.notes.all.splice(aNoteIdx, 1);
+
+        const pNoteIdx = material.notes.page.findIndex((el) => {return el.id === id});
+        material.notes.page.splice(pNoteIdx, 1);
+        console.log('REMOVED')
+
         callback(id);
+        //self.$callNoteChangeListeners();
       }, 1000);
     },
     
     updateNote(note, callback) {
+      const self = this;
+      
       setTimeout(() => {
-        callback({...note, time: 'just-now'})
-      }, 1000)
+        callback({...note, time: 'just-now'});
+        self.$callNoteChangeListeners();
+      }, 1000);
     },
 
     addNote(note, callback){
+      const self = this;
+
       setTimeout(() => {
         note.id = String(material.notes.all.length);
         note.time = 'just-now';
         material.notes.all.push(note);
+        material.notes.page.push(note);
         
         callback(note);
+        self.$callNoteChangeListeners();
       }, 1000);
     },
 
@@ -40,6 +62,17 @@ export function createNotesApi(material){
 
     downloadAllNotes() {
       console.log('DOWNLOAD ALL NOTES');
+    },
+
+    onPageNoteChange(callback) {
+      onNoteChangeListeners.push(callback);
+    },
+
+
+    $callNoteChangeListeners() {
+      console.log('CALLING NOTE CHANGE LISTENERS');
+      
+      onNoteChangeListeners.map(callback => callback([...material.notes.page]));
     }
-  }
+  };
 }
