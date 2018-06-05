@@ -32,13 +32,10 @@ export default {
 
   methods: {
     $pageChanged: function(page) {
-      console.log(page);
       if(page.breadcrump.length === 1){
-        console.log('is root');
         this.isRoot = true;
       }
       else {
-        console.log('not root');
         this.isRoot = false;
       }
     }    
