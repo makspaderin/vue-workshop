@@ -29,6 +29,20 @@
         side-panel-id="right-side-panel"
         icon="file-alt"
         :event-bus="eventBus" />
+      <cloubi-dropdown 
+        :pointing="false" 
+        :floating="false"
+        :event-bus="eventBus"
+        dropdown-id="2"
+        title="A"
+        align="right">
+        <template>
+          <cloubi-font-size-dropdown
+            :material-api="materialApi"
+            :event-bus="eventBus"
+          />
+        </template>
+      </cloubi-dropdown>
     </template>
   </cloubi-navbar>
 </template>

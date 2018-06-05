@@ -10,8 +10,6 @@
 
 <script>
 
-import { Actions } from '../store/types';
-
 export default {
 
   name: "CloubiThemeMenu",
@@ -25,22 +23,29 @@ export default {
   data: function() {
     return {
       pageChildPages: [],
-      lastVisitedPageId: null
+      lastVisitedPageId: null,
+      title: window.document.title
     };
   },
   
   created: function() {
+
+    console.log('ThemeMenu::created');
+
     this.$loadPageChildPages()
     .then(this.resolveLastPage);
+
+    this.materialApi.onPageChange(page => {
+      this.$resolveLastPage();
+    });
   },
-  
+
   methods: {
 
     $loadPageChildPages() {
       const self = this;
       return this.materialApi.getPageChildPages(this.pageId, null)
       .then(pages => {
-        console.log(pages);
         self.pageChildPages = pages;
       });
     },

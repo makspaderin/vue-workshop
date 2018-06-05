@@ -7,6 +7,7 @@ const notesApi = createNotesApi(material);
 var currentPageId = "1";
 var onPageStartsLoadingListeners = [];
 var onPageChangeListeners = []
+var fontSize = 1;
 
 var materialApi = {
 
@@ -111,6 +112,14 @@ var materialApi = {
       setTimeout(() => {
         callback(material.pages['11']);
       }, 500);      
+    },
+
+    getFontSize: function() {
+      return fontSize;
+    },
+
+    setFontSize: function(size) {
+      fontSize = size;
     },
 
     ...notesApi,
