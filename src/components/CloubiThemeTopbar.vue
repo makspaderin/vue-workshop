@@ -18,8 +18,7 @@
     </template>
     <template slot="right-content">
       <cloubi-dropdown
-      :icon-outline="true"
-      align="right"
+      align="center"
       icon="user">
         <cloubi-user 
           :user-api="userApi" />

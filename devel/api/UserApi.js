@@ -1,13 +1,19 @@
 var userApi = {
 
-  getUser: function(callback) {
+  getUser(callback) {
     setTimeout(() => {
       callback(
         { 
-          username: 'Teukka Salama', 
+          name: 'Teukka Salama', 
           email: 'email@email.com' 
         }
       );
     }, 1000);
+  },
+
+  logout() {
+    console.log('USER LOGOUT');
   }
 }
+
+export default userApi;
