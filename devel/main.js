@@ -4,6 +4,7 @@ import App from './App.vue';
 import CloubiThemeMenu from '../src/components/CloubiThemeMenu';
 
 import MaterialApi from './api/MaterialApi';
+import UserApi from './api/UserApi';
 import { createStore } from '../src/store';
 
 import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';

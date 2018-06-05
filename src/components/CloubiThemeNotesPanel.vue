@@ -15,7 +15,7 @@
       <div>
         <cloubi-side-panel-switch 
           side-panel-id="right-side-panel"
-          icon="close"
+          icon="times"
           class="cb-close-notes-btn"
           :event-bus="eventBus" />
       </div>

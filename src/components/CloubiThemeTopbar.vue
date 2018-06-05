@@ -18,9 +18,11 @@
     </template>
     <template slot="right-content">
       <cloubi-dropdown
+      :icon-outline="true"
       align="right"
-      :icon="file-alt">
-        <div class="jeb" />
+      icon="user">
+        <cloubi-user 
+          :user-api="userApi" />
       </cloubi-dropdown>
       <cloubi-ruler-button 
         :event-bus="eventBus"/>
@@ -58,7 +60,8 @@ export default {
 
   props: {
     materialApi: { type: Object, required: true },
-    eventBus: { type:Object, required: true }
+    eventBus: { type: Object, required: true },
+    userApi: { type: Object, required: true }
   },
 
   data: function(){

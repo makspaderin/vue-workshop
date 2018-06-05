@@ -5,6 +5,7 @@
       <theme-topbar 
         :event-bus="eventBus"
         :material-api="materialApi"
+        :user-api="userApi"
       />
       <theme-side-panel
         :event-bus="eventBus"
@@ -73,6 +74,7 @@ export default {
 
   props: {
     materialApi: { type: Object, required: true },
+    userApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() }
   }
 
