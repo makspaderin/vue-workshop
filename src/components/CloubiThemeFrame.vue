@@ -6,6 +6,7 @@
         :event-bus="eventBus"
         :material-api="materialApi"
         :user-api="userApi"
+        :playlist-api="playlistApi"
       />
       <theme-side-panel
         :event-bus="eventBus"
@@ -51,6 +52,18 @@
         </div>
       </div>
     </cloubi-content-positioner>
+    <cloubi-add-to-playlist-dialog
+      v-if="addToPlaylistDialog"      
+      :playlist-api="playlistApi"
+      :material-api="materialApi"
+      @cancel="addToPlaylistDialog=false"
+    />  
+    <cloubi-my-playlists-dialog
+      v-if="myPlaylistsDialog"
+      :playlist-api="playlistApi"
+      :material-api="materialApi"
+      @cancel="myPlaylistsDialog=false"
+    />
   </div>
 </template>
 
@@ -75,7 +88,30 @@ export default {
   props: {
     materialApi: { type: Object, required: true },
     userApi: { type: Object, required: true },
-    eventBus: { type:Object, default: () => new Vue() }
+    eventBus: { type:Object, default: () => new Vue() },
+    playlistApi: { type: Object, required: true },
+    eventBus: { type: Object, required: true }    
+  },
+
+  data() {
+    return {
+      addToPlaylistDialog: false,
+      myPlaylistsDialog: false
+    };
+  },
+
+  created() {
+    const self = this;
+    this.eventBus.$on('add-to-playlist', () => {
+      console.log('add-to-playlist');
+      self.eventBus.$emit('dropdown-close', {dropdownId: 'playlist'});
+      self.addToPlaylistDialog = true;
+    });
+    this.eventBus.$on('show-my-playlists', () => {
+      console.log('show-my-playlists');
+      self.eventBus.$emit('dropdown-close', {dropdownId: 'playlist'});
+      self.myPlaylistsDialog = true;
+    });
   }
 
 }

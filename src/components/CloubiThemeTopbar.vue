@@ -35,7 +35,7 @@
         :pointing="false" 
         :floating="false"
         :event-bus="eventBus"
-        dropdown-id="2"
+        dropdown-id="font-size"
         title="A"
         align="right">
         <template>
@@ -44,6 +44,21 @@
             :event-bus="eventBus"
           />
         </template>
+      </cloubi-dropdown>
+      <cloubi-dropdown 
+        :pointing="false" 
+        :floating="false"
+        :event-bus="eventBus"
+        dropdown-id="playlist"
+        icon="star"
+        align="right">
+        <template>
+          <cloubi-playlist-dropdown
+            :material-api="materialApi"
+            :playlist-api="playlistApi"
+            :event-bus="eventBus"
+          />
+        </template>        
       </cloubi-dropdown>
     </template>
   </cloubi-navbar>
@@ -61,7 +76,9 @@ export default {
   props: {
     materialApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
-    userApi: { type: Object, required: true }
+    userApi: { type: Object, required: true },
+    playlistApi: { type: Object, required: true },
+    eventBus: { type:Object, required: true }
   },
 
   data: function(){
