@@ -34,7 +34,8 @@ setUpPublicPath.then(() => {
         
         const materialApi = new MaterialApiWrapper(material);
         const playlistApi = new PlaylistApiWrapper(); // TODO: suply playlist api
-
+        const userApi = {};
+        
         const store = createStore(materialApi);
 
         const eventBus = new Vue();
@@ -87,7 +88,7 @@ setUpPublicPath.then(() => {
             
             let frame = new Vue({
               store,
-              render: h => h(CloubiThemeFrame, { props: {materialApi,eventBus,playlistApi} })
+              render: h => h(CloubiThemeFrame, { props: {materialApi,eventBus,playlistApi, userApi} })
             });
       
             let contentParentElement = contentElement.parentElement;

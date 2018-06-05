@@ -4,6 +4,7 @@
       :event-bus="eventBus"
       :material-api="materialApi"
       :user-api="userApi"
+      :playlist-api="playlistApi"
     />
   </div>
 </template>
@@ -29,6 +30,7 @@ export default {
   props: {
     materialApi: { type: Object, required: true },
     userApi: { type: Object, required: true },
+    playlistApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() }
   },
 

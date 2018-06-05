@@ -116,10 +116,7 @@ export default {
 .cb-hidden {
   display: none;
 }
-.jeb {
-  height: 500px;
-  width: 200px;
-}
+
 @media only screen and (max-width: 760px) {
 
   .cb-topbar-product-heading {

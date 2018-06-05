@@ -7,19 +7,30 @@ import MaterialApi from './api/MaterialApi';
 import UserApi from './api/UserApi';
 import { createStore } from '../src/store';
 
-import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+import { MaterialApiWrapper, PlaylistApiWrapper, UserApiWrapper } from 'cloubi2-default-product-theme-components-vue';
 import materialApi from './api/MaterialApi';
+import userApi from './api/UserApi';
 
 Vue.use(Vuex);
 
-const materialApiWrapper = new MaterialApiWrapper(MaterialApi);
+const materialApiWrapper = new MaterialApiWrapper(materialApi);
+const playlistApiWrapper = new PlaylistApiWrapper();
+const userApiWrapper = new UserApiWrapper(userApi);
 
 const store = createStore(materialApiWrapper);
 
 const app = new Vue({
     el: '#app',
     store,
-    render: h => h(App, {props: {materialApi:materialApiWrapper}})
+    render: h => h(App, 
+      {
+        props: {
+          materialApi: materialApiWrapper, 
+          playlistApi: playlistApiWrapper,
+          userApi: userApiWrapper
+        }
+      }
+    )
 });
 
 // mount some content...
