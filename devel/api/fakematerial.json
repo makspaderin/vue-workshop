@@ -72,26 +72,5 @@
         "visited": true
       }
     }
-  },
-  "notes": {
-    "page": [
-      {
-        "id": "0",
-        "text": "Note 1",
-        "time": "days-ago-prefix 2 days-ago"
-      }     
-    ],
-    "all": [
-      {
-        "id": "0",
-        "text": "Note 1",
-        "time": "days-ago-prefix 2 days-ago"
-      },
-      {
-        "id": "1",
-        "text": "Note 2",
-        "time": "just-now"
-      }   
-    ]
   }
 }

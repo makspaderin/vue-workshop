@@ -1,30 +1,32 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import App from './App.vue';
-import CloubiThemeMenu from '../src/components/CloubiThemeMenu';
+import VDragged from 'v-dragged';
 
 import MaterialApi from './api/MaterialApi';
 import UserApi from './api/UserApi';
-import { createStore } from '../src/store';
 
 import { MaterialApiWrapper, PlaylistApiWrapper, UserApiWrapper } from 'cloubi2-default-product-theme-components-vue';
+import CloubiProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
 import materialApi from './api/MaterialApi';
 import userApi from './api/UserApi';
 
-Vue.use(Vuex);
+import TranslationPlugin from '../src//plugin/TranslationPlugin';
+import CloubiThemeMenu from '../src/components/CloubiThemeMenu';
+
+import { translations, CloubiTranslations } from 'cloubi2-default-product-theme-components-vue';
+CloubiTranslations.registerTranslations(translations);
+
 
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
 const playlistApiWrapper = new PlaylistApiWrapper();
 const userApiWrapper = new UserApiWrapper(userApi);
 
-console.log(userApi)
-console.log(userApiWrapper)
-
-const store = createStore(materialApiWrapper);
+Vue.use(VDragged);
+Vue.use(TranslationPlugin);
+Vue.use(CloubiProductThemeComponents);
 
 const app = new Vue({
     el: '#app',
-    store,
     render: h => h(App, 
       {
         props: {
@@ -53,12 +55,11 @@ materialApiWrapper.onPageChange(page => {
     contentDiv = null;
   }
 
-  if (page.contentType === 'navigation/menu') {
+  if (/*page.contentType === 'navigation/menu'*/page.navigation) {
 
     let contentMountElement = document.getElementById('content-frame');   
 
     themeMenu = new Vue({
-      store,
       render: h => h(CloubiThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi: materialApiWrapper} })
     });
 
@@ -71,7 +72,7 @@ materialApiWrapper.onPageChange(page => {
     let contentMountElement = document.getElementById('content-frame');   
 
     contentDiv = document.createElement("div");
-    let contentText = document.createTextNode("new replacement element.");
+    let contentText = document.createTextNode("This is: " + page.title);
     contentDiv.appendChild(contentText);  
     
     contentMountElement.appendChild(contentDiv);
@@ -80,9 +81,5 @@ materialApiWrapper.onPageChange(page => {
 
 });
 
-
-// set default page
-materialApi.getCurrentPage(function(page) {
-  materialApi.changePage(page.id);
-});
+materialApi.changePage('1');
 

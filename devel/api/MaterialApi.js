@@ -1,13 +1,43 @@
-import material from './fakematerial.json';
+//import material from './fakematerial.json';
 import { setTimeout } from 'timers';
 import { createNotesApi } from './NotesApi.js';
+import { genMaterial, findNode } from './MaterialGen';
 
-const notesApi = createNotesApi(material);
 
-var currentPageId = "1";
+import materialNotes from './fakenotes.json';
+const notesApi = createNotesApi(materialNotes);
+
 var onPageStartsLoadingListeners = [];
 var onPageChangeListeners = []
 var fontSize = 1;
+var previousPageNode = null;
+var _root = genMaterial();
+console.log(_root);
+var currentPageNode = findNode(_root, '1');
+
+// makes Material.js API page from node
+const makePage = (node) => {
+
+  const makeBreadcrump = (node) => {
+    let b = [];
+    let n = node;
+    while(1) {
+      b.push(n.id);
+      n = n.parent;
+      if (!n) break;
+    }
+    return b.reverse();
+  }
+  
+  return {
+    id: node.id,
+    title: node.title,
+    breadcrump: makeBreadcrump(node),
+    childPages: node.children.map(c => c.id),
+    navigation: node.navigation,
+    contentType: node.type
+  };
+} 
 
 var materialApi = {
 
@@ -22,17 +52,24 @@ var materialApi = {
     changePage: function(pageId) {
         setTimeout(() => {
 
-            currentPageId = pageId;
-            let options = {};
-            let data = {};
+          let pageNode = findNode(_root, pageId);
+          if (pageNode.type === 'navigation/menu' && !pageNode.navigation) {
+            pageNode = pageNode.children[0];
+          }
 
-            let promises = onPageStartsLoadingListeners.map(callback => callback(material.pages[currentPageId], options));
+          previousPageNode = currentPageNode;
+          currentPageNode = pageNode;
 
-            Promise.all(promises).then(() => {
+          let options = {};
+          let data = {};
 
-                onPageChangeListeners.map(callback => callback(material.pages[currentPageId], options, data));
+          let promises = onPageStartsLoadingListeners.map(callback => callback(makePage(pageNode), options));
 
-            })
+          Promise.all(promises).then(() => {
+
+              onPageChangeListeners.map(callback => callback(makePage(pageNode), options, data));
+
+          })
 
 
         }, 20);
@@ -40,50 +77,52 @@ var materialApi = {
 
     changeToNextPage: function() {
       const self = this;
-      self.getCurrentPage(function(page){
-        if(page.nextPage){
-          self.changePage(page.nextPage)
-        }
-      })
+      const index = currentPageNode.parent.children.findIndex(c => c.id === currentPageNode.id);
+      console.log('next page');
+      console.log(currentPageNode);
+      console.log(index);
+      self.changePage(currentPageNode.parent.children[index+1].id);
     },
 
     changeToPreviousPage: function() {
       const self = this;
-      self.getCurrentPage(function(page){
-        if(page.prevPage){
-          self.changePage(page.prevPage)
-        }
-      })
+      const index = currentPageNode.parent.children.findIndex(c => c.id === currentPageNode.id);
+      console.log('prev page');
+      console.log(currentPageNode);
+      console.log(index);
+      self.changePage(currentPageNode.parent.children[index-1].id);
     },
 
     getCurrentPage: function(callback) {
 
         setTimeout(() => {
 
-            let options = {};
-            let data = {};
+          let options = {};
+          let data = {};
 
-            callback(material.pages[currentPageId], options, data);
+          callback(makePage(currentPageNode), options, data);
 
         }, 20);
     },
 
     getPage: function(pageId, callback) {
-        setTimeout(() => {
-            const page = material.pages[pageId];
-            let options = {};
-            let data = {};
-            callback(page, options, data);
+      setTimeout(() => {
 
-        }, 20);
+        const pageNode = findNode(_root, pageId);
+
+        let options = {};
+        let data = {};
+        callback(makePage(pageNode), options, data);
+          
+      }, 20);
     },
 
     getPageChildPages: function(pageId, options, callback) {
       setTimeout(() => {
 
-        const page = material.pages[pageId];
+        const pageNode = findNode(_root, pageId);
         
-        const childPages = page.childPages.map(id => material.pages[id]);
+        const childPages = pageNode.children.map(c => makePage(c));
 
         callback(childPages);
       }, 20);
@@ -91,26 +130,20 @@ var materialApi = {
 
     getPageLevelPages: function(pageId, callback) {
       setTimeout(() => {
-        const page = material.pages[pageId];
-        if(!page){
-          return [];
-        }
-        else if(page.breadcrump.length > 1) {
-          const parentId = page.breadcrump.slice(-2)[0];
-          const parentPage = material.pages[parentId];
-          callback(parentPage.childPages.map(id => material.pages[id]));
+        const pageNode = findNode(_root, pageId);
+        if(!pageNode){
+          callback(null);
         }
         else {
-          this.getPageChildPages(material.root, {}, function(pages){
-            callback(pages);
-          });
+          const levelPages = pageNode.parent.children.map(c => makePage(c));
+          callback(levelPages);
         }
       }, 20);
     },
 
     getLastPage: function(callback) {
       setTimeout(() => {
-        callback(material.pages['11']);
+        callback(makePage(previousPageNode));
       }, 500);      
     },
 
