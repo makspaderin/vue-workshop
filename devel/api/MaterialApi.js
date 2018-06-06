@@ -1,8 +1,5 @@
 import material from './fakematerial.json';
 import { setTimeout } from 'timers';
-import { createNotesApi } from './NotesApi.js';
-
-const notesApi = createNotesApi(material);
 
 var currentPageId = "1";
 var onPageStartsLoadingListeners = [];
@@ -120,10 +117,7 @@ var materialApi = {
 
     setFontSize: function(size) {
       fontSize = size;
-    },
-
-    ...notesApi,
-
+    }
 }
 
 export default materialApi;
