@@ -3,7 +3,6 @@ import { setTimeout } from 'timers';
 import { createNotesApi } from './NotesApi.js';
 import { genMaterial, findNode } from './MaterialGen';
 
-
 import materialNotes from './fakenotes.json';
 const notesApi = createNotesApi(materialNotes);
 
@@ -157,10 +156,7 @@ var materialApi = {
 
     setFontSize: function(size) {
       fontSize = size;
-    },
-
-    ...notesApi,
-
+    }
 }
 
 export default materialApi;

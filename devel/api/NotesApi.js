@@ -20,16 +20,14 @@ export function createNotesApi(material){
       const self = this;
 
       setTimeout(() => {
-        console.log('REMOVING')
-        const aNoteIdx = material.notes.all.findIndex((el) => {return el.id === id});
+        const aNoteIdx = material.notes.all.findIndex((el) => {return el.id === id;});
         material.notes.all.splice(aNoteIdx, 1);
 
-        const pNoteIdx = material.notes.page.findIndex((el) => {return el.id === id});
+        const pNoteIdx = material.notes.page.findIndex((el) => {return el.id === id;});
         material.notes.page.splice(pNoteIdx, 1);
-        console.log('REMOVED')
 
         callback(id);
-        //self.$callNoteChangeListeners();
+        self.$callNoteChangeListeners();
       }, 1000);
     },
     

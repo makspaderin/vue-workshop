@@ -69,15 +69,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import CloubiThemeSidePanel from './CloubiThemeSidePanel';
-import CloubiThemeTopbar from './CloubiThemeTopbar';
-import CloubiThemeBackground from './CloubiThemeBackground';
-import CloubiThemeBottombar from './CloubiThemeBottombar';
-import CloubiThemeNotesPanel from './CloubiThemeNotesPanel';
+import Vue from 'vue';
+import CloubiThemeSidePanel from './CloubiThemeSidePanel.vue';
+import CloubiThemeTopbar from './CloubiThemeTopbar.vue';
+import CloubiThemeBackground from './CloubiThemeBackground.vue';
+import CloubiThemeBottombar from './CloubiThemeBottombar.vue';
+import CloubiThemeNotesPanel from './CloubiThemeNotesPanel.vue';
 
-export default {
+export default Vue.extend({
 
   components: {
     'theme-side-panel': CloubiThemeSidePanel,
@@ -91,8 +92,7 @@ export default {
     materialApi: { type: Object, required: true },
     userApi: { type: Object, required: true },
     eventBus: { type:Object, default: () => new Vue() },
-    playlistApi: { type: Object, required: true },
-    eventBus: { type: Object, required: true }    
+    playlistApi: { type: Object, required: true }    
   },
 
   data() {
@@ -102,12 +102,12 @@ export default {
     };
   },
 
-  created() {
+  created(): void {
     const self = this;
     this.eventBus.$on('add-to-playlist', () => {
       console.log('add-to-playlist');
       self.eventBus.$emit('dropdown-close', {dropdownId: 'playlist'});
-      self.addToPlaylistDialog = true;
+      self.addToPlaylistDialog = false;
     });
     this.eventBus.$on('show-my-playlists', () => {
       console.log('show-my-playlists');
@@ -115,8 +115,7 @@ export default {
       self.myPlaylistsDialog = true;
     });
   }
-
-}
+});
 </script>
 
 <style lang="scss">
