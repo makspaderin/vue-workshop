@@ -115,7 +115,6 @@ export default Vue.extend({
       self.myPlaylistsDialog = true;
     });
   }
-
 });
 </script>
 
