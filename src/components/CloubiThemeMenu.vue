@@ -1,5 +1,5 @@
 <template>
-  <div class="cb-theme-menu">    
+  <div class="cb-theme-menu" id="content">    
     <h1 data-cy="main-menu-title">{{ pageTitle }}</h1>
     <cloubi-main-menu-grid 
       :pages="pageChildPages" 

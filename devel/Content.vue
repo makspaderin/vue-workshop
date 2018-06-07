@@ -1,0 +1,45 @@
+<template>
+  <div class="dummy-content-container" id="content">
+    <div class="dummy-content">
+      <h1>{{ header }}</h1>
+    </div>
+  </div>
+</template>
+
+<script>
+
+
+export default {
+
+  components: {
+  },
+
+  props: {
+    header: { type: String, default: 'Default header' }
+  },
+
+
+}
+</script>
+
+<style lang="scss">
+
+  .dummy-content-container {
+
+    margin-top: 0px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+
+    .dummy-content {
+      margin-top: 0px;
+      margin-bottom: 50px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 70%;
+      height: 2000px;
+      background-color: white;
+    }
+  }
+
+</style>

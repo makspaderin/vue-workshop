@@ -1,10 +1,6 @@
 import setUpPublicPath from './public-path'
 import './style.scss'
 import Vue from 'vue'
-import Vuex from 'vuex'
-
-// import MenuPage from './components/MenuPage';
-import { createStore } from './store';
 
 import CloubiThemeTopbar from './components/CloubiThemeTopbar';
 import CloubiThemeFrame from './components/CloubiThemeFrame';

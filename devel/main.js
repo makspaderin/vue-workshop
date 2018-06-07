@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
+import Content from './Content.vue';
 import VDragged from 'v-dragged';
 
 import MaterialApi from './api/MaterialApi';
@@ -69,11 +70,15 @@ materialApiWrapper.onPageChange(page => {
             
   } else {  
 
-    let contentMountElement = document.getElementById('content-frame');   
+    let contentMountElement = document.getElementById('content-mount');   
 
-    contentDiv = document.createElement("div");
-    let contentText = document.createTextNode("This is: " + page.title);
-    contentDiv.appendChild(contentText);  
+    let dummyContent = new Vue({
+      render: h => h(Content, { props: {header: page.title} })
+    });
+
+    dummyContent.$mount();
+
+    contentDiv = dummyContent.$el;    
     
     contentMountElement.appendChild(contentDiv);
     
