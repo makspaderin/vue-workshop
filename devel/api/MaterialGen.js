@@ -16,6 +16,7 @@ const createRootNode = (id, originalID) => {
     type: 'navigation/menu',
     parent: null,
     navigation: true,
+    visited: true,
     children: []      
   };
 }
@@ -29,6 +30,7 @@ const generatePages = (parent) => {
       title: `Page ${i} for chapter ${parent.title}`,
       type: 'content-page',
       children: [],
+      visited: false,
       navigation: false
     }
     pages.push(pageNode);
@@ -44,6 +46,7 @@ const generateChapters = (rootNode, titles) => {
       title: titles[i],
       type: 'navigation/menu',
       parent: rootNode,
+      visited: false,
       navigation: false
     };
     chapterNode.children = generatePages(chapterNode);

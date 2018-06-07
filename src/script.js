@@ -1,10 +1,6 @@
 import setUpPublicPath from './public-path'
 import './style.scss'
 import Vue from 'vue'
-import Vuex from 'vuex'
-
-// import MenuPage from './components/MenuPage';
-import { createStore } from './store';
 
 import CloubiThemeTopbar from './components/CloubiThemeTopbar';
 import CloubiThemeFrame from './components/CloubiThemeFrame';
@@ -26,7 +22,6 @@ import CloubiProductThemeComponents from 'cloubi2-default-product-theme-componen
 import { translations, CloubiTranslations } from 'cloubi2-default-product-theme-components-vue';
 CloubiTranslations.registerTranslations(translations);
 
-Vue.use(Vuex);
 Vue.use(VDragged);
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
@@ -38,8 +33,6 @@ setUpPublicPath.then(() => {
         const materialApi = new MaterialApiWrapper(material);
         const playlistApi = new PlaylistApiWrapper(); // TODO: supply playlist api
         const userApi = new UserApiWrapper(userApiDev); // TODO: supply user api
-
-        const store = createStore(materialApi);
 
         const eventBus = new Vue();
 
@@ -53,7 +46,6 @@ setUpPublicPath.then(() => {
           console.log('navigation/menu render =>');
 
           let themeMenu = new Vue({
-            store,
             render: h => h(CloubiThemeMenu, { props: {pageId: page.id, pageTitle: page.title, materialApi} })
           });
     
@@ -70,8 +62,6 @@ setUpPublicPath.then(() => {
 
           console.log('script.js onPageChange =>');
           console.log(page);
-
-          store.dispatch('pages/setCurrentPage', page);
 
           window.scrollTo(0,0);
         });
@@ -90,7 +80,6 @@ setUpPublicPath.then(() => {
             const contentElement = document.getElementById('content');
             
             let frame = new Vue({
-              store,
               render: h => h(CloubiThemeFrame, { props: {materialApi, eventBus, playlistApi, userApi} })
             });
       

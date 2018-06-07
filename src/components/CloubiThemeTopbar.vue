@@ -2,14 +2,24 @@
   <cloubi-navbar
     :is-transparent="isRoot">
     <template slot="left-content">
-      <cloubi-side-panel-switch 
-        side-panel-id="nav"
-        data-cy="side-panel-switch-nav"
-        :class="[{'cb-hidden': isRoot}]"
-        :event-bus="eventBus" />
-      <cloubi-home-button
-        :class="[{'cb-hidden': isRoot}]"
-        :material-api="materialApi" />
+      <cloubi-skiplink
+        text="Skip to main content"
+        contentId="#content"
+      />
+      <cloubi-menu :horizontal="true">
+        <cloubi-menu-item>
+          <cloubi-side-panel-switch 
+            side-panel-id="nav"
+            data-cy="side-panel-switch-nav"
+            :class="[{'cb-hidden': isRoot}]"
+            :event-bus="eventBus" />
+        </cloubi-menu-item>
+        <cloubi-menu-item>
+          <cloubi-home-button
+            :class="[{'cb-hidden': isRoot}]"
+            :material-api="materialApi" />
+        </cloubi-menu-item>
+      </cloubi-menu>
     </template>
     <template slot="center-content">
       <cloubi-product-heading
@@ -17,54 +27,73 @@
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
-      <cloubi-dropdown
-      align="center"
-      icon="user">
-        <cloubi-user 
-          :user-api="userApi" />
-      </cloubi-dropdown>
-      <cloubi-ruler-button 
-        :event-bus="eventBus"/>
-      
-      <cloubi-notes-counter 
-        :material-api="materialApi">  
-        <cloubi-side-panel-switch 
-          data-cy="side-panel-switch-right"
-          side-panel-id="right-side-panel"
-          icon="file-alt"
-          :event-bus="eventBus" />
-      </cloubi-notes-counter>
+      <cloubi-menu :horizontal="true">
 
-      <cloubi-dropdown 
-        :pointing="false" 
-        :floating="false"
-        :event-bus="eventBus"
-        dropdown-id="font-size"
-        title="A"
-        align="right">
-        <template>
-          <cloubi-font-size-dropdown
-            :material-api="materialApi"
+        <cloubi-menu-item>
+          <cloubi-dropdown
+          align="center"
+          name="user"
+          icon="user">
+            <cloubi-user 
+              :user-api="userApi" />
+          </cloubi-dropdown>
+        </cloubi-menu-item>
+
+        <cloubi-menu-item>
+          <cloubi-ruler-button 
+            :event-bus="eventBus"/>
+        </cloubi-menu-item>
+
+        <cloubi-menu-item>
+          <cloubi-notes-counter 
+            :material-api="materialApi">  
+            <cloubi-side-panel-switch 
+              data-cy="side-panel-switch-right"
+              side-panel-id="right-side-panel"
+              icon="file-alt"
+              name="notes"
+              :event-bus="eventBus" />
+          </cloubi-notes-counter>
+        </cloubi-menu-item>
+
+        <cloubi-menu-item>
+          <cloubi-dropdown 
+            :pointing="false" 
+            :floating="false"
             :event-bus="eventBus"
-          />
-        </template>
-      </cloubi-dropdown>
-      <cloubi-dropdown 
-        :pointing="false" 
-        :floating="false"
-        :event-bus="eventBus"
-        :icon-outline="true"
-        dropdown-id="playlist"
-        icon="star"
-        align="right">
-        <template>
-          <cloubi-playlist-dropdown
-            :material-api="materialApi"
-            :playlist-api="playlistApi"
+            name="font size"
+            dropdown-id="font-size"
+            title="A"
+            align="right">
+            <template>
+              <cloubi-font-size-dropdown
+                :material-api="materialApi"
+                :event-bus="eventBus"
+              />
+            </template>
+          </cloubi-dropdown>
+        </cloubi-menu-item>
+
+        <cloubi-menu-item>
+          <cloubi-dropdown 
+            :pointing="false" 
+            :floating="false"
             :event-bus="eventBus"
-          />
-        </template>        
-      </cloubi-dropdown>
+            :icon-outline="true"
+            name="playlist"
+            dropdown-id="playlist"
+            icon="star"
+            align="right">
+            <template>
+              <cloubi-playlist-dropdown
+                :material-api="materialApi"
+                :playlist-api="playlistApi"
+                :event-bus="eventBus"
+              />
+            </template>        
+          </cloubi-dropdown>
+        </cloubi-menu-item>
+      </cloubi-menu>
     </template>
   </cloubi-navbar>
 </template>

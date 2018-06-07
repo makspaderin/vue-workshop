@@ -34,7 +34,10 @@ const makePage = (node) => {
     breadcrump: makeBreadcrump(node),
     childPages: node.children.map(c => c.id),
     navigation: node.navigation,
-    contentType: node.type
+    contentType: node.type,
+    scores: {
+      visited: node.visited
+    }
   };
 } 
 
@@ -57,6 +60,7 @@ var materialApi = {
           }
 
           previousPageNode = currentPageNode;
+          currentPageNode.visited = true;
           currentPageNode = pageNode;
 
           let options = {};
