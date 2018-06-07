@@ -14,8 +14,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "v-dragged": "0.0.5",
         "vue": "^2.5.16",
-        "v-dragged": "0.0.5"
+        "vue-class-component": "^6.2.0",
+        "vue-property-decorator": "^6.1.0"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
