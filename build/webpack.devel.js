@@ -67,7 +67,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['*', '.ts', '.js', '.vue', '.json']
+    extensions: ['*', '.ts', 'tsx', '.js', '.vue', '.json']
   },
   devServer: {
     historyApiFallback: true,
