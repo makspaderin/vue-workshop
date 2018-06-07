@@ -30,8 +30,6 @@ export default {
   
   created: function() {
 
-    console.log('ThemeMenu::created');
-
     this.$loadPageChildPages()
     .then(this.resolveLastPage);
 
