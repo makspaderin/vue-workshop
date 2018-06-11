@@ -3,6 +3,7 @@
     "outDir": "./built/",
     "sourceMap": true,
     "strict": true,
+    "noImplicitAny": false,
     "noImplicitReturns": true,
     "noImplicitAny": false,
     "module": "es2015",
