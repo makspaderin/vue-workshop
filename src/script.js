@@ -2,7 +2,6 @@ import setUpPublicPath from './public-path'
 import './style.scss'
 import Vue from 'vue'
 
-import CloubiThemeTopbar from './components/CloubiThemeTopbar';
 import CloubiThemeFrame from './components/CloubiThemeFrame';
 import CloubiThemeMenu from './components/CloubiThemeMenu';
 import TranslationPlugin from './plugin/TranslationPlugin';
