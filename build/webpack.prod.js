@@ -111,7 +111,7 @@ module.exports = {
         extractSass,
 
         new CopyWebpackPlugin([
-            { from: '**/*', ignore: ['*.js', '*.scss'] }
+            { from: '**/*', ignore: ['*.js', '*.scss', '*.vue', '*.ts'] }
         ]),
 
         new VueLoaderPlugin(),
