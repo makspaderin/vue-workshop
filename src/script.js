@@ -1,26 +1,21 @@
+import Vue from 'vue';
+
+import CloubiProductThemeComponents, {
+  translations,
+  CloubiTranslations,
+  MaterialApiWrapper,
+  PlaylistApiWrapper,
+  UserApiWrapper
+} from 'cloubi2-default-product-theme-components-vue';
+
 import setUpPublicPath from './public-path';
 import './style.scss';
 
-import Vue from 'vue';
-// #TODO: here we register default translations from component library,
-// this should not be here in the production code.
-// These are used by registered TranslationPlugin
-import {
-  translations,
-  CloubiTranslations
-} from 'cloubi2-default-product-theme-components-vue';
-
-import CloubiProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
-
-import { MaterialApiWrapper } from 'cloubi2-default-product-theme-components-vue';
-import { PlaylistApiWrapper } from 'cloubi2-default-product-theme-components-vue';
-import { UserApiWrapper } from 'cloubi2-default-product-theme-components-vue';
-
-import CloubiThemeFrame from './components/CloubiThemeFrame';
-import CloubiThemeMenu from './components/CloubiThemeMenu';
+import CloubiThemeFrame from './components/CloubiThemeFrame.vue';
+import CloubiThemeMenu from './components/CloubiThemeMenu.vue';
 import TranslationPlugin from './plugin/TranslationPlugin';
 
-import { default as userApiDev } from '../devel/api/UserApi.js';
+import { default as userApiDev } from '../devel/api/UserApi';
 
 CloubiTranslations.registerTranslations(translations); // TODO: REMOVE THIS FOR REAL ENVIRONMENT
 
@@ -28,6 +23,7 @@ Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
 setUpPublicPath.then(() => {
+  /* eslint-disable no-undef */
   Cloubi.load(
     ['fi.cloubi.frontend/material', 'fi.cloubi.frontend/settings'],
     (material, settings) => {

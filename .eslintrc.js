@@ -14,6 +14,7 @@ module.exports = {
     "prettier/prettier": ["error", { "singleQuote": true }],
     "quotes": [2, "single", "avoid-escape"],
     "prefer-destructuring": ["error", {"object": true, "array": false}],
-    "import/prefer-default-export": false
+    "import/prefer-default-export": false,
+    "import/no-named-default": false
   }
 };
