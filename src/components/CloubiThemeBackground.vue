@@ -1,16 +1,16 @@
 <template>
   <div class="cb-theme-background">
-    <div v-if="isRoot" class="cb-theme-background-container">
+    <div 
+      v-if="isRoot" 
+      class="cb-theme-background-container">
       <div class="bg-image"/>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-
-  name: "CloubiThemeBackground",
+  name: 'CloubiThemeBackground',
 
   props: {
     materialApi: { type: Object, required: true }
@@ -25,30 +25,25 @@ export default {
   created() {
     const self = this;
     self.materialApi.onPageChange(self.$pageChanged);
-    self.materialApi.getCurrentPage().then((page) => {
+    self.materialApi.getCurrentPage().then(page => {
       self.$pageChanged(page);
-    });        
+    });
   },
 
   methods: {
-    $pageChanged: function(page) {
-      if(page.breadcrump.length === 1){
+    $pageChanged(page) {
+      if (page.breadcrump.length === 1) {
         this.isRoot = true;
-      }
-      else {
+      } else {
         this.isRoot = false;
       }
-    }    
-  },
-
-}
-
+    }
+  }
+};
 </script>
 
 <style lang="scss">
-
 .cb-theme-background {
-
   position: fixed;
   left: 0px;
   top: 0px;
@@ -56,7 +51,6 @@ export default {
   height: 340px;
 
   &-container {
-
     position: absolute;
     left: 0px;
     top: 0px;
@@ -71,22 +65,40 @@ export default {
     animation: AnimationName 30s ease infinite;
 
     @-webkit-keyframes AnimationName {
-        0%{background-position:51% 0%}
-        50%{background-position:50% 100%}
-        100%{background-position:51% 0%}
+      0% {
+        background-position: 51% 0%;
+      }
+      50% {
+        background-position: 50% 100%;
+      }
+      100% {
+        background-position: 51% 0%;
+      }
     }
 
     @-moz-keyframes AnimationName {
-        0%{background-position:51% 0%}
-        50%{background-position:50% 100%}
-        100%{background-position:51% 0%}
+      0% {
+        background-position: 51% 0%;
+      }
+      50% {
+        background-position: 50% 100%;
+      }
+      100% {
+        background-position: 51% 0%;
+      }
     }
 
-    @keyframes AnimationName { 
-        0%{background-position:51% 0%}
-        50%{background-position:50% 100%}
-        100%{background-position:51% 0%}
-    }  
+    @keyframes AnimationName {
+      0% {
+        background-position: 51% 0%;
+      }
+      50% {
+        background-position: 50% 100%;
+      }
+      100% {
+        background-position: 51% 0%;
+      }
+    }
 
     .bg-image {
       width: 100%;
@@ -96,10 +108,6 @@ export default {
       background-position: top center;
       background-attachment: fixed;
     }
-  
   }
-
 }
-
-
 </style>

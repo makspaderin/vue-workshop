@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const ZipPlugin = require('zip-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const PropertiesReader = require('properties-reader');
 const properties = PropertiesReader('src/theme.properties');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -69,25 +69,28 @@ module.exports = {
                 }]
             },
             {
-                test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    loaders: {}
-                    // other vue-loader options go here
-                }
+              test: /\.vue$/,
+              use: ['vue-loader']
             },
             {
               test: /\.tsx?$/,
-              loader: 'ts-loader',
-              exclude: /node_modules/,
-              options: {
-                appendTsSuffixTo: [/\.vue$/],
-              }
+              use: [
+                {
+                  loader: 'ts-loader',
+                  options: {
+                    appendTsSuffixTo: [/\.vue$/],
+                  }
+                }
+              ],
+              exclude: /node_modules/
             },
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
+              test: /\.js$/,
+              use: ['babel-loader'],
+              exclude: file => (
+                /node_modules/.test(file) &&
+                !/\.vue\.js/.test(file)
+              )
             }
         ]
     },

@@ -22,35 +22,37 @@
         :event-bus="eventBus"
         :material-api="materialApi" />
       <cloubi-content-positioner 
+        :event-bus="eventBus"
         side-panel-id="nav"
         side-panel-position="left"
-        data-cy="cb-content-pos"
-        :event-bus="eventBus">
+        data-cy="cb-content-pos">
         <cloubi-floatbar>
           <cloubi-ruler-button 
-            mode="round"
-            :event-bus="eventBus" />
+            :event-bus="eventBus"
+            mode="round" />
           <cloubi-side-panel-switch 
+            :event-bus="eventBus"
             data-cy="side-panel-switch-right"
             side-panel-id="right-side-panel"
             icon="file-alt"
-            mode="round"
-            :event-bus="eventBus" />
+            mode="round" />
         </cloubi-floatbar>
         <cloubi-page-turners
-          class="cb-floating-page-turners"
-          :material-api="materialApi" />
+          :material-api="materialApi"
+          class="cb-floating-page-turners" />
         <cloubi-ruler 
           :event-bus="eventBus"/>
       </cloubi-content-positioner>
     </div>
     <cloubi-content-positioner
+      :event-bus="eventBus"
       side-panel-id="nav"
-      side-panel-position="left"
-      :event-bus="eventBus">
+      side-panel-position="left">
       <div class="cb-app container">
-        <div class="cb-container" id="content-frame">
-          <div id="content-mount"></div>
+        <div 
+          id="content-frame" 
+          class="cb-container">
+          <div id="content-mount"/>
         </div>
       </div>
     </cloubi-content-positioner>
@@ -69,17 +71,14 @@
   </div>
 </template>
 
-<script lang="ts">
-
-import Vue from 'vue';
+<script>
 import CloubiThemeSidePanel from './CloubiThemeSidePanel.vue';
 import CloubiThemeTopbar from './CloubiThemeTopbar.vue';
 import CloubiThemeBackground from './CloubiThemeBackground.vue';
 import CloubiThemeBottombar from './CloubiThemeBottombar.vue';
 import CloubiThemeNotesPanel from './CloubiThemeNotesPanel.vue';
 
-export default Vue.extend({
-
+export default {
   components: {
     'theme-side-panel': CloubiThemeSidePanel,
     'theme-topbar': CloubiThemeTopbar,
@@ -91,31 +90,31 @@ export default Vue.extend({
   props: {
     materialApi: { type: Object, required: true },
     userApi: { type: Object, required: true },
-    eventBus: { type:Object, default: () => new Vue() },
-    playlistApi: { type: Object, required: true }    
+    eventBus: { type: Object, required: true },
+    playlistApi: { type: Object, required: true }
   },
 
   data() {
     return {
       addToPlaylistDialog: false,
-      myPlaylistsDialog: false,
+      myPlaylistsDialog: false
     };
   },
 
-  created(): void {
+  created() {
     const self = this;
     this.eventBus.$on('add-to-playlist', () => {
       console.log('add-to-playlist');
-      self.eventBus.$emit('dropdown-close', {dropdownId: 'playlist'});
+      self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
       self.addToPlaylistDialog = false;
     });
     this.eventBus.$on('show-my-playlists', () => {
       console.log('show-my-playlists');
-      self.eventBus.$emit('dropdown-close', {dropdownId: 'playlist'});
+      self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
       self.myPlaylistsDialog = true;
     });
   }
-});
+};
 </script>
 
 <style lang="scss">
@@ -136,23 +135,21 @@ export default Vue.extend({
 }
 
 .cb-frame {
-  position:fixed;
-  width:100%;
-  height:0;
-  top:0;
-  left:0;
+  position: fixed;
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
   z-index: 1;
 }
 
 .cb-notes {
-  height: calc(100vh - #{$cloubi-navbar-height})
+  height: calc(100vh - #{$cloubi-navbar-height});
 }
 
 @media only screen and (max-width: 760px) {
-
   .cb-floating-page-turners {
     display: none !important;
   }
-
 }
 </style>

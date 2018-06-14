@@ -10,31 +10,21 @@
 </template>
 
 <script>
-
-import Vue from 'vue'
-import VDragged from 'v-dragged';
-
-import ProductThemeComponents from 'cloubi2-default-product-theme-components-vue';
-
-import CloubiThemeFrame from '../src/components/CloubiThemeFrame';
-
-Vue.use(VDragged);
-Vue.use(ProductThemeComponents);
+import CloubiThemeFrame from '../src/components/CloubiThemeFrame.vue';
 
 export default {
-
   components: {
-    'theme-frame': CloubiThemeFrame,
+    'theme-frame': CloubiThemeFrame
   },
 
   props: {
     materialApi: { type: Object, required: true },
     userApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
-    eventBus: { type:Object, default: () => new Vue() }
+    eventBus: { type: Object, required: true }
   },
 
-  data: function() {
+  data() {
     return {
       page: {
         id: '1',
@@ -43,18 +33,16 @@ export default {
     };
   },
 
-  mounted: function() {
+  mounted() {
     const self = this;
-    this.materialApi.onPageChange((page) => {
+    this.materialApi.onPageChange(page => {
       console.log('onPageChanged:');
       console.log(page);
       self.page = page;
     });
   }
-
-}
+};
 </script>
 
 <style>
-
 </style>

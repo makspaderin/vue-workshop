@@ -7,8 +7,7 @@
         :material-api="materialApi"
         turner-direction="previous" />
     </template>
-    <template slot="center-content">
-    </template>
+    <template slot="center-content"/>
     <template slot="right-content">
       <cloubi-page-turner
         :material-api="materialApi"
@@ -18,36 +17,27 @@
 </template>
 
 <script>
-
 export default {
-
   name: 'CloubiThemeBottombar',
 
-  components: {
-  },
+  components: {},
 
   props: {
     materialApi: { type: Object, required: true },
-    eventBus: { type:Object, required: true }
+    eventBus: { type: Object, required: true }
   },
 
-  data: function(){
-    return {
-
-    }
-  },
-  
-  created: function() {
+  data() {
+    return {};
   },
 
-  methods: {
-  }
+  created() {},
 
-}
+  methods: {}
+};
 </script>
 
 <style>
-
 .cb-bottombar {
   position: fixed;
   bottom: 0px;
@@ -56,11 +46,8 @@ export default {
 }
 
 @media only screen and (min-width: 761px) {
-
   .cb-bottombar {
     display: none;
   }
-
 }
-
 </style>

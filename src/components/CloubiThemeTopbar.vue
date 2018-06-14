@@ -4,15 +4,15 @@
     <template slot="left-content">
       <cloubi-skiplink
         text="Skip to main content"
-        contentId="#content"
+        content-id="#content"
       />
       <cloubi-menu :horizontal="true">
         <cloubi-menu-item>
           <cloubi-side-panel-switch 
-            side-panel-id="nav"
-            data-cy="side-panel-switch-nav"
             :class="[{'cb-hidden': isRoot}]"
-            :event-bus="eventBus" />
+            :event-bus="eventBus"
+            side-panel-id="nav"
+            data-cy="side-panel-switch-nav" />
         </cloubi-menu-item>
         <cloubi-menu-item>
           <cloubi-home-button
@@ -31,9 +31,9 @@
 
         <cloubi-menu-item>
           <cloubi-dropdown
-          align="center"
-          name="user"
-          icon="user">
+            align="center"
+            name="user"
+            icon="user">
             <cloubi-user 
               :user-api="userApi" />
           </cloubi-dropdown>
@@ -48,11 +48,11 @@
           <cloubi-notes-counter 
             :material-api="materialApi">  
             <cloubi-side-panel-switch 
+              :event-bus="eventBus"
               data-cy="side-panel-switch-right"
               side-panel-id="right-side-panel"
               icon="file-alt"
-              name="notes"
-              :event-bus="eventBus" />
+              name="notes" />
           </cloubi-notes-counter>
         </cloubi-menu-item>
 
@@ -99,64 +99,58 @@
 </template>
 
 <script>
-
 export default {
-
   name: 'CloubiThemeTopbar',
 
-  components: {
-  },
+  components: {},
 
   props: {
     materialApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
     userApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
-    eventBus: { type:Object, required: true }
+    eventBus: { type: Object, required: true }
   },
 
-  data: function(){
+  data() {
     return {
       isRoot: false
-    }
+    };
   },
-  
-  created: function() {
+
+  created() {
     const self = this;
 
     self.materialApi.onPageChange(self.$pageChanged);
-    self.materialApi.getCurrentPage().then((page) => {
+    self.materialApi.getCurrentPage().then(page => {
       self.$pageChanged(page);
     });
   },
 
   methods: {
-    $pageChanged: function(page) {
-      if(page.breadcrump.length === 1){
+    $pageChanged(page) {
+      if (page.breadcrump.length === 1) {
         this.isRoot = true;
-        this.eventBus.$emit('side-panel-open-changed', {isOpen: false, sidePanelId: "nav"});
-      }
-      else {
+        this.eventBus.$emit('side-panel-open-changed', {
+          isOpen: false,
+          sidePanelId: 'nav'
+        });
+      } else {
         this.isRoot = false;
       }
     }
   }
-
-}
+};
 </script>
 
 <style>
-
 .cb-hidden {
   display: none;
 }
 
 @media only screen and (max-width: 760px) {
-
   .cb-topbar-product-heading {
     display: none !important;
   }
-
 }
-
 </style>

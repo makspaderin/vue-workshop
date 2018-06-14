@@ -1,5 +1,7 @@
 <template>
-  <div class="cb-theme-menu" id="content">    
+  <div 
+    id="content" 
+    class="cb-theme-menu">    
     <h1 data-cy="main-menu-title">{{ pageTitle }}</h1>
     <cloubi-main-menu-grid 
       :pages="pageChildPages" 
@@ -9,10 +11,8 @@
 </template>
 
 <script>
-
 export default {
-
-  name: "CloubiThemeMenu",
+  name: 'CloubiThemeMenu',
 
   props: {
     pageId: { type: String, required: true },
@@ -20,18 +20,16 @@ export default {
     materialApi: { type: Object, require: true }
   },
 
-  data: function() {
+  data() {
     return {
       pageChildPages: [],
       lastVisitedPageId: null,
       title: window.document.title
     };
   },
-  
-  created: function() {
 
-    this.$loadPageChildPages()
-    .then(this.resolveLastPage);
+  created() {
+    this.$loadPageChildPages().then(this.resolveLastPage);
 
     this.materialApi.onPageChange(page => {
       this.$resolveLastPage();
@@ -39,13 +37,13 @@ export default {
   },
 
   methods: {
-
     $loadPageChildPages() {
       const self = this;
-      return this.materialApi.getPageChildPages(this.pageId, null)
-      .then(pages => {
-        self.pageChildPages = pages;
-      });
+      return this.materialApi
+        .getPageChildPages(this.pageId, null)
+        .then(pages => {
+          self.pageChildPages = pages;
+        });
     },
 
     $resolveLastPage() {
@@ -53,27 +51,25 @@ export default {
       return this.materialApi.getLastPage().then(lastPage => {
         const breadcrumb = lastPage.breadcrump;
         for (let i = 0; i < breadcrumb.length; i++) {
-          const foundPage = self.pageChildPages.find(p => p.id === breadcrumb[i]);
+          const foundPage = self.pageChildPages.find(
+            p => p.id === breadcrumb[i]
+          );
           if (foundPage) {
             self.lastVisitedPageId = foundPage.id;
           }
-        }  
+        }
       });
     },
-    
-    onChangePage: function(pageID) {
+
+    onChangePage(pageID) {
       this.materialApi.changePage(pageID);
     }
   }
-
-}
-
+};
 </script>
 
 <style lang="scss">
-
 .cb-theme-menu {
-
   flex-direction: column;
   display: flex;
   justify-content: center;
@@ -82,7 +78,5 @@ export default {
   h1 {
     color: white;
   }
-
 }
-
 </style>

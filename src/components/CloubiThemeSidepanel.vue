@@ -1,9 +1,9 @@
 <template>
   <cloubi-side-panel
-    side-panel-id="nav"
-    position="left" 
-    data-cy="side-panel-nav"
-    :event-bus="eventBus">
+    :event-bus="eventBus"
+    side-panel-id="nav" 
+    position="left"
+    data-cy="side-panel-nav">
     <template>
       <div class="cb-side-panel-column">
         <cloubi-chapter-turners 
@@ -18,28 +18,23 @@
 </template>
 
 <script>
-
 export default {
-
   name: 'CloubiThemeSidePanel',
 
-  components: {
-  },
+  components: {},
 
   props: {
     materialApi: { type: Object, required: true },
-    eventBus: { type:Object, default: () => new Vue() }
-  },
-}
+    eventBus: { type: Object, default: () => new Vue() }
+  }
+};
 </script>
 
 <style>
-
 .cb-side-panel-column {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
 }
-
 </style>
