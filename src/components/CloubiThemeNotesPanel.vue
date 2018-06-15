@@ -7,14 +7,15 @@
     data-cy="side-panel-right">
     <div class="cb-notes-top-bar">
       <div>
-        <cloubi-notes-download-button 
+        <cloubi-notes-download-button
           :material-api="materialApi"
           :event-bus="eventBus"
           class="cb-download-notes-btn"/>
       </div>
       <div>
-        <cloubi-side-panel-switch 
+        <cloubi-side-panel-switch
           :event-bus="eventBus"
+          :initial-open="true"
           side-panel-id="right-side-panel"
           icon="times"
           class="cb-close-notes-btn" />
