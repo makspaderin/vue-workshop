@@ -1,12 +1,13 @@
 <template>
   <cloubi-side-panel
     :event-bus="eventBus"
-    side-panel-id="nav" 
+    :trap-focus="false"
+    side-panel-id="nav"
     position="left"
     data-cy="side-panel-nav">
     <template>
       <div class="cb-side-panel-column">
-        <cloubi-chapter-turners 
+        <cloubi-chapter-turners
           :material-api="materialApi" />
         <cloubi-nav-level-heading
           :material-api="materialApi" />

@@ -2,6 +2,7 @@
   <cloubi-side-panel
     :full-height="true"
     :event-bus="eventBus"
+    :trap-focus="true"
     side-panel-id="right-side-panel"
     position="right"
     data-cy="side-panel-right">
