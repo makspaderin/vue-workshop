@@ -6,11 +6,14 @@
         text="Skip to main content"
         content-id="#content"
       />
-      <cloubi-menu :horizontal="true">
+      <cloubi-menu
+        :horizontal="true"
+        label="menu-bar">
         <cloubi-menu-item>
-          <cloubi-side-panel-switch 
+          <cloubi-side-panel-switch
             :class="[{'cb-hidden': isRoot}]"
             :event-bus="eventBus"
+            label="Open/Close nav sidepanel."
             side-panel-id="nav"
             data-cy="side-panel-switch-nav" />
         </cloubi-menu-item>
@@ -27,28 +30,32 @@
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
-      <cloubi-menu :horizontal="true">
+      <cloubi-menu
+        :horizontal="true"
+        label="menu-bar">
 
         <cloubi-menu-item>
           <cloubi-dropdown
+            label="Open/close user details"
             align="center"
             name="user"
             icon="user">
-            <cloubi-user 
+            <cloubi-user
               :user-api="userApi" />
           </cloubi-dropdown>
         </cloubi-menu-item>
 
         <cloubi-menu-item>
-          <cloubi-ruler-button 
+          <cloubi-ruler-button
             :event-bus="eventBus"/>
         </cloubi-menu-item>
 
         <cloubi-menu-item>
-          <cloubi-notes-counter 
-            :material-api="materialApi">  
-            <cloubi-side-panel-switch 
+          <cloubi-notes-counter
+            :material-api="materialApi">
+            <cloubi-side-panel-switch
               :event-bus="eventBus"
+              label="Open/close notes panel."
               data-cy="side-panel-switch-right"
               side-panel-id="right-side-panel"
               icon="file-alt"
@@ -57,10 +64,11 @@
         </cloubi-menu-item>
 
         <cloubi-menu-item>
-          <cloubi-dropdown 
-            :pointing="false" 
+          <cloubi-dropdown
+            :pointing="false"
             :floating="false"
             :event-bus="eventBus"
+            label="Open/close font size selector"
             name="font size"
             dropdown-id="font-size"
             title="A"
@@ -75,11 +83,12 @@
         </cloubi-menu-item>
 
         <cloubi-menu-item>
-          <cloubi-dropdown 
-            :pointing="false" 
+          <cloubi-dropdown
+            :pointing="false"
             :floating="false"
             :event-bus="eventBus"
             :icon-outline="true"
+            label="Open/close playlist"
             name="playlist"
             dropdown-id="playlist"
             icon="star"
@@ -90,7 +99,7 @@
                 :playlist-api="playlistApi"
                 :event-bus="eventBus"
               />
-            </template>        
+            </template>
           </cloubi-dropdown>
         </cloubi-menu-item>
       </cloubi-menu>

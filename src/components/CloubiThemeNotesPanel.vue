@@ -17,6 +17,7 @@
         <cloubi-side-panel-switch
           :event-bus="eventBus"
           :initial-open="true"
+          label="Close notes panel"
           side-panel-id="right-side-panel"
           icon="times"
           class="cb-close-notes-btn" />

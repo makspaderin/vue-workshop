@@ -4,7 +4,7 @@
       :material-api="materialApi"
     />
     <div class="cb-frame">
-      <theme-topbar 
+      <theme-topbar
         :event-bus="eventBus"
         :material-api="materialApi"
         :user-api="userApi"
@@ -21,26 +21,27 @@
       <theme-bottombar
         :event-bus="eventBus"
         :material-api="materialApi" />
-      <cloubi-content-positioner 
+      <cloubi-content-positioner
         :event-bus="eventBus"
         side-panel-id="nav"
         side-panel-position="left"
         data-cy="cb-content-pos">
         <cloubi-floatbar>
-          <cloubi-ruler-button 
+          <cloubi-ruler-button
             :event-bus="eventBus"
             mode="round" />
-          <cloubi-side-panel-switch 
+          <cloubi-side-panel-switch
             :event-bus="eventBus"
             data-cy="side-panel-switch-right"
             side-panel-id="right-side-panel"
+            label="Open/close notes panel"
             icon="file-alt"
             mode="round" />
         </cloubi-floatbar>
         <cloubi-page-turners
           :material-api="materialApi"
           class="cb-floating-page-turners" />
-        <cloubi-ruler 
+        <cloubi-ruler
           :event-bus="eventBus"/>
       </cloubi-content-positioner>
     </div>
@@ -49,19 +50,19 @@
       side-panel-id="nav"
       side-panel-position="left">
       <div class="cb-app container">
-        <div 
-          id="content-frame" 
+        <div
+          id="content-frame"
           class="cb-container">
           <div id="content-mount"/>
         </div>
       </div>
     </cloubi-content-positioner>
     <cloubi-add-to-playlist-dialog
-      v-if="addToPlaylistDialog"      
+      v-if="addToPlaylistDialog"
       :playlist-api="playlistApi"
       :material-api="materialApi"
       @cancel="addToPlaylistDialog=false"
-    />  
+    />
     <cloubi-my-playlists-dialog
       v-if="myPlaylistsDialog"
       :playlist-api="playlistApi"
