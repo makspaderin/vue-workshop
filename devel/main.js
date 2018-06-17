@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueAxe from 'vue-axe';
 
 import CloubiProductThemeComponents, {
   MaterialApiWrapper,
@@ -25,6 +26,11 @@ const userApiWrapper = new UserApiWrapper(userApi);
 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
+Vue.use(VueAxe, {
+  config: {
+    rules: []
+  }
+});
 
 const eventBus = new Vue();
 
@@ -87,7 +93,7 @@ materialApiWrapper.onPageChange(page => {
     dummyContent.$mount();
 
     contentDiv = dummyContent.$el;
-
+    contentDiv.setAttribute('role', 'main');
     contentMountElement.appendChild(contentDiv);
   }
 });

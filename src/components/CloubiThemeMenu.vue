@@ -1,12 +1,13 @@
 <template>
-  <div 
-    id="content" 
-    class="cb-theme-menu">    
+  <div
+    id="content"
+    role="main"
+    class="cb-theme-menu">
     <h1 data-cy="main-menu-title">{{ pageTitle }}</h1>
-    <cloubi-main-menu-grid 
-      :pages="pageChildPages" 
+    <cloubi-main-menu-grid
+      :pages="pageChildPages"
       :last-visited-page="lastVisitedPageId"
-      @click-page="onChangePage"/>  
+      @click-page="onChangePage"/>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
   props: {
     pageId: { type: String, required: true },
     pageTitle: { type: String, default: 'Default Title' },
-    materialApi: { type: Object, require: true }
+    materialApi: { type: Object, required: true }
   },
 
   data() {
