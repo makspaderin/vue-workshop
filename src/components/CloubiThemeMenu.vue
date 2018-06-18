@@ -1,5 +1,5 @@
 <template>
-  <div
+  <main
     id="content"
     role="main"
     class="cb-theme-menu">
@@ -8,7 +8,7 @@
       :pages="pageChildPages"
       :last-visited-page="lastVisitedPageId"
       @click-page="onChangePage"/>
-  </div>
+  </main>
 </template>
 
 <script>
