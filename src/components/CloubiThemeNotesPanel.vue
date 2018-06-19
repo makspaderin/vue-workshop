@@ -1,8 +1,11 @@
 <template>
   <cloubi-side-panel
-    :full-height="true"
+    :full-height="false"
     :event-bus="eventBus"
     :trap-focus="true"
+    :auto-hide-enabled="true"
+    :auto-hide-mode="'hide-on-other'"
+    :auto-hide-panel-ids="['nav']"
     side-panel-id="right-side-panel"
     position="right"
     data-cy="side-panel-right">
