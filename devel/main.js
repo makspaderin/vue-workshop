@@ -26,11 +26,11 @@ const userApiWrapper = new UserApiWrapper(userApi);
 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
-Vue.use(VueAxe, {
+/*Vue.use(VueAxe, {
   config: {
     rules: []
   }
-});
+}); */
 
 const eventBus = new Vue();
 

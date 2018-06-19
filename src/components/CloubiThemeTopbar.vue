@@ -4,6 +4,8 @@
     <template slot="left-content">
       <cloubi-skiplink
         text="Skip to main content"
+        title="Skip to main content"
+        access-key="e"
         content-id="#content"
       />
       <cloubi-menu
@@ -20,7 +22,8 @@
         <cloubi-menu-item>
           <cloubi-home-button
             :class="[{'cb-hidden': isRoot}]"
-            :material-api="materialApi" />
+            :material-api="materialApi"
+            color="see-through" />
         </cloubi-menu-item>
       </cloubi-menu>
     </template>
@@ -39,7 +42,8 @@
             label="Open/close user details"
             align="center"
             name="user"
-            icon="user">
+            icon="user"
+            button-color="see-through">
             <cloubi-user
               :user-api="userApi" />
           </cloubi-dropdown>
@@ -47,7 +51,8 @@
 
         <cloubi-menu-item>
           <cloubi-ruler-button
-            :event-bus="eventBus"/>
+            :event-bus="eventBus"
+            closed-color="see-through"/>
         </cloubi-menu-item>
 
         <cloubi-menu-item>
@@ -55,6 +60,7 @@
             :material-api="materialApi">
             <cloubi-side-panel-switch
               :event-bus="eventBus"
+              color="see-through"
               label="Open/close notes panel."
               data-cy="side-panel-switch-right"
               side-panel-id="right-side-panel"
@@ -72,6 +78,7 @@
             name="font size"
             dropdown-id="font-size"
             title="A"
+            button-color="see-through"
             align="right">
             <template>
               <cloubi-font-size-dropdown
@@ -92,6 +99,7 @@
             name="playlist"
             dropdown-id="playlist"
             icon="star"
+            button-color="see-through"
             align="right">
             <template>
               <cloubi-playlist-dropdown
