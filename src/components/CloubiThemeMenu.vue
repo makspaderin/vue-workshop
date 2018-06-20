@@ -78,6 +78,9 @@ export default {
 
   h1 {
     color: white;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    font-size: 4em;
   }
 }
 </style>
