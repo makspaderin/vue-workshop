@@ -80,7 +80,7 @@ export default {
     color: white;
     margin-top: 60px;
     margin-bottom: 60px;
-    font-size: 4em;
+    font-size: 5rem;
   }
 }
 </style>
