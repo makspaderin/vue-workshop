@@ -38,7 +38,7 @@
             icon="file-alt"
             mode="round" />
         </cloubi-floatbar>
-        <cloubi-page-turners
+        <cloubi-turners-page
           :material-api="materialApi"
           class="cb-floating-page-turners" />
         <cloubi-ruler
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import CloubiThemeSidePanel from './CloubiThemeSidePanel.vue';
+import CloubiThemeSidePanel from './CloubiThemeSidepanel.vue';
 import CloubiThemeTopbar from './CloubiThemeTopbar.vue';
 import CloubiThemeBackground from './CloubiThemeBackground.vue';
 import CloubiThemeBottombar from './CloubiThemeBottombar.vue';
