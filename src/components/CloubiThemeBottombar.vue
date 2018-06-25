@@ -3,13 +3,13 @@
     :is-light="true"
     class="cb-bottombar">
     <template slot="left-content">
-      <cloubi-page-turner
+      <cloubi-turner-page
         :material-api="materialApi"
         turner-direction="previous" />
     </template>
     <template slot="center-content"/>
     <template slot="right-content">
-      <cloubi-page-turner
+      <cloubi-turner-page
         :material-api="materialApi"
         turner-direction="next" />
     </template>

@@ -20,7 +20,7 @@
             data-cy="side-panel-switch-nav" />
         </cloubi-menu-item>
         <cloubi-menu-item>
-          <cloubi-home-button
+          <cloubi-button-home
             :class="[{'cb-hidden': isRoot}]"
             :material-api="materialApi"
             color="see-through" />
@@ -28,7 +28,7 @@
       </cloubi-menu>
     </template>
     <template slot="center-content">
-      <cloubi-product-heading
+      <cloubi-heading-product
         :class="['cb-topbar-product-heading', {'cb-hidden': isRoot}]"
         :material-api="materialApi" />
     </template>

@@ -7,9 +7,9 @@
     data-cy="side-panel-nav">
     <template>
       <div class="cb-side-panel-column">
-        <cloubi-chapter-turners
+        <cloubi-turners-chapter
           :material-api="materialApi" />
-        <cloubi-nav-level-heading
+        <cloubi-heading-nav-level
           :material-api="materialApi" />
         <cloubi-material-accordion
           :material-api="materialApi" />
