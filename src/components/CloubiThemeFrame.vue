@@ -107,7 +107,7 @@ export default {
     this.eventBus.$on('add-to-playlist', () => {
       console.log('add-to-playlist');
       self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
-      self.addToPlaylistDialog = false;
+      self.addToPlaylistDialog = true;
     });
     this.eventBus.$on('show-my-playlists', () => {
       console.log('show-my-playlists');
