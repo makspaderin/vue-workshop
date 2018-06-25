@@ -57,13 +57,13 @@
         </div>
       </div>
     </cloubi-content-positioner>
-    <cloubi-add-to-playlist-dialog
+    <cloubi-playlist-dialog-add-to
       v-if="addToPlaylistDialog"
       :playlist-api="playlistApi"
       :material-api="materialApi"
       @cancel="addToPlaylistDialog=false"
     />
-    <cloubi-my-playlists-dialog
+    <cloubi-playlist-dialog-my
       v-if="myPlaylistsDialog"
       :playlist-api="playlistApi"
       :material-api="materialApi"

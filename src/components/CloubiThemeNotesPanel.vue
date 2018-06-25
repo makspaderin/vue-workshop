@@ -1,6 +1,6 @@
 <template>
   <cloubi-side-panel
-    :full-height="false"
+    :full-height="true"
     :event-bus="eventBus"
     :trap-focus="true"
     :auto-hide-enabled="true"
