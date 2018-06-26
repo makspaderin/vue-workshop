@@ -6,7 +6,9 @@
     position="left"
     data-cy="side-panel-nav">
     <template>
-      <div class="cb-side-panel-column">
+      <div
+        class="cb-side-panel-column"
+        data-cy="side-panel-left">
         <cloubi-turners-chapter
           :material-api="materialApi" />
         <cloubi-heading-nav-level

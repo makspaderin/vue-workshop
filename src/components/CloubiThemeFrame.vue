@@ -57,17 +57,10 @@
         </div>
       </div>
     </cloubi-content-positioner>
-    <cloubi-playlist-dialog-add-to
-      v-if="addToPlaylistDialog"
-      :playlist-api="playlistApi"
+    <cloubi-playlist-root
+      :event-bus="eventBus"
       :material-api="materialApi"
-      @cancel="addToPlaylistDialog=false"
-    />
-    <cloubi-playlist-dialog-my
-      v-if="myPlaylistsDialog"
       :playlist-api="playlistApi"
-      :material-api="materialApi"
-      @cancel="myPlaylistsDialog=false"
     />
   </div>
 </template>
@@ -96,23 +89,20 @@ export default {
   },
 
   data() {
-    return {
-      addToPlaylistDialog: false,
-      myPlaylistsDialog: false
-    };
+    return {};
   },
 
   created() {
     const self = this;
     this.eventBus.$on('add-to-playlist', () => {
-      console.log('add-to-playlist');
+      // we need to excplictly emit dropdown close here, since we wan't
+      // to playlist editor dropdown when user has selected an action from it.
       self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
-      self.addToPlaylistDialog = true;
     });
     this.eventBus.$on('show-my-playlists', () => {
-      console.log('show-my-playlists');
+      // we need to excplictly emit dropdown close here, since we wan't
+      // to playlist editor dropdown when user has selected an action from it.
       self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
-      self.myPlaylistsDialog = true;
     });
   }
 };

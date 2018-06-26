@@ -62,7 +62,7 @@
               :event-bus="eventBus"
               color="see-through"
               label="Open/close notes panel."
-              data-cy="side-panel-switch-right"
+              data-cy="notes-side-panel-switch"
               side-panel-id="right-side-panel"
               icon="file-alt"
               name="notes" />
@@ -102,7 +102,7 @@
             button-color="see-through"
             align="right">
             <template>
-              <cloubi-playlist-dropdown
+              <cloubi-playlist-editor
                 :material-api="materialApi"
                 :playlist-api="playlistApi"
                 :event-bus="eventBus"
