@@ -102,7 +102,7 @@
             button-color="see-through"
             align="right">
             <template>
-              <cloubi-playlist-dropdown
+              <cloubi-playlist-editor
                 :material-api="materialApi"
                 :playlist-api="playlistApi"
                 :event-bus="eventBus"

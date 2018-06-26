@@ -101,6 +101,7 @@ describe('SidePanel', function() {
     cy.get('[data-cy=side-panel-notes-content]').should('be.visible')
     cy.get('[data-cy=side-panel-main]').should('not.be.visible')
   })
+
 })
 
 
