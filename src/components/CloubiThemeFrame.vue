@@ -23,7 +23,7 @@
         :material-api="materialApi" />
       <cloubi-content-positioner
         :event-bus="eventBus"
-        side-panel-id="nav"
+        side-panel-id="main"
         side-panel-position="left"
         data-cy="cb-content-pos">
         <cloubi-floatbar>
@@ -32,8 +32,8 @@
             mode="round" />
           <cloubi-side-panel-switch
             :event-bus="eventBus"
-            data-cy="side-panel-switch-right"
-            side-panel-id="right-side-panel"
+            data-cy="side-panel-switch-notes"
+            side-panel-id="notes"
             label="Open/close notes panel"
             icon="file-alt"
             mode="round" />
@@ -47,7 +47,7 @@
     </div>
     <cloubi-content-positioner
       :event-bus="eventBus"
-      side-panel-id="nav"
+      side-panel-id="main"
       side-panel-position="left">
       <div class="cb-app container">
         <div
@@ -66,11 +66,11 @@
 </template>
 
 <script>
-import CloubiThemeSidePanel from './CloubiThemeSidepanel.vue';
+import CloubiThemeSidePanel from './CloubiThemePanelMain.vue';
 import CloubiThemeTopbar from './CloubiThemeTopbar.vue';
 import CloubiThemeBackground from './CloubiThemeBackground.vue';
 import CloubiThemeBottombar from './CloubiThemeBottombar.vue';
-import CloubiThemeNotesPanel from './CloubiThemeNotesPanel.vue';
+import CloubiThemeNotesPanel from './CloubiThemePanelNotes.vue';
 
 export default {
   components: {

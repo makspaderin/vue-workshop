@@ -1,4 +1,6 @@
 import Vue from 'vue';
+
+/* eslint-disable-next-line */
 import VueAxe from 'vue-axe';
 
 import CloubiProductThemeComponents, {
@@ -26,11 +28,13 @@ const userApiWrapper = new UserApiWrapper(userApi);
 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
-/*Vue.use(VueAxe, {
-  config: {
-    rules: []
-  }
-}); */
+
+/* Enable vue-axe by uncommenting the following lines */
+// Vue.use(VueAxe, {
+//   config: {
+//     rules: []
+//   }
+// });
 
 const eventBus = new Vue();
 

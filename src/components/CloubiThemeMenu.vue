@@ -32,7 +32,7 @@ export default {
   created() {
     this.$loadPageChildPages().then(this.resolveLastPage);
 
-    this.materialApi.onPageChange(page => {
+    this.materialApi.onPageChange(() => {
       this.$resolveLastPage();
     });
   },
@@ -51,7 +51,7 @@ export default {
       const self = this;
       return this.materialApi.getLastPage().then(lastPage => {
         const breadcrumb = lastPage.breadcrump;
-        for (let i = 0; i < breadcrumb.length; i++) {
+        for (let i = 0; i < breadcrumb.length; i += 1) {
           const foundPage = self.pageChildPages.find(
             p => p.id === breadcrumb[i]
           );
