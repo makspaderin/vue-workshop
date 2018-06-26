@@ -27,7 +27,7 @@ describe('Ruler', function(){
     cy.wait(400)
 
     cy.get('[data-cy=ruler]').should('be.visible')
-    
+
     cy.get('[data-cy=ruler-button]').first().click()
 
     cy.wait(400)
@@ -49,7 +49,7 @@ describe('HomeButton', function() {
 
     cy.get('[data-cy=theme-home-button]').click()
     cy.wait(200)
-    
+
     cy.get('[data-cy=main-menu-title]').should('be.visible')
   })
 })
@@ -61,45 +61,45 @@ describe('SidePanel', function() {
     cy.get('[data-cy=main-menu-item]').first().click()
   })
 
-  it('Nav Side Panel opens and closes', function() {
+  it('Main Side Panel opens and closes', function() {
     cy.get('[data-cy=side-panel]').should('not.be.visible')
 
-    cy.get('[data-cy=side-panel-switch-nav').click()
+    cy.get('[data-cy=side-panel-switch-main').click()
     cy.wait(500)
 
-    cy.get('[data-cy=side-panel-nav]').should('be.visible')
+    cy.get('[data-cy=side-panel-main-content]').should('be.visible')
 
-    cy.get('[data-cy=side-panel-switch-nav').click()
+    cy.get('[data-cy=side-panel-switch-main]').click()
     cy.wait(500)
 
-    cy.get('[data-cy=side-panel-nav]').should('not.be.visible')
+    cy.get('[data-cy=side-panel-main-content]').should('not.be.visible')
   })
 
-  it('Nav SidePanel automatically closes on root page', function() {
+  it('Main SidePanel automatically closes on root page', function() {
     cy.get('[data-cy=side-panel]').should('not.be.visible')
 
-    cy.get('[data-cy=side-panel-switch-nav').click()
+    cy.get('[data-cy=side-panel-switch-main').click()
     cy.wait(500)
 
-    cy.get('[data-cy=side-panel-right]').should('not.be.visible')
-    cy.get('[data-cy=side-panel-nav]').should('be.visible')
+    cy.get('[data-cy=side-panel-notes-content]').should('not.be.visible')
+    cy.get('[data-cy=side-panel-main-content]').should('be.visible')
 
     cy.get('[data-cy=theme-home-button]').click()
     cy.wait(500)
 
-    cy.get('[data-cy=side-panel-right]').should('not.be.visible')
-    cy.get('[data-cy=side-panel-nav]').should('not.be.visible')
+    cy.get('[data-cy=side-panel-notes-content]').should('not.be.visible')
+    cy.get('[data-cy=side-panel-main-content]').should('not.be.visible')
 
   })
 
-  it('Right panel opens', function() {
+  it('Notes panel opens', function() {
     cy.get('[data-cy=side-panel]').should('not.be.visible')
 
-    cy.get('[data-cy=side-panel-switch-right').click()
+    cy.get('[data-cy=side-panel-switch-notes]').first().click()
     cy.wait(500)
 
-    cy.get('[data-cy=side-panel-right]').should('be.visible')
-    cy.get('[data-cy=side-panel-nav]').should('not.be.visible')
+    cy.get('[data-cy=side-panel-notes-content]').should('be.visible')
+    cy.get('[data-cy=side-panel-main]').should('not.be.visible')
   })
 })
 
@@ -120,7 +120,6 @@ describe('PageTurner', function(){
     cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-prev]').should('not.be.visible')
     cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-next]').click()
 
-    cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-next]').should('not.be.visible')
     cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-prev]').click()
 
     cy.get('[data-cy=cb-content-pos]').find('[data-cy=page-turner-prev]').should('not.be.visible')
@@ -130,7 +129,7 @@ describe('PageTurner', function(){
 describe('Notes', function(){
   beforeEach(function() {
     cy.visit(pageUrl);
-    cy.get('[data-cy=side-panel-switch-right]').click();
+    cy.get('[data-cy=side-panel-switch-notes]').first().click();
     cy.wait(1000)
   });
 
@@ -159,13 +158,13 @@ describe('Notes', function(){
     cy.get('[data-cy=note-type-selector-all').click();
     cy.get('[data-cy=notes-list-all]').children().should('have.length', 3);
   });
-  
+
   it('Deletes a note', function() {
     /* Cancel delete */
 
     cy.get('[data-cy=notes-list-page]').children().first().trigger('mouseover');
     cy.get('[data-cy=notes-list-page]').children().first().find('[data-cy=delete-note-button]').click();
-    
+
     cy.get('[data-cy=note-dialog-delete]').find('[data-cy=cancel-button]').click();
     cy.get('[data-cy=note-dialog-delete]').should('not.be.visible');
 
@@ -206,14 +205,14 @@ describe('Notes', function(){
     cy.get('[data-cy=notes-list-page]').children().first().find('[data-cy=note-text]').contains('Note 1');
 
     /* Edit properly */
-    
+
     cy.get('[data-cy=notes-list-page]').children().first().trigger('mouseover');
     cy.get('[data-cy=notes-list-page]').children().first().find('[data-cy=edit-note-button]').click();
 
     cy.get('[data-cy=note-dialog-edit').find('[data-cy=note-text-input]').find('textarea').type('2');
 
     cy.get('[data-cy=note-dialog-edit]').find('[data-cy=save-button]').click();
-    
+
     cy.wait(1200);
 
     cy.get('[data-cy=note-dialog-edit]').should('not.be.visible');

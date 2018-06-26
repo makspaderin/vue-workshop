@@ -15,9 +15,9 @@
           <cloubi-side-panel-switch
             :class="[{'cb-hidden': isRoot}]"
             :event-bus="eventBus"
-            label="Open/Close nav sidepanel."
-            side-panel-id="nav"
-            data-cy="side-panel-switch-nav" />
+            label="Open/Close main sidepanel."
+            side-panel-id="main"
+            data-cy="side-panel-switch-main" />
         </cloubi-menu-item>
         <cloubi-menu-item>
           <cloubi-button-home
@@ -62,8 +62,8 @@
               :event-bus="eventBus"
               color="see-through"
               label="Open/close notes panel."
-              data-cy="side-panel-switch-right"
-              side-panel-id="right-side-panel"
+              data-cy="side-panel-switch-notes"
+              side-panel-id="notes"
               icon="file-alt"
               name="notes" />
           </cloubi-notes-counter>
@@ -125,8 +125,7 @@ export default {
     materialApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
     userApi: { type: Object, required: true },
-    playlistApi: { type: Object, required: true },
-    eventBus: { type: Object, required: true }
+    playlistApi: { type: Object, required: true }
   },
 
   data() {
@@ -150,7 +149,7 @@ export default {
         this.isRoot = true;
         this.eventBus.$emit('side-panel-open-changed', {
           isOpen: false,
-          sidePanelId: 'nav'
+          sidePanelId: 'main'
         });
       } else {
         this.isRoot = false;

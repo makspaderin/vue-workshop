@@ -2,11 +2,13 @@
   <cloubi-side-panel
     :event-bus="eventBus"
     :trap-focus="false"
-    side-panel-id="nav"
+    side-panel-id="main"
     position="left"
-    data-cy="side-panel-nav">
+    data-cy="side-panel-main">
     <template>
-      <div class="cb-side-panel-column">
+      <div
+        class="cb-side-panel-column"
+        data-cy="side-panel-main-content">
         <cloubi-turners-chapter
           :material-api="materialApi" />
         <cloubi-heading-nav-level
@@ -20,13 +22,13 @@
 
 <script>
 export default {
-  name: 'CloubiThemeSidePanel',
+  name: 'CloubiThemePanelMain',
 
   components: {},
 
   props: {
     materialApi: { type: Object, required: true },
-    eventBus: { type: Object, default: () => new Vue() }
+    eventBus: { type: Object, required: true }
   }
 };
 </script>

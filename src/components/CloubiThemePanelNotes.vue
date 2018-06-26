@@ -5,11 +5,13 @@
     :trap-focus="true"
     :auto-hide-enabled="true"
     :auto-hide-mode="'hide-on-other'"
-    :auto-hide-panel-ids="['nav']"
-    side-panel-id="right-side-panel"
+    :auto-hide-panel-ids="['main']"
+    side-panel-id="notes"
     position="right"
-    data-cy="side-panel-right">
-    <div class="cb-notes-top-bar">
+    data-cy="side-panel-notes">
+    <div
+      class="cb-notes-top-bar"
+      data-cy="side-panel-notes-content">
       <div>
         <cloubi-notes-download-button
           :material-api="materialApi"
@@ -21,7 +23,7 @@
           :event-bus="eventBus"
           :initial-open="true"
           label="Close notes panel"
-          side-panel-id="right-side-panel"
+          side-panel-id="notes"
           icon="times"
           class="cb-close-notes-btn" />
       </div>
@@ -35,7 +37,7 @@
 
 <script>
 export default {
-  name: 'CloubiThemeNotesPanel',
+  name: 'CloubiThemePanelNotes',
 
   components: {},
 
