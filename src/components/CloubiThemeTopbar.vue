@@ -96,6 +96,7 @@
             :event-bus="eventBus"
             :icon-outline="true"
             label="Open/close playlist"
+            data-cy="open-playlist-editor-button"
             name="playlist"
             dropdown-id="playlist"
             icon="star"
@@ -106,6 +107,7 @@
                 :material-api="materialApi"
                 :playlist-api="playlistApi"
                 :event-bus="eventBus"
+                data-cy="playlist-editor"
               />
             </template>
           </cloubi-dropdown>
