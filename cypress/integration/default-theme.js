@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 
-const pageUrl = 'http://localhost:8081';
+const pageUrl = 'http://localhost:8080';
 
 describe('Component loads in dev invironment', function() {
     before(function() {
@@ -226,66 +226,209 @@ describe('Notes', function(){
     cy.get('[data-cy=notes-list-all]').children().first().find('[data-cy=note-text]').contains('Note 12');
   });
 
-  describe('Playlist Editor Dropdown', function(){
+});
 
-    beforeEach(function() {
-      cy.visit(pageUrl);
-      cy.wait(2000)
-      cy.get('[data-cy=open-playlist-editor-button]').click();
-    });
+describe('Playlist Editor Dropdown', function(){
 
-    it('It open & closes playlist editor', function() {
-      cy.get('[data-cy=playlist-editor]').should('be.visible');
-      cy.get('[data-cy=open-playlist-editor-button]').click();
-      cy.get('[data-cy=playlist-editor]').should('not.be.visible');
-    });
+  beforeEach(function() {
+    cy.visit(pageUrl);
+    cy.wait(2000)
+    cy.get('[data-cy=open-playlist-editor-button]').click();
+  });
 
-    it('It opens add to playlist dialog', function() {
+  it('It open & closes playlist editor', function() {
+    cy.get('[data-cy=playlist-editor]').should('be.visible');
+    cy.get('[data-cy=open-playlist-editor-button]').click();
+    cy.get('[data-cy=playlist-editor]').should('not.be.visible');
+  });
 
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=add-to-list-button]').click();
-      cy.get('[data-cy=add-to-playlist-dialog]').should('be.visible');
+  it('It opens add to playlist dialog', function() {
 
-      cy.get('[data-cy=add-to-playlist-dialog]').find('button').contains('Close').click();
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=add-to-list-button]').click();
+    cy.get('[data-cy=add-to-playlist-dialog]').should('be.visible');
 
-      cy.get('[data-cy=add-to-playlist-dialog]').should('not.be.visible');
+    cy.get('[data-cy=add-to-playlist-dialog]').find('button').contains('Close').click();
 
-    });
+    cy.get('[data-cy=add-to-playlist-dialog]').should('not.be.visible');
 
-    it('It opens my playlist dialog', function() {
+  });
 
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=show-my-lists-button]').click();
-      cy.get('[data-cy=my-playlists-dialog]').should('be.visible');
+  it('It opens my playlist dialog', function() {
 
-      cy.get('[data-cy=my-playlists-dialog]').find('button').contains('Close').click();
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=show-my-lists-button]').click();
+    cy.get('[data-cy=my-playlists-dialog]').should('be.visible');
 
-      cy.get('[data-cy=my-playlists-dialog]').should('not.be.visible');
+    cy.get('[data-cy=my-playlists-dialog]').find('button').contains('Close').click();
 
-    });
+    cy.get('[data-cy=my-playlists-dialog]').should('not.be.visible');
 
-    it.only('It tries to open playlist with code', function() {
+  });
 
-      // check that button is disable with no code
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').should('be.disabled');
+  it('It tries to open playlist with code', function() {
 
-      // enabled by typing
-      cy.get('[data-cy=open-playlist-code-input]').find('input').type('fo');
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').should('be.enabled');
+    // check that button is disable with no code
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').should('be.disabled');
 
-      // disabled when cleared
-      cy.get('[data-cy=open-playlist-code-input]').find('input').clear();
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').should('be.disabled');
+    // enabled by typing
+    cy.get('[data-cy=open-playlist-code-input]').find('input').type('fo');
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').should('be.enabled');
 
-      // error with wrong code
-      cy.get('[data-cy=open-playlist-code-input]').find('input').type('foo');
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').click();
-      cy.get('[data-cy=open-playlist-code-input-error]').should('be.visible');
+    // disabled when cleared
+    cy.get('[data-cy=open-playlist-code-input]').find('input').clear();
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').should('be.disabled');
 
-      // success if with good code
-      cy.get('[data-cy=open-playlist-code-input]').find('input').type('bar');
-      cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').click();
-      cy.get('[data-cy=open-playlist-code-input-error]').should('not.be.visible');
-    });
+    // error with wrong code
+    cy.get('[data-cy=open-playlist-code-input]').find('input').type('foo');
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').click();
+    cy.get('[data-cy=open-playlist-code-input-error]').should('be.visible');
+
+    // success if with good code
+    cy.get('[data-cy=open-playlist-code-input]').find('input').type('bar');
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=open-with-code-button]').click();
+    cy.get('[data-cy=open-playlist-code-input-error]').should('not.be.visible');
+  });
+
+});
+
+describe('Add to playlist dialog', function(){
+
+  beforeEach(function() {
+    cy.visit(pageUrl);
+    cy.wait(2000)
+    cy.get('[data-cy=open-playlist-editor-button]').click();
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=add-to-list-button]').click();
+  });
+
+  it('It add & removes page to playlist', function() {
+
+    cy.get('[data-cy=add-to-playlist-dialog]')
+    .find('[data-cy=playlist-list]')
+    .children()
+    .first()
+    .find('button')
+    .contains('Remove')
+    .click();
+
+    cy.get('[data-cy=add-to-playlist-dialog]')
+    .find('[data-cy=playlist-list]')
+    .children()
+    .first()
+    .find('button')
+    .contains('Add')
+    .click();
+
+  });
+
+  it.only('Creates new playlist', function() {
+
+    cy.get('[data-cy=add-to-playlist-dialog]')
+    .find('[data-cy=create-new-playlist-button]')
+    .click();
+
+    cy.get('[data-cy=create-new-playlist-dialog]')
+    .find('[data-cy=playlist-name]')
+    .find('input')
+    .clear()
+    .type('Foobar')
+
+    cy.get('[data-cy=create-new-playlist-dialog]')
+    .find('[data-cy=playlist-description]')
+    .find('textarea')
+    .clear()
+    .type('Foobar Description')
+
+    cy.get('[data-cy=create-new-playlist-dialog]')
+    .find('[data-cy=playlist-shared-toggle]')
+    .find('[type=checkbox]')
+    .check({force: true});
+
+    cy.get('[data-cy=create-new-playlist-dialog]')
+    .find('[data-cy="create-button"]')
+    .click()
+    .wait(2000);
+
+    cy.get('[data-cy=add-to-playlist-dialog]')
+    .find('[data-cy=playlist-list]')
+    .children()
+    .contains('Foobar');
 
   });
 
 });
+
+describe('Show my playlists dialog', function(){
+
+  beforeEach(function() {
+    cy.visit(pageUrl);
+    cy.wait(2000)
+    cy.get('[data-cy=open-playlist-editor-button]').click();
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=show-my-lists-button]').click();
+  });
+
+  it('Delete playlist', function() {
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Playlist 1');
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .find('[data-cy=delete-button]')
+    .click();
+
+    cy.get('[data-cy=delete-playlist-dialog]')
+    .find('button')
+    .contains('Delete')
+    .click();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .contains('Playlist 1')
+    .should('not.exist');
+
+
+  });
+
+  it.only('Edit playlist name', function() {
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .find('[data-cy=playlist-name]')
+    .click();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .find('[data-cy=playlist-name]')
+    .find('input')
+    .first()
+    .clear()
+    .type('Foobar');
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .find('[data-cy=playlist-name]')
+    .find('[data-cy=submit-button]')
+    .first()
+    .click();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Foobar')
+    .should('exist');
+
+  });
+
+
+});
+
