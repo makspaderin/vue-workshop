@@ -290,6 +290,32 @@ describe('Playlist Editor Dropdown', function(){
 
 });
 
+const createNewPlaylist = () => {
+
+  cy.get('[data-cy=create-new-playlist-dialog]')
+  .find('[data-cy=playlist-name]')
+  .find('input')
+  .clear()
+  .type('Foobar')
+
+  cy.get('[data-cy=create-new-playlist-dialog]')
+  .find('[data-cy=playlist-description]')
+  .find('textarea')
+  .clear()
+  .type('Foobar Description')
+
+  cy.get('[data-cy=create-new-playlist-dialog]')
+  .find('[data-cy=playlist-shared-toggle]')
+  .find('[type=checkbox]')
+  .check({force: true});
+
+  cy.get('[data-cy=create-new-playlist-dialog]')
+  .find('[data-cy="create-button"]')
+  .click()
+  .wait(2000);
+
+};
+
 describe('Add to playlist dialog', function(){
 
   beforeEach(function() {
@@ -319,33 +345,13 @@ describe('Add to playlist dialog', function(){
 
   });
 
-  it.only('Creates new playlist', function() {
+  it('Creates new playlist', function() {
 
     cy.get('[data-cy=add-to-playlist-dialog]')
     .find('[data-cy=create-new-playlist-button]')
     .click();
 
-    cy.get('[data-cy=create-new-playlist-dialog]')
-    .find('[data-cy=playlist-name]')
-    .find('input')
-    .clear()
-    .type('Foobar')
-
-    cy.get('[data-cy=create-new-playlist-dialog]')
-    .find('[data-cy=playlist-description]')
-    .find('textarea')
-    .clear()
-    .type('Foobar Description')
-
-    cy.get('[data-cy=create-new-playlist-dialog]')
-    .find('[data-cy=playlist-shared-toggle]')
-    .find('[type=checkbox]')
-    .check({force: true});
-
-    cy.get('[data-cy=create-new-playlist-dialog]')
-    .find('[data-cy="create-button"]')
-    .click()
-    .wait(2000);
+    createNewPlaylist();
 
     cy.get('[data-cy=add-to-playlist-dialog]')
     .find('[data-cy=playlist-list]')
@@ -394,7 +400,7 @@ describe('Show my playlists dialog', function(){
 
   });
 
-  it.only('Edit playlist name', function() {
+  it('Edit playlist name', function() {
 
     cy.get('[data-cy=my-playlists-dialog]')
     .find('[data-cy=my-playlists-list]')
@@ -426,6 +432,165 @@ describe('Show my playlists dialog', function(){
     .first()
     .contains('Foobar')
     .should('exist');
+
+  });
+
+  it('Create new playlist', function() {
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=create-new-playlist-button]')
+    .click();
+
+    createNewPlaylist();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .contains('Foobar');
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .contains('Foobar Description');
+
+  });
+
+  it('Changes shared property of a playlist', function() {
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Not shared');
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .click();
+
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=sharing-toggle]')
+    .find('[type=checkbox]')
+    .check({force: true})
+
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('button')
+    .contains('Close')
+    .click();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Shared');
+
+  });
+
+  it('Removes page from playlist', function() {
+
+    // open first playlist
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .click();
+
+    // remove first page
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=remove-page-button]')
+    .first()
+    .click();
+
+    // close edit dialg
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('button')
+    .contains('Close')
+    .click();
+
+  });
+
+  it('Deletes playlist through edit playlist dialog', function() {
+
+    // Check that first playlist exists
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Playlist 1');
+
+    // open first playlist
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .click();
+
+    // close edit dialg
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=delete-button]')
+    .click();
+
+    // delete dialog is shown
+    cy.get('[data-cy=delete-playlist-dialog]')
+    .find('button')
+    .contains('Delete')
+    .click();
+
+    // edit dialog closes after deletion
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .should('not.be.visible');
+
+    // check that playlist got deleted
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Playlist 1')
+    .should('not.exist');
+
+  });
+
+  it('Shares playlist through sharing dialog', function() {
+
+    // check that first playlist is not shared
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Not shared');
+
+    // open first playlist
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .click();
+
+    // open share dialog
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=share-button]')
+    .click()
+    .wait(2000);
+
+    // share
+    cy.get('[data-cy=share-playlist-dialog]')
+    .find('[data-cy=sharing-toggle]')
+    .find('[type=checkbox]')
+    .check({force: true})
+    .wait(2000);
+
+    cy.get('[data-cy=share-playlist-dialog]')
+    .find('button')
+    .contains('Save')
+    .click()
+    .wait(2000);
+
+    // check that status is now shared
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=sharing-toggle]')
+    .find('[type=checkbox]')
+    .should('be.checked', {force: true});
 
   });
 

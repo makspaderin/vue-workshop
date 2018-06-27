@@ -81,7 +81,7 @@
             button-color="see-through"
             align="right">
             <template>
-              <cloubi-font-size-dropdown
+              <cloubi-font-size-editor
                 :material-api="materialApi"
                 :event-bus="eventBus"
               />
