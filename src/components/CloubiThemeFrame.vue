@@ -6,6 +6,7 @@
     <div class="cb-frame">
       <theme-topbar
         :event-bus="eventBus"
+        :notes-api="notesApi"
         :material-api="materialApi"
         :user-api="userApi"
         :playlist-api="playlistApi"
@@ -16,6 +17,7 @@
 
       <theme-notes-panel
         :event-bus="eventBus"
+        :notes-api="notesApi"
         :material-api="materialApi" />
 
       <theme-bottombar
@@ -82,10 +84,26 @@ export default {
   },
 
   props: {
+    /**
+     * MaterialApiWrapper instance
+     */
     materialApi: { type: Object, required: true },
+    /**
+     * UserApiWrapper instance
+     */
     userApi: { type: Object, required: true },
+    /**
+     * Event Bus instance
+     */
     eventBus: { type: Object, required: true },
-    playlistApi: { type: Object, required: true }
+    /**
+     * PlaylistApiWrapper instance.
+     */
+    playlistApi: { type: Object, required: true },
+    /**
+     * NotesApiWrapper instance.
+     */
+    notesApi: { type: Object, required: true }
   },
 
   data() {

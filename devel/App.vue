@@ -5,6 +5,7 @@
       :material-api="materialApi"
       :user-api="userApi"
       :playlist-api="playlistApi"
+      :notes-api="notesApi"
     />
   </div>
 </template>
@@ -21,6 +22,7 @@ export default {
     materialApi: { type: Object, required: true },
     userApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
+    notesApi: { type: Object, required: true },
     eventBus: { type: Object, required: true }
   },
 
@@ -36,8 +38,6 @@ export default {
   mounted() {
     const self = this;
     this.materialApi.onPageChange(page => {
-      console.log('onPageChanged:');
-      console.log(page);
       self.page = page;
     });
   }

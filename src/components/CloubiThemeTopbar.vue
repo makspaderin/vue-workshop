@@ -57,6 +57,7 @@
 
         <cloubi-menu-item>
           <cloubi-notes-counter
+            :notes-api="notesApi"
             :material-api="materialApi">
             <cloubi-side-panel-switch
               :event-bus="eventBus"
@@ -127,6 +128,7 @@ export default {
     materialApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
     userApi: { type: Object, required: true },
+    notesApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true }
   },
 

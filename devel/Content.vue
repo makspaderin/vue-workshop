@@ -1,5 +1,7 @@
 <template>
-  <div class="dummy-content-container" id="content">
+  <div
+    id="content"
+    class="dummy-content-container">
     <div class="dummy-content">
       <h1>{{ header }}</h1>
     </div>
@@ -7,39 +9,30 @@
 </template>
 
 <script>
-
-
 export default {
-
-  components: {
-  },
+  components: {},
 
   props: {
     header: { type: String, default: 'Default header' }
-  },
-
-
-}
+  }
+};
 </script>
 
 <style lang="scss">
+.dummy-content-container {
+  margin-top: 0px;
+  padding-top: 0px;
+  display: flex;
+  flex-direction: column;
 
-  .dummy-content-container {
-
+  .dummy-content {
     margin-top: 0px;
-    padding-top: 0px;
-    display: flex;
-    flex-direction: column;
-
-    .dummy-content {
-      margin-top: 0px;
-      margin-bottom: 50px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 70%;
-      height: 2000px;
-      background-color: white;
-    }
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 2000px;
+    background-color: white;
   }
-
+}
 </style>

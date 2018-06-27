@@ -14,6 +14,7 @@
       data-cy="side-panel-notes-content">
       <div>
         <cloubi-notes-download-button
+          :notes-api="notesApi"
           :material-api="materialApi"
           :event-bus="eventBus"
           class="cb-download-notes-btn"/>
@@ -29,6 +30,7 @@
       </div>
     </div>
     <cloubi-notes
+      :notes-api="notesApi"
       :material-api="materialApi"
       :event-bus="eventBus"
       class="cb-notes" />
@@ -42,7 +44,17 @@ export default {
   components: {},
 
   props: {
+    /**
+     * NotesApiWrapper instance
+     */
+    notesApi: { type: Object, required: true },
+    /**
+     * MaterialApiWrapper instance
+     */
     materialApi: { type: Object, required: true },
+    /**
+     * Event Bus instance.
+     */
     eventBus: { type: Object, required: true }
   }
 };

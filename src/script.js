@@ -5,7 +5,12 @@ import CloubiProductThemeComponents, {
   CloubiTranslations,
   MaterialApiWrapper,
   PlaylistApiWrapper,
-  UserApiWrapper
+  UserApiWrapper,
+  NotesApiWrapper,
+  // TODO: remove these dummies:
+  PlaylistApi as playlistApiDev,
+  UserApi as userApiDev,
+  NotesApi as notesApiDev
 } from 'cloubi2-default-product-theme-components-vue';
 
 import setUpPublicPath from './public-path';
@@ -14,8 +19,6 @@ import './style.scss';
 import CloubiThemeFrame from './components/CloubiThemeFrame.vue';
 import CloubiThemeMenu from './components/CloubiThemeMenu.vue';
 import TranslationPlugin from './plugin/TranslationPlugin';
-
-import { default as userApiDev } from '../devel/api/UserApi';
 
 CloubiTranslations.registerTranslations(translations); // TODO: REMOVE THIS FOR REAL ENVIRONMENT
 
@@ -28,8 +31,9 @@ setUpPublicPath.then(() => {
     ['fi.cloubi.frontend/material', 'fi.cloubi.frontend/settings'],
     (material, settings) => {
       const materialApi = new MaterialApiWrapper(material);
-      const playlistApi = new PlaylistApiWrapper(); // TODO: supply playlist api
-      const userApi = new UserApiWrapper(userApiDev); // TODO: supply user api
+      const playlistApi = new PlaylistApiWrapper(playlistApiDev); // TODO: supply real playlist api
+      const userApi = new UserApiWrapper(userApiDev); // TODO: supply real user account api
+      const notesApi = new NotesApiWrapper(notesApiDev); // TODO: supply real notes api
 
       const eventBus = new Vue();
 
@@ -82,7 +86,7 @@ setUpPublicPath.then(() => {
           const frame = new Vue({
             render: h =>
               h(CloubiThemeFrame, {
-                props: { materialApi, eventBus, playlistApi, userApi }
+                props: { materialApi, eventBus, playlistApi, userApi, notesApi }
               })
           });
 

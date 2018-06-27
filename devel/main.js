@@ -7,15 +7,17 @@ import CloubiProductThemeComponents, {
   MaterialApiWrapper,
   PlaylistApiWrapper,
   UserApiWrapper,
+  NotesApiWrapper,
   translations,
-  CloubiTranslations
+  CloubiTranslations,
+  MaterialApi as materialApi,
+  UserApi as userApi,
+  NotesApi as notesApi,
+  PlaylistApi as playlistApi
 } from 'cloubi2-default-product-theme-components-vue';
 
 import App from './App.vue';
 import Content from './Content.vue';
-
-import materialApi from './api/MaterialApi';
-import userApi from './api/UserApi';
 
 import TranslationPlugin from '../src//plugin/TranslationPlugin';
 import CloubiThemeMenu from '../src/components/CloubiThemeMenu.vue';
@@ -23,8 +25,9 @@ import CloubiThemeMenu from '../src/components/CloubiThemeMenu.vue';
 CloubiTranslations.registerTranslations(translations);
 
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
-const playlistApiWrapper = new PlaylistApiWrapper();
+const playlistApiWrapper = new PlaylistApiWrapper(playlistApi);
 const userApiWrapper = new UserApiWrapper(userApi);
+const notesApiWrapper = new NotesApiWrapper(notesApi);
 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
@@ -46,6 +49,7 @@ const app = () =>
         props: {
           materialApi: materialApiWrapper,
           playlistApi: playlistApiWrapper,
+          notesApi: notesApiWrapper,
           userApi: userApiWrapper,
           eventBus
         }
