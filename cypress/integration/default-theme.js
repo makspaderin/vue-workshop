@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 
-const pageUrl = 'http://localhost:8080';
+const pageUrl = 'http://localhost:8081';
 
 describe('Component loads in dev invironment', function() {
     before(function() {
@@ -11,6 +11,32 @@ describe('Component loads in dev invironment', function() {
     it('Goto to test page', function() {
         cy.visit(pageUrl)
     })
+})
+
+
+describe('User', function(){
+  beforeEach(function() {
+    cy.visit(pageUrl)
+  })
+
+  it('Shows the right information', function() {
+    cy.get('[data-cy=user-panel]').should('not.be.visible')
+
+    cy.get('[data-cy=user-dropdown-button]').click()
+    cy.get('[data-cy=user-panel]').find('[data-cy=user-loading-spinner]').should('be.visible')
+
+    cy.wait(1000)
+
+    cy.get('[data-cy=user-panel]').find('[data-cy=user-loading-spinner]').should('not.be.visible')
+    cy.get('[data-cy=user-panel]').find('[data-cy=user-name]').should('be.visible')
+    cy.get('[data-cy=user-panel]').find('[data-cy=user-email]').should('be.visible')
+
+    cy.get('[data-cy=user-panel]').find('[data-cy=logout-button]').click()
+
+    cy.get('[data-cy=user-dropdown-button]').click()
+    cy.wait(200)
+    cy.get('[data-cy=user-panel]').should('not.be.visible')
+  })
 })
 
 
@@ -596,4 +622,5 @@ describe('Show my playlists dialog', function(){
 
 
 });
+
 

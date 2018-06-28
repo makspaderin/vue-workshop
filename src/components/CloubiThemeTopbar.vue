@@ -43,9 +43,11 @@
             align="center"
             name="user"
             icon="user"
-            button-color="see-through">
+            button-color="see-through"
+            data-cy="user-dropdown-button">
             <cloubi-user
-              :user-api="userApi" />
+              :user-api="userApi"
+              data-cy="user-panel" />
           </cloubi-dropdown>
         </cloubi-menu-item>
 
