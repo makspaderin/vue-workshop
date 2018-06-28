@@ -3,7 +3,7 @@
     <theme-frame
       :event-bus="eventBus"
       :material-api="materialApi"
-      :user-api="userApi"
+      :account-api="accountApi"
       :playlist-api="playlistApi"
       :notes-api="notesApi"
     />
@@ -20,7 +20,7 @@ export default {
 
   props: {
     materialApi: { type: Object, required: true },
-    userApi: { type: Object, required: true },
+    accountApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
     eventBus: { type: Object, required: true }

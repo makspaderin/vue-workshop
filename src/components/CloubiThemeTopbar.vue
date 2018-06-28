@@ -46,7 +46,7 @@
             button-color="see-through"
             data-cy="user-dropdown-button">
             <cloubi-user
-              :user-api="userApi"
+              :account-api="accountApi"
               data-cy="user-panel" />
           </cloubi-dropdown>
         </cloubi-menu-item>
@@ -129,7 +129,7 @@ export default {
   props: {
     materialApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
-    userApi: { type: Object, required: true },
+    accountApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true }
   },

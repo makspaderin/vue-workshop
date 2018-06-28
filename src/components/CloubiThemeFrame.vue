@@ -8,7 +8,7 @@
         :event-bus="eventBus"
         :notes-api="notesApi"
         :material-api="materialApi"
-        :user-api="userApi"
+        :account-api="accountApi"
         :playlist-api="playlistApi"
       />
       <theme-side-panel
@@ -89,9 +89,9 @@ export default {
      */
     materialApi: { type: Object, required: true },
     /**
-     * UserApiWrapper instance
+     * AccountApiWrapper instance
      */
-    userApi: { type: Object, required: true },
+    accountApi: { type: Object, required: true },
     /**
      * Event Bus instance
      */

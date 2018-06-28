@@ -5,11 +5,11 @@ import CloubiProductThemeComponents, {
   CloubiTranslations,
   MaterialApiWrapper,
   PlaylistApiWrapper,
-  UserApiWrapper,
+  AccountApiWrapper,
   NotesApiWrapper,
   // TODO: remove these dummies:
+  AccountApi as accountApiDev,
   PlaylistApi as playlistApiDev,
-  UserApi as userApiDev,
   NotesApi as notesApiDev
 } from 'cloubi2-default-product-theme-components-vue';
 
@@ -28,11 +28,15 @@ Vue.use(CloubiProductThemeComponents);
 setUpPublicPath.then(() => {
   /* eslint-disable no-undef */
   Cloubi.load(
-    ['fi.cloubi.frontend/material', 'fi.cloubi.frontend/settings'],
-    (material, settings) => {
+    [
+      'fi.cloubi.frontend/material',
+      'fi.cloubi.frontend/settings',
+      'fi.cloubi.frontend/account'
+    ],
+    (material, settings, account) => {
       const materialApi = new MaterialApiWrapper(material);
+      const accountApi = new AccountApiWrapper(accountApiDev);
       const playlistApi = new PlaylistApiWrapper(playlistApiDev); // TODO: supply real playlist api
-      const userApi = new UserApiWrapper(userApiDev); // TODO: supply real user account api
       const notesApi = new NotesApiWrapper(notesApiDev); // TODO: supply real notes api
 
       const eventBus = new Vue();
@@ -86,7 +90,13 @@ setUpPublicPath.then(() => {
           const frame = new Vue({
             render: h =>
               h(CloubiThemeFrame, {
-                props: { materialApi, eventBus, playlistApi, userApi, notesApi }
+                props: {
+                  materialApi,
+                  eventBus,
+                  playlistApi,
+                  accountApi,
+                  notesApi
+                }
               })
           });
 

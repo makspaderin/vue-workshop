@@ -6,12 +6,12 @@ import VueAxe from 'vue-axe';
 import CloubiProductThemeComponents, {
   MaterialApiWrapper,
   PlaylistApiWrapper,
-  UserApiWrapper,
+  AccountApiWrapper,
   NotesApiWrapper,
   translations,
   CloubiTranslations,
   MaterialApi as materialApi,
-  UserApi as userApi,
+  AccountApi as accountApi,
   NotesApi as notesApi,
   PlaylistApi as playlistApi
 } from 'cloubi2-default-product-theme-components-vue';
@@ -26,7 +26,8 @@ CloubiTranslations.registerTranslations(translations);
 
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
 const playlistApiWrapper = new PlaylistApiWrapper(playlistApi);
-const userApiWrapper = new UserApiWrapper(userApi);
+console.log(accountApi);
+const accountApiWrapper = new AccountApiWrapper(accountApi);
 const notesApiWrapper = new NotesApiWrapper(notesApi);
 
 Vue.use(TranslationPlugin);
@@ -50,7 +51,7 @@ const app = () =>
           materialApi: materialApiWrapper,
           playlistApi: playlistApiWrapper,
           notesApi: notesApiWrapper,
-          userApi: userApiWrapper,
+          accountApi: accountApiWrapper,
           eventBus
         }
       })
