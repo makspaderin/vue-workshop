@@ -3,7 +3,12 @@
     id="content"
     class="dummy-content-container">
     <div class="dummy-content">
-      <h1>{{ header }}</h1>
+      <h1
+        id="donk">{{ header }}</h1>
+      <div
+        id="content-start">
+        Content start
+      </div>
     </div>
   </div>
 </template>
@@ -34,5 +39,12 @@ export default {
     height: 2000px;
     background-color: white;
   }
+}
+#donk {
+  margin-top: 100px;
+}
+#content-start {
+  margin-top: 160px;
+  margin-bottom: 100px;
 }
 </style>

@@ -10,6 +10,7 @@ import CloubiProductThemeComponents, {
   NotesApiWrapper,
   translations,
   CloubiTranslations,
+  PageTurners,
   MaterialApi as materialApi,
   AccountApi as accountApi,
   NotesApi as notesApi,
@@ -104,6 +105,19 @@ materialApiWrapper.onPageChange(page => {
     contentDiv = dummyContent.$el;
     contentDiv.setAttribute('role', 'main');
     contentMountElement.appendChild(contentDiv);
+
+    const contentStart = document.getElementById('content-start');
+
+    const pageTurners = new Vue({
+      render: h =>
+        h(PageTurners, {
+          props: { materialApi: materialApiWrapper, mode: 'in-content' }
+        })
+    });
+
+    pageTurners.$mount();
+
+    contentStart.appendChild(pageTurners.$el);
   }
 });
 
