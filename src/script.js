@@ -30,8 +30,8 @@ setUpPublicPath.then(() => {
   Cloubi.load(
     [
       'fi.cloubi.frontend/material',
-      'fi.cloubi.frontend/settings',
-      'fi.cloubi.frontend/account'
+      'fi.cloubi.frontend/settings'
+      /* 'fi.cloubi.frontend/account' */
     ],
     (material, settings, account) => {
       const materialApi = new MaterialApiWrapper(material);

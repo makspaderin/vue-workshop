@@ -19,13 +19,13 @@
 }
 .annotator-adder {
   background-image: none !important;
-  background-color: #ff570c;
+  background-color: $cloubi-color-attention;
   border-radius: 50%;
 }
 
 .annotator-adder button {
   display: none;
-  background-color: #ff570c;
+  background-color: $cloubi-color-attention;
 }
 
 @media only screen and (max-width: 1200px) {

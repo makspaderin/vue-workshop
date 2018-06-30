@@ -18,9 +18,10 @@
   "dependencies": {
     "vue": "^2.5.16",
     "vue-axe": "^1.0.4",
-    "cloubi2-default-product-theme-components-vue": "file://../cloubi2-default-product-theme-components-vue"
+    "cloubi2-default-product-theme-components-vue": "^0.1.8"
   },
   "devDependencies": {
+    "@epegzz/sass-vars-loader": "^3.3.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.2",

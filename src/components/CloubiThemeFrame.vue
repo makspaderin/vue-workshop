@@ -128,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../_variables.scss';
+// @import '../_variables.scss';
 
 .cb-app {
   margin-top: 50px;
