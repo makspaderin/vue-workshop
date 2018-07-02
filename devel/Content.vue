@@ -44,7 +44,7 @@ export default {
   margin-top: 100px;
 }
 #content-start {
-  margin-top: 160px;
-  margin-bottom: 100px;
+  margin-top: 400px;
+  margin-bottom: 400px;
 }
 </style>

@@ -35,11 +35,11 @@ Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
 /* Enable vue-axe by uncommenting the following lines */
-// Vue.use(VueAxe, {
-//   config: {
-//     rules: []
-//   }
-// });
+/* Vue.use(VueAxe, {
+  config: {
+    rules: []
+  }
+}); */
 
 const eventBus = new Vue();
 
@@ -111,7 +111,12 @@ materialApiWrapper.onPageChange(page => {
     const pageTurners = new Vue({
       render: h =>
         h(PageTurners, {
-          props: { materialApi: materialApiWrapper, mode: 'in-content' }
+          props: {
+            materialApi: materialApiWrapper,
+            sidePanelId: 'main',
+            sidePanelPosition: 'left',
+            eventBus
+          }
         })
     });
 

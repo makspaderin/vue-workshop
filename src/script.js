@@ -7,8 +7,8 @@ import CloubiProductThemeComponents, {
   PlaylistApiWrapper,
   AccountApiWrapper,
   NotesApiWrapper,
+  PageTurners,
   // TODO: remove these dummies:
-  AccountApi as accountApiDev,
   PlaylistApi as playlistApiDev,
   NotesApi as notesApiDev
 } from 'cloubi2-default-product-theme-components-vue';
@@ -30,12 +30,12 @@ setUpPublicPath.then(() => {
   Cloubi.load(
     [
       'fi.cloubi.frontend/material',
-      'fi.cloubi.frontend/settings'
-      /* 'fi.cloubi.frontend/account' */
+      'fi.cloubi.frontend/settings',
+      'fi.cloubi.frontend/account'
     ],
     (material, settings, account) => {
       const materialApi = new MaterialApiWrapper(material);
-      const accountApi = new AccountApiWrapper(accountApiDev);
+      const accountApi = new AccountApiWrapper(account);
       const playlistApi = new PlaylistApiWrapper(playlistApiDev); // TODO: supply real playlist api
       const notesApi = new NotesApiWrapper(notesApiDev); // TODO: supply real notes api
 
@@ -72,6 +72,29 @@ setUpPublicPath.then(() => {
         console.log(page);
 
         window.scrollTo(0, 0);
+
+        let contentStart = document.querySelector('.cb-content-begin');
+
+        if (contentStart === null) {
+          contentStart = document.getElementById('content');
+        }
+
+        const pageTurners = new Vue({
+          render: h =>
+            h(PageTurners, {
+              props: {
+                materialApi,
+                sidePanelId: 'main',
+                sidePanelPosition: 'left',
+                anchorElementSelector: '.cb-content-begin',
+                eventBus
+              }
+            })
+        });
+
+        pageTurners.$mount();
+
+        contentStart.appendChild(pageTurners.$el);
       });
 
       // Wait until material is fully loaded and we know what the current page is.

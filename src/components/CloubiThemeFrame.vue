@@ -40,10 +40,6 @@
             icon="file-alt"
             mode="round" />
         </cloubi-floatbar>
-        <cloubi-turners-page
-          :material-api="materialApi"
-          mode="in-frame"
-          class="cb-floating-page-turners" />
         <cloubi-ruler
           :event-bus="eventBus"/>
       </cloubi-content-positioner>
