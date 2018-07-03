@@ -40,7 +40,7 @@
         <cloubi-menu-item>
           <cloubi-dropdown
             label="Open/close user details"
-            align="center"
+            align="right"
             name="user"
             icon="user"
             button-color="see-through"
