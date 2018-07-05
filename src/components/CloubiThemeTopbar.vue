@@ -38,17 +38,10 @@
         label="menu-bar">
 
         <cloubi-menu-item>
-          <cloubi-dropdown
-            label="Open/close user details"
+          <cloubi-user-dropdown
+            :account-api="accountApi"
             align="right"
-            name="user"
-            icon="user"
-            button-color="see-through"
-            data-cy="user-dropdown-button">
-            <cloubi-user
-              :account-api="accountApi"
-              data-cy="user-panel" />
-          </cloubi-dropdown>
+            name="user" />
         </cloubi-menu-item>
 
         <cloubi-menu-item>
