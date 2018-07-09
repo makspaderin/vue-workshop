@@ -27,7 +27,6 @@ CloubiTranslations.registerTranslations(translations);
 
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
 const playlistApiWrapper = new PlaylistApiWrapper(playlistApi);
-console.log(accountApi);
 const accountApiWrapper = new AccountApiWrapper(accountApi);
 const notesApiWrapper = new NotesApiWrapper(notesApi);
 
