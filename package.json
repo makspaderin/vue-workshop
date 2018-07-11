@@ -18,7 +18,7 @@
   "dependencies": {
     "vue": "^2.5.16",
     "vue-axe": "^1.0.4",
-    "cloubi2-default-product-theme-components-vue": "^0.1.8"
+    "cloubi2-default-product-theme-components-vue": "file://../cloubi2-default-product-theme-components-vue"
   },
   "devDependencies": {
     "@epegzz/sass-vars-loader": "^3.3.2",
