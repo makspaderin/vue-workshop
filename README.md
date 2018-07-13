@@ -24,6 +24,3 @@ Copy user.properties.template as user.properties and change local.server.deploy.
 Can be used to change theme colors fonts and certain dimensions.
 
 For further customisation you can implement your own versions of components used by the theme.
-
-
-
