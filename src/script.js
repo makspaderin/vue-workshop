@@ -85,9 +85,7 @@ setUpPublicPath.then(() => {
               props: {
                 materialApi,
                 sidePanelId: 'main',
-                sidePanelPosition: 'left',
-                anchorElementSelector: '.cb-content-begin',
-                eventBus
+                anchorElementSelector: '.cb-content-begin'
               }
             })
         });

@@ -1,7 +1,6 @@
 <template>
   <cloubi-side-panel
     :full-height="true"
-    :event-bus="eventBus"
     :trap-focus="true"
     :auto-hide-enabled="true"
     :auto-hide-mode="'hide-on-other'"
@@ -22,7 +21,6 @@
       <div>
         <cloubi-side-panel-switch
           :event-bus="eventBus"
-          :initial-open="true"
           label="Close notes panel"
           side-panel-id="notes"
           icon="times"

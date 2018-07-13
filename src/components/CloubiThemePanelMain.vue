@@ -1,6 +1,5 @@
 <template>
   <cloubi-side-panel
-    :event-bus="eventBus"
     :trap-focus="false"
     side-panel-id="main"
     position="left"
