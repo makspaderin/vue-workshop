@@ -112,9 +112,7 @@ materialApiWrapper.onPageChange(page => {
         h(PageTurners, {
           props: {
             materialApi: materialApiWrapper,
-            sidePanelId: 'main',
-            sidePanelPosition: 'left',
-            eventBus
+            sidePanelId: 'main'
           }
         })
     });

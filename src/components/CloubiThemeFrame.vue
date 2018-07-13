@@ -26,7 +26,6 @@
       <cloubi-content-positioner
         :event-bus="eventBus"
         side-panel-id="main"
-        side-panel-position="left"
         data-cy="cb-content-pos">
         <cloubi-floatbar>
           <cloubi-ruler-button
@@ -46,8 +45,7 @@
     </div>
     <cloubi-content-positioner
       :event-bus="eventBus"
-      side-panel-id="main"
-      side-panel-position="left">
+      side-panel-id="main">
       <div class="cb-app container">
         <div
           id="content-frame"
