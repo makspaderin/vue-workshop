@@ -146,10 +146,9 @@ export default {
     $pageChanged(page) {
       if (page.breadcrump.length === 1) {
         this.isRoot = true;
-        this.eventBus.$emit('side-panel-open-changed', {
-          isOpen: false,
-          sidePanelId: 'main'
-        });
+
+        // Close main side panel when in root page
+        this.$changeSidePanelState('main', { isOpen: false });
       } else {
         this.isRoot = false;
       }
