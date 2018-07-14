@@ -24,6 +24,8 @@ CloubiTranslations.registerTranslations(translations); // TODO: REMOVE THIS FOR 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
+const STICKY_PAGE_TURNER_SELECTOR = '.cb-content-begin';
+
 setUpPublicPath.then(() => {
   /* eslint-disable no-undef */
   Cloubi.load(
@@ -73,7 +75,7 @@ setUpPublicPath.then(() => {
 
         window.scrollTo(0, 0);
 
-        let contentStart = document.querySelector('.cb-content-begin');
+        let contentStart = document.querySelector(STICKY_PAGE_TURNER_SELECTOR);
 
         if (contentStart === null) {
           contentStart = document.getElementById('content');
@@ -85,7 +87,7 @@ setUpPublicPath.then(() => {
               props: {
                 materialApi,
                 sidePanelId: 'main',
-                anchorElementSelector: '.cb-content-begin'
+                anchorElementSelector: STICKY_PAGE_TURNER_SELECTOR
               }
             })
         });

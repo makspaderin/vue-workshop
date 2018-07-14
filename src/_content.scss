@@ -2,7 +2,12 @@
   margin-top: 0px !important;
 }
 
-.cb-item-full-width {
+.template-header {
+  width: 100vw;
+}
+
+.cb-item-full-width,
+.template-header {
   margin-left: calc(-100vw / 2 + 1140px / 2) !important;
   margin-right: calc(-100vw / 2 + 1140px / 2) !important;
   max-height: 60vh !important;
@@ -12,6 +17,12 @@
     transform: translateY(-25%);
   }
 }
+
+.row .template-header {
+  margin-right: calc(-100vw / 2 + 1140px / 2 + 15px) !important;
+  margin-left: calc(-100vw / 2 + 1140px / 2 + 15px) !important;
+}
+
 .cloubi-content-element {
   h1, h2, h3 {
     font-family: Montserrat,Open Sans,Helvetica,Arial,sans-serif;
@@ -29,21 +40,24 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .cb-item-full-width {
+  .cb-item-full-width,
+  .template-header {
     margin-left: calc(-100vw / 2 + 940px / 2) !important;
     margin-right: calc(-100vw / 2 + 940px / 2) !important;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  .cb-item-full-width {
+  .cb-item-full-width,
+  .template-header {
     margin-left: calc(-100vw / 2 + 720px / 2) !important;
     margin-right: calc(-100vw / 2 + 720px / 2) !important;
   }
 }
 
 @media only screen and (max-width: 770px) {
-  .cb-item-full-width {
+  .cb-item-full-width,
+  .template-header {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
