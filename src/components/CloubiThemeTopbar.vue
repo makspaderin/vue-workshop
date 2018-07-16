@@ -36,6 +36,9 @@
       <cloubi-menu
         :horizontal="true"
         label="menu-bar">
+        <cloubi-menu-item>
+          <cloubi-search />
+        </cloubi-menu-item>
 
         <cloubi-menu-item>
           <cloubi-user-dropdown
@@ -55,7 +58,6 @@
             :notes-api="notesApi"
             :material-api="materialApi">
             <cloubi-side-panel-switch
-              :event-bus="eventBus"
               color="see-through"
               label="Open/close notes panel."
               data-cy="side-panel-switch-notes"
@@ -63,6 +65,17 @@
               icon="file-alt"
               name="notes" />
           </cloubi-notes-counter>
+        </cloubi-menu-item>
+
+        <cloubi-menu-item>
+          <cloubi-side-panel-switch
+            color="see-through"
+            label="Open/close additional content panel."
+            data-cy="side-panel-switch-notes"
+            side-panel-id="additional-content"
+            icon="paperclip"
+            name="notes"
+          />
         </cloubi-menu-item>
 
         <cloubi-menu-item>

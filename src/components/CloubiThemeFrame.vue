@@ -11,6 +11,7 @@
         :account-api="accountApi"
         :playlist-api="playlistApi"
       />
+
       <theme-side-panel
         :event-bus="eventBus"
         :material-api="materialApi"/>
@@ -19,6 +20,10 @@
         :event-bus="eventBus"
         :notes-api="notesApi"
         :material-api="materialApi" />
+
+      <theme-additional-content-panel
+        :event-bus="eventBus"
+        :additional-content-api="additionalContentApi" />
 
       <theme-bottombar
         :event-bus="eventBus"
@@ -68,6 +73,7 @@ import CloubiThemeTopbar from './CloubiThemeTopbar.vue';
 import CloubiThemeBackground from './CloubiThemeBackground.vue';
 import CloubiThemeBottombar from './CloubiThemeBottombar.vue';
 import CloubiThemeNotesPanel from './CloubiThemePanelNotes.vue';
+import CloubiThemeAdditionalContentPanel from './CloubiThemePanelAdditionalContent.vue';
 
 export default {
   components: {
@@ -75,7 +81,8 @@ export default {
     'theme-topbar': CloubiThemeTopbar,
     'theme-background': CloubiThemeBackground,
     'theme-bottombar': CloubiThemeBottombar,
-    'theme-notes-panel': CloubiThemeNotesPanel
+    'theme-notes-panel': CloubiThemeNotesPanel,
+    'theme-additional-content-panel': CloubiThemeAdditionalContentPanel
   },
 
   props: {
@@ -98,7 +105,12 @@ export default {
     /**
      * NotesApiWrapper instance.
      */
-    notesApi: { type: Object, required: true }
+    notesApi: { type: Object, required: true },
+
+    /**
+     * AdditionalContentApiWrapper instance.
+     */
+    additionalContentApi: { type: Object, required: true }
   },
 
   data() {

@@ -3,11 +3,13 @@
     id="content"
     class="dummy-content-container">
     <div class="dummy-content">
-      <h1
-        id="donk">{{ header }}</h1>
-      <div
-        id="content-start">
-        Content start
+      <div class="cb-row">
+        <h1
+          id="donk">{{ header }}</h1>
+        <div
+          id="content-start">
+          Content start
+        </div>
       </div>
     </div>
   </div>
@@ -33,11 +35,18 @@ export default {
   .dummy-content {
     margin-top: 0px;
     margin-bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    height: 2000px;
+    width: 1170px;
+    min-height: 2000px;
     background-color: white;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+  }
+
+  .cb-row {
+    position: relative;
   }
 }
 #donk {
