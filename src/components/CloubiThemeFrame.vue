@@ -10,6 +10,7 @@
         :material-api="materialApi"
         :account-api="accountApi"
         :playlist-api="playlistApi"
+        :search-api="searchApi"
       />
 
       <theme-side-panel
@@ -110,7 +111,12 @@ export default {
     /**
      * AdditionalContentApiWrapper instance.
      */
-    additionalContentApi: { type: Object, required: true }
+    additionalContentApi: { type: Object, required: true },
+
+    /**
+     * SearchApiWrapper instance.
+     */
+    searchApi: { type: Object, required: true }
   },
 
   data() {

@@ -37,7 +37,8 @@
         :horizontal="true"
         label="menu-bar">
         <cloubi-menu-item>
-          <cloubi-search />
+          <cloubi-search
+            :search-api="searchApi" />
         </cloubi-menu-item>
 
         <cloubi-menu-item>
@@ -137,7 +138,8 @@ export default {
     eventBus: { type: Object, required: true },
     accountApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
-    playlistApi: { type: Object, required: true }
+    playlistApi: { type: Object, required: true },
+    searchApi: { type: Object, required: true }
   },
 
   data() {
