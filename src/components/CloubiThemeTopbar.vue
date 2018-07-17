@@ -38,7 +38,8 @@
         label="menu-bar">
         <cloubi-menu-item>
           <cloubi-search
-            :search-api="searchApi" />
+            :search-api="searchApi"
+            :material-api="materialApi" />
         </cloubi-menu-item>
 
         <cloubi-menu-item>
