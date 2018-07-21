@@ -15,6 +15,7 @@
           <cloubi-side-panel-switch
             :class="[{'cb-hidden': isRoot}]"
             :event-bus="eventBus"
+            hint="Main menu"
             label="Open/Close main sidepanel."
             side-panel-id="main"
             data-cy="side-panel-switch-main" />
@@ -37,7 +38,8 @@
         :horizontal="true"
         label="menu-bar">
         <cloubi-menu-item>
-          <cloubi-search
+          <cloubi-theme-search-dropdown
+            :event-bus="eventBus"
             :search-api="searchApi"
             :material-api="materialApi" />
         </cloubi-menu-item>
@@ -62,6 +64,7 @@
             <cloubi-side-panel-switch
               color="see-through"
               label="Open/close notes panel."
+              hint="Notes"
               data-cy="side-panel-switch-notes"
               side-panel-id="notes"
               icon="file-alt"
@@ -72,6 +75,7 @@
         <cloubi-menu-item>
           <cloubi-side-panel-switch
             color="see-through"
+            hint="Additional content"
             label="Open/close additional content panel."
             data-cy="side-panel-switch-notes"
             side-panel-id="additional-content"
@@ -85,12 +89,14 @@
             :pointing="false"
             :floating="false"
             :event-bus="eventBus"
+            icon="text-height"
             label="Open/close font size selector"
             name="font size"
             dropdown-id="font-size"
-            title="A"
+            title=""
             button-color="see-through"
-            align="right">
+            align="right"
+            hint="Font size">
             <template>
               <cloubi-font-size-editor
                 :material-api="materialApi"
@@ -112,6 +118,7 @@
             dropdown-id="playlist"
             icon="star"
             button-color="see-through"
+            hint="Playlist"
             align="right">
             <template>
               <cloubi-playlist-editor
@@ -129,10 +136,14 @@
 </template>
 
 <script>
+import CloubiThemeSearchDropdown from './CloubiThemeSearchDropdown.vue';
+
 export default {
   name: 'CloubiThemeTopbar',
 
-  components: {},
+  components: {
+    'cloubi-theme-search-dropdown': CloubiThemeSearchDropdown
+  },
 
   props: {
     materialApi: { type: Object, required: true },
@@ -176,6 +187,10 @@ export default {
 <style>
 .cb-hidden {
   display: none;
+}
+
+.cb-search {
+  width: 340px;
 }
 
 @media only screen and (max-width: 760px) {
