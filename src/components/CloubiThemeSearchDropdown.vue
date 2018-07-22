@@ -10,6 +10,7 @@
     title=""
     button-color="see-through"
     align="window-width"
+    data-cy="search-panel-button"
     hint="Search">
     <cloubi-search
       :search-api="searchApi"
