@@ -8,7 +8,9 @@
     side-panel-id="additional-content"
     position="right"
     data-cy="side-panel-right">
-    <cloubi-additional-content />
+    <cloubi-additional-content
+      :material-api="materialApi"
+      :additional-content-api="{}"/>
   </cloubi-side-panel>
 </template>
 
