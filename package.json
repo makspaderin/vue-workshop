@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cloubi2-default-product-theme-components-vue": "^0.1.20",
+    "cloubi2-default-product-theme-components-vue": "^0.1.21",
     "vue": "^2.5.16",
     "vue-axe": "^1.0.4"
   },
