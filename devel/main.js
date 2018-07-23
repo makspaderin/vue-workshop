@@ -12,6 +12,7 @@ import CloubiProductThemeComponents, {
   translations,
   CloubiTranslations,
   PageTurners,
+  FontSizeInit,
   MaterialApi as materialApi,
   AccountApi as accountApi,
   NotesApi as notesApi,
@@ -44,6 +45,8 @@ Vue.use(CloubiProductThemeComponents);
 }); */
 
 const eventBus = new Vue();
+
+FontSizeInit(materialApiWrapper, eventBus);
 
 const app = () =>
   new Vue({

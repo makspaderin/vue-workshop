@@ -13,6 +13,52 @@ describe('Component loads in dev invironment', function() {
     })
 })
 
+describe('MaterialAccordion', function() {
+  beforeEach(function() {
+    cy.visit(pageUrl)
+
+    cy.get('[data-cy=main-menu-item]').first().click()
+    cy.wait(500)
+
+    cy.get('[data-cy=side-panel-switch-main]').click()
+    cy.wait(500)
+  })
+
+  it('Navigates to a chapter', function() {
+    cy.get('[data-cy=nav-material-accordion]').find('[data-cy=material-accordion-chapter-button]').contains('Ihmisen solut').click()
+    cy.wait(500)
+    cy.get('[data-cy=main-content-header]').contains('Ihmisen solut')
+  })
+
+  it('Navigates to a page', function() {
+    cy.get('[data-cy=nav-material-accordion]').find('[data-cy=material-accordion-page-button]').contains('Page 3').click()
+    cy.wait(500)
+    cy.get('[data-cy=main-content-header]').contains('Page 3')
+  })
+
+  it('Opens and closes accordion', function() {
+    cy.get('[data-cy=nav-material-accordion]')
+    .find('[data-cy=material-accordion-page-list]')
+    .first()
+    .find('[data-cy=material-accordion-page-button]')
+    .should('have.length', 10)
+
+    cy.get('[data-cy=nav-material-accordion]').find('[data-cy=expand-nav-button]').first().click()
+
+    cy.get('[data-cy=nav-material-accordion]')
+    .find('[data-cy=material-accordion-page-list]').should('not.exist')
+
+    cy.get('[data-cy=nav-material-accordion]').find('[data-cy=expand-nav-button]').first().click()
+
+    cy.get('[data-cy=nav-material-accordion]')
+    .find('[data-cy=material-accordion-page-list]')
+    .first()
+    .find('[data-cy=material-accordion-page-button]')
+    .should('have.length', 10)
+  })
+})
+
+
 describe('Search', function() {
   beforeEach(function() {
     cy.visit(pageUrl)
@@ -617,7 +663,6 @@ describe('SidePanel', function() {
 
 })
 
-
 describe('PageTurner', function(){
   beforeEach(function() {
     cy.visit(pageUrl)
@@ -662,11 +707,11 @@ describe('Notes', function(){
 
   it('Creates a new note', function() {
     cy.get('[data-cy=add-note-text-field]').find('textarea').type('Nyy nööt')
-    cy.get('[data-cy=add-note-button').click()
+    cy.get('[data-cy=add-note-button]').click();
 
-    cy.wait(1000)
+    cy.wait(2000)
 
-    cy.get('[data-cy=notes-container').find('[data-cy=note-item]').contains('Nyy nööt')
+    cy.get('[data-cy=notes-container]').find('[data-cy=note-item]').contains('Nyy nööt')
     cy.get('[data-cy=notes-list-page]').children().should('have.length', 2);
 
     cy.get('[data-cy=note-type-selector-all').click();

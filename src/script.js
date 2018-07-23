@@ -3,6 +3,7 @@ import Vue from 'vue';
 import CloubiProductThemeComponents, {
   translations,
   CloubiTranslations,
+  FontSizeInit,
   MaterialApiWrapper,
   PlaylistApiWrapper,
   AccountApiWrapper,
@@ -110,6 +111,7 @@ setUpPublicPath.then(() => {
               el: document.getElementById('top-content'),
               render: h => h(ThemeTopbar, {props: {materialApi:materialApi,eventBus}})
             }); */
+          FontSizeInit(materialApi, eventBus);
 
           const contentElement = document.getElementById('content');
 
