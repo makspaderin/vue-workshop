@@ -28,7 +28,7 @@ import CloubiThemeMenu from '../src/components/CloubiThemeMenu.vue';
 CloubiTranslations.registerTranslations(translations);
 
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
-const playlistApiWrapper = new PlaylistApiWrapper(playlistApi);
+const playlistApiWrapper = new PlaylistApiWrapper(playlistApi, materialApi);
 const accountApiWrapper = new AccountApiWrapper(accountApi);
 const notesApiWrapper = new NotesApiWrapper(notesApi);
 const searchApiWrapper = new SearchApiWrapper(searchApi);

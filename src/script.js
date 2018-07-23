@@ -42,7 +42,7 @@ setUpPublicPath.then(() => {
       const accountApi = new AccountApiWrapper(account);
       const notesApi = new NotesApiWrapper(notes);
       const searchApi = new SearchApiWrapper(search);
-      const playlistApi = new PlaylistApiWrapper(playlistApiDev); // TODO: supply real playlist api
+      const playlistApi = new PlaylistApiWrapper(playlistApiDev, material); // TODO: supply real playlist api
 
       const eventBus = new Vue();
 
