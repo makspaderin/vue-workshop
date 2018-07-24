@@ -1,6 +1,7 @@
 <template>
   <cloubi-navbar
-    :is-transparent="isRoot">
+    :is-transparent="isRoot"
+    class="cb-topbar">
     <template slot="left-content">
       <cloubi-skiplink
         text="Skip to main content"
@@ -184,14 +185,19 @@ export default {
 };
 </script>
 
-<style>
-.cb-hidden {
-  display: none;
+<style lang="scss">
+
+.cb-topbar {
+  z-index: 1500;
+  .cb-hidden {
+    display: none;
+  }
+
+  .cb-search {
+    width: 340px;
+  }
 }
 
-.cb-search {
-  width: 340px;
-}
 
 @media only screen and (max-width: 760px) {
   .cb-topbar-product-heading {
