@@ -42,14 +42,16 @@
           <cloubi-theme-search-dropdown
             :event-bus="eventBus"
             :search-api="searchApi"
-            :material-api="materialApi" />
+            :material-api="materialApi"
+            @open="openDropdown" />
         </cloubi-menu-item>
 
         <cloubi-menu-item>
           <cloubi-user-dropdown
             :account-api="accountApi"
             align="right"
-            name="user" />
+            name="user"
+            @open="openDropdown" />
         </cloubi-menu-item>
 
         <cloubi-menu-item>
@@ -97,7 +99,8 @@
             title=""
             button-color="see-through"
             align="right"
-            hint="Font size">
+            hint="Font size"
+            @open="openDropdown">
             <template>
               <cloubi-font-size-editor
                 :material-api="materialApi"
@@ -120,7 +123,8 @@
             icon="star"
             button-color="see-through"
             hint="Playlist"
-            align="right">
+            align="right"
+            @open="openDropdown">
             <template>
               <cloubi-playlist-editor
                 :material-api="materialApi"
@@ -168,6 +172,10 @@ export default {
     self.materialApi.getCurrentPage().then(page => {
       self.$pageChanged(page);
     });
+
+    // Register dropdown pseudo-sidepanel, this exists
+    // to cause other side panels to close.
+    this.$getSidePanelState('dropdown');
   },
 
   methods: {
@@ -180,6 +188,11 @@ export default {
       } else {
         this.isRoot = false;
       }
+    },
+
+    openDropdown() {
+      // Open the dropdown pseudo-sidepanel
+      this.$changeSidePanelState('dropdown', { isOpen: true });
     }
   }
 };

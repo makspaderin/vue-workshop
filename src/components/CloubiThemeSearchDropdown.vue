@@ -11,7 +11,8 @@
     button-color="see-through"
     align="window-width"
     data-cy="search-panel-button"
-    hint="Search">
+    hint="Search"
+    @open="open">
     <cloubi-search
       :search-api="searchApi"
       :material-api="materialApi"
@@ -37,6 +38,12 @@ export default {
     eventBus: {
       type: Object,
       required: true
+    }
+  },
+
+  methods: {
+    open() {
+      this.$emit('open');
     }
   }
 };
