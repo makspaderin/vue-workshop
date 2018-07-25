@@ -26,7 +26,7 @@ CloubiTranslations.registerTranslations(translations); // TODO: REMOVE THIS FOR 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
-const STICKY_PAGE_TURNER_SELECTOR = '.cb-content-begin';
+const STICKY_PAGE_TURNER_SELECTOR = '.template-header';
 
 setUpPublicPath.then(() => {
   /* eslint-disable no-undef */

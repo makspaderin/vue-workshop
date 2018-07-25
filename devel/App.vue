@@ -7,6 +7,7 @@
       :playlist-api="playlistApi"
       :notes-api="notesApi"
       :search-api="searchApi"
+      :additional-content-api="additionalContentApi"
     />
   </div>
 </template>
@@ -25,7 +26,13 @@ export default {
     playlistApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
-    searchApi: { type: Object, required: true }
+    searchApi: { type: Object, required: true },
+    additionalContentApi: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    }
   },
 
   data() {

@@ -10,7 +10,7 @@
     data-cy="side-panel-right">
     <cloubi-additional-content
       :material-api="materialApi"
-      :additional-content-api="{}"/>
+      :additional-content-api="additionalContentApi"/>
   </cloubi-side-panel>
 </template>
 
@@ -25,6 +25,7 @@ export default {
 
   props: {
     materialApi: { type: Object, required: true },
+    additionalContentApi: { type: Object, required: true },
     eventBus: { type: Object, default: () => new Vue() }
   }
 };

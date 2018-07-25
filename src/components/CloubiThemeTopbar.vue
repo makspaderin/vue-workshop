@@ -199,7 +199,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .cb-topbar {
   z-index: 1500;
   .cb-hidden {
@@ -210,7 +209,6 @@ export default {
     width: 340px;
   }
 }
-
 
 @media only screen and (max-width: 760px) {
   .cb-topbar-product-heading {

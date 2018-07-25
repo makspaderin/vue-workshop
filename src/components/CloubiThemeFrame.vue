@@ -24,6 +24,7 @@
 
       <theme-additional-content-panel
         :event-bus="eventBus"
+        :material-api="materialApi"
         :additional-content-api="additionalContentApi" />
 
       <theme-bottombar
