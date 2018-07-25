@@ -3,15 +3,15 @@
     :pointing="false"
     :floating="false"
     :event-bus="eventBus"
+    :label="$translate('cloubi-default-product-theme-open-close-search')"
+    :hint="$translate('cloubi-default-product-theme-search')"
     icon="search"
-    label="Open/close font size selector"
     name="font size"
     dropdown-id="search"
     title=""
     button-color="see-through"
     align="window-width"
     data-cy="search-panel-button"
-    hint="Search"
     @open="open">
     <cloubi-search
       :search-api="searchApi"

@@ -40,9 +40,9 @@
             mode="round" />
           <cloubi-side-panel-switch
             :event-bus="eventBus"
+            :label="$translate('cloubi-default-product-theme-open-close-notes-side-panel')"
             data-cy="side-panel-switch-notes"
             side-panel-id="notes"
-            label="Open/close notes panel"
             icon="file-alt"
             mode="round" />
         </cloubi-floatbar>

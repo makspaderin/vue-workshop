@@ -23,10 +23,14 @@ import CloubiProductThemeComponents, {
 import App from './App.vue';
 import Content from './Content.vue';
 
-import TranslationPlugin from '../src//plugin/TranslationPlugin';
-import CloubiThemeMenu from '../src/components/CloubiThemeMenu.vue';
+import TranslationPlugin from '../src/plugin/TranslationPlugin';
 
-CloubiTranslations.registerTranslations(translations);
+import CloubiThemeMenu from '../src/components/CloubiThemeMenu.vue';
+import ThemeTranslations from '../src/translations.json';
+
+const combinedTranslations = { ...translations, ...ThemeTranslations };
+
+CloubiTranslations.registerTranslations(combinedTranslations);
 
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
 const playlistApiWrapper = new PlaylistApiWrapper(playlistApi, materialApi);

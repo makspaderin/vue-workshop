@@ -4,8 +4,8 @@
     class="cb-topbar">
     <template slot="left-content">
       <cloubi-skiplink
-        text="Skip to main content"
-        title="Skip to main content"
+        :text="$translate('cloubi-default-product-theme-skip-to-main-content')"
+        :title="$translate('cloubi-default-product-theme-skip-to-main-content')"
         access-key="e"
         content-id="#content"
       />
@@ -16,8 +16,8 @@
           <cloubi-side-panel-switch
             :class="[{'cb-hidden': isRoot}]"
             :event-bus="eventBus"
-            hint="Main menu"
-            label="Open/Close main sidepanel."
+            :hint="$translate('cloubi-default-product-theme-main-menu')"
+            :label="$translate('cloubi-default-product-theme-open-close-main-side-panel')"
             side-panel-id="main"
             data-cy="side-panel-switch-main" />
         </cloubi-menu-item>
@@ -65,9 +65,9 @@
             :notes-api="notesApi"
             :material-api="materialApi">
             <cloubi-side-panel-switch
+              :label="$translate('cloubi-default-product-theme-open-close-notes-side-panel')"
+              :hint="$translate('cloubi-default-product-theme-notes')"
               color="see-through"
-              label="Open/close notes panel."
-              hint="Notes"
               data-cy="side-panel-switch-notes"
               side-panel-id="notes"
               icon="file-alt"
@@ -77,9 +77,9 @@
 
         <cloubi-menu-item>
           <cloubi-side-panel-switch
+            :hint="$translate('cloubi-default-product-theme-additional-content')"
+            :label="$translate('cloubi-default-product-theme-open-close-additional-content-side-panel')"
             color="see-through"
-            hint="Additional content"
-            label="Open/close additional content panel."
             data-cy="side-panel-switch-notes"
             side-panel-id="additional-content"
             icon="paperclip"
@@ -92,14 +92,14 @@
             :pointing="false"
             :floating="false"
             :event-bus="eventBus"
+            :label="$translate('cloubi-default-product-theme-open-close-font-size')"
+            :hint="$translate('cloubi-default-product-theme-font-size')"
             icon="text-height"
-            label="Open/close font size selector"
             name="font size"
             dropdown-id="font-size"
             title=""
             button-color="see-through"
             align="right"
-            hint="Font size"
             @open="openDropdown">
             <template>
               <cloubi-font-size-editor
@@ -116,13 +116,13 @@
             :floating="false"
             :event-bus="eventBus"
             :icon-outline="true"
-            label="Open/close playlist"
+            :label="$translate('cloubi-default-product-theme-open-close-playlist')"
+            :hint="$translate('cloubi-default-product-theme-playlist')"
             data-cy="open-playlist-editor-button"
             name="playlist"
             dropdown-id="playlist"
             icon="star"
             button-color="see-through"
-            hint="Playlist"
             align="right"
             @open="openDropdown">
             <template>

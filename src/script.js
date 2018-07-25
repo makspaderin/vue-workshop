@@ -20,9 +20,11 @@ import './style.scss';
 import CloubiThemeFrame from './components/CloubiThemeFrame.vue';
 import CloubiThemeMenu from './components/CloubiThemeMenu.vue';
 import TranslationPlugin from './plugin/TranslationPlugin';
+import ThemeTranslations from './translations.json';
 
-CloubiTranslations.registerTranslations(translations); // TODO: REMOVE THIS FOR REAL ENVIRONMENT
+const combinedTranslations = { ...translations, ...ThemeTranslations };
 
+CloubiTranslations.registerTranslations(combinedTranslations); // TODO: REMOVE THIS FOR REAL ENVIRONMENT
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
