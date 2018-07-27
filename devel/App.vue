@@ -29,9 +29,7 @@ export default {
     searchApi: { type: Object, required: true },
     additionalContentApi: {
       type: Object,
-      default: () => {
-        return {};
-      }
+      default: () => ({})
     }
   },
 

@@ -2,6 +2,7 @@
 
 $commonViewBgColor: #ededf0;
 $secondaryViewBgColor: #ffffff;
+$cloubi-bottom-bar-height: 5rem;
 
 @import '_content';
 
@@ -27,9 +28,14 @@ body {
     display: inline-block;
 }
 
-
 @media (max-width: 760px) {
   .cb-page-turner-container {
     display: none;
   }
+
+  .cb-side-panel:not(.cb-full-height) {
+    height: calc(100vh - #{$cloubi-navbar-height} - #{$cloubi-bottom-bar-height}) !important;
+  }
+
 }
+

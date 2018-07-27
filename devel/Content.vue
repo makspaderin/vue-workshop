@@ -27,6 +27,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../src/style.scss';
+
 .dummy-content-container {
   margin-top: 0px;
   padding-top: 0px;
