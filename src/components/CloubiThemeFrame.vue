@@ -11,6 +11,7 @@
         :account-api="accountApi"
         :playlist-api="playlistApi"
         :search-api="searchApi"
+        :in-playlist-mode="inPlaylistMode"
       />
 
       <theme-side-panel
@@ -57,6 +58,11 @@
         <div
           id="content-frame"
           class="cb-container">
+          <cloubi-playlist-info
+            v-if="inPlaylistMode"
+            :material-api="materialApi"
+            :playlist-api="playlistApi"
+            class="container" />
           <div id="content-mount"/>
         </div>
       </div>
@@ -121,7 +127,9 @@ export default {
   },
 
   data() {
-    return {};
+    return {
+      inPlaylistMode: false
+    };
   },
 
   created() {
@@ -136,6 +144,25 @@ export default {
       // to playlist editor dropdown when user has selected an action from it.
       self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
     });
+
+    this.materialApi.onPageChange(this.$updatePlaylistMode);
+  },
+
+  methods: {
+    $updatePlaylistMode() {
+      const self = this;
+
+      self.materialApi.getCurrentPlaylist().then(playlist => {
+        if (playlist) {
+          if (!self.inPlaylistMode) {
+            self.inPlaylistMode = true;
+            self.$closeAllSidePanels();
+          }
+        } else {
+          self.inPlaylistMode = false;
+        }
+      });
+    }
   }
 };
 </script>
@@ -168,6 +195,11 @@ export default {
 
 .cb-notes {
   height: calc(100vh - #{$cloubi-navbar-height});
+}
+
+.cb-playlist {
+  height: 200px;
+  background-color: blue;
 }
 
 @media only screen and (max-width: 760px) {

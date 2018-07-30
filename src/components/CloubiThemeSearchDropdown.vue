@@ -12,7 +12,8 @@
     button-color="see-through"
     align="window-width"
     data-cy="search-panel-button"
-    @open="open">
+    @open="open"
+    @close="close">
     <cloubi-search
       :search-api="searchApi"
       :material-api="materialApi"
@@ -43,13 +44,23 @@ export default {
 
   methods: {
     open() {
+      document.documentElement.classList.add('cb-prevent-scroll');
       this.$emit('open');
+    },
+
+    close() {
+      document.documentElement.classList.remove('cb-prevent-scroll');
+      this.$emit('close');
     }
   }
 };
 </script>
 
 <style lang="scss">
+.cb-prevent-scroll {
+  overflow: hidden;
+}
+
 .cb-search-container {
   max-height: calc(100vh - #{$cloubi-navbar-height});
 }

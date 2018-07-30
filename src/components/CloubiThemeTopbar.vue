@@ -10,6 +10,7 @@
         content-id="#content"
       />
       <cloubi-menu
+        v-if="!inPlaylistMode"
         :horizontal="true"
         label="menu-bar">
         <cloubi-menu-item>
@@ -36,6 +37,7 @@
     </template>
     <template slot="right-content">
       <cloubi-theme-topbar-menu-right
+        v-if="!inPlaylistMode"
         :material-api="materialApi"
         :notes-api="notesApi"
         :search-api="searchApi"
@@ -48,14 +50,12 @@
 </template>
 
 <script>
-import CloubiThemeSearchDropdown from './CloubiThemeSearchDropdown.vue';
 import CloubiThemeTopbarMenuRight from './CloubiThemeTopbarMenuRight.vue';
 
 export default {
   name: 'CloubiThemeTopbar',
 
   components: {
-    'cloubi-theme-search-dropdown': CloubiThemeSearchDropdown,
     'cloubi-theme-topbar-menu-right': CloubiThemeTopbarMenuRight
   },
 
@@ -65,7 +65,8 @@ export default {
     accountApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
-    searchApi: { type: Object, required: true }
+    searchApi: { type: Object, required: true },
+    inPlaylistMode: { type: Boolean, required: true }
   },
 
   data() {
