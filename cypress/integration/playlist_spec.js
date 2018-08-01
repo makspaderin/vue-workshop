@@ -179,6 +179,7 @@ describe('Show my playlists dialog', function(){
     .children()
     .first()
     .find('[data-cy=playlist-name]')
+    .trigger('mouseenter')
     .click();
 
     cy.get('[data-cy=my-playlists-dialog]')
@@ -203,6 +204,42 @@ describe('Show my playlists dialog', function(){
     .children()
     .first()
     .contains('Foobar')
+    .should('exist');
+
+  });
+
+  it('Edit playlist description', function() {
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .find('[data-cy=playlist-description]')
+    .trigger('mouseenter')
+    .click();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .find('[data-cy=playlist-description]')
+    .find('input')
+    .first()
+    .clear()
+    .type('Foobar Description');
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .find('[data-cy=playlist-description]')
+    .find('[data-cy=submit-button]')
+    .first()
+    .click();
+
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .contains('Foobar Description')
     .should('exist');
 
   });
