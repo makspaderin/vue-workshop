@@ -7,6 +7,7 @@ import CloubiProductThemeComponents, {
   MaterialApiWrapper,
   PlaylistApiWrapper,
   AccountApiWrapper,
+  AdditionalContentApiWrapper,
   NotesApiWrapper,
   PageTurners,
   SearchApiWrapper
@@ -37,14 +38,26 @@ setUpPublicPath.then(() => {
       'fi.cloubi.frontend/account',
       'fi.cloubi.frontend/notes',
       'fi.cloubi.frontend/search',
-      'fi.cloubi.frontend/playlists'
+      'fi.cloubi.frontend/playlists',
+      'fi.cloubi.frontend/additional-content'
     ],
-    (material, settings, account, notes, search, playlist) => {
+    (
+      material,
+      settings,
+      account,
+      notes,
+      search,
+      playlist,
+      additionalContent
+    ) => {
       const materialApi = new MaterialApiWrapper(material);
       const accountApi = new AccountApiWrapper(account);
       const notesApi = new NotesApiWrapper(notes);
       const searchApi = new SearchApiWrapper(search);
       const playlistApi = new PlaylistApiWrapper(playlist);
+      const additionalContentApi = new AdditionalContentApiWrapper(
+        additionalContent
+      );
 
       const eventBus = new Vue();
 
@@ -125,7 +138,8 @@ setUpPublicPath.then(() => {
                   playlistApi,
                   accountApi,
                   notesApi,
-                  searchApi
+                  searchApi,
+                  additionalContentApi
                 }
               })
           });
