@@ -1,3 +1,5 @@
+import { AssertionError } from 'assert';
+
 /* eslint-disable */
 
 describe('Playlist Editor Dropdown', function(){
@@ -185,9 +187,9 @@ describe('Show my playlists dialog', function(){
     cy.get('[data-cy=my-playlists-dialog]')
     .find('[data-cy=my-playlists-list]')
     .children()
+    .first()
     .find('[data-cy=playlist-name]')
     .find('input')
-    .first()
     .clear()
     .type('Foobar');
 
@@ -407,3 +409,85 @@ describe('Show my playlists dialog', function(){
 });
 
 
+describe('Show my playlists dialog', function(){
+
+  const itemNameIs = (index, name) => {
+
+    return cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=playlist-page-items]')
+    .find('[data-cy=page-item]')
+    .find('[data-cy=page-name]')
+    .eq(index).contains(name);
+
+  };
+
+  beforeEach(function() {
+    cy.visit('/');
+    cy.wait(2000)
+    cy.get('[data-cy=open-playlist-editor-button]').click();
+    cy.get('[data-cy=playlist-editor]').find('[data-cy=show-my-lists-button]').click();
+    // open first playlist
+    cy.get('[data-cy=my-playlists-dialog]')
+    .find('[data-cy=my-playlists-list]')
+    .children()
+    .first()
+    .click();
+
+
+  });
+
+  it('Sorting playlist with keyboard', function() {
+
+    // First item has text Johdanto
+    itemNameIs(0, 'Johdanto');
+
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=page-item]')
+    .first()
+    .focus()
+    .trigger('keydown', {which: 40, force: true})
+    .wait(1000)
+    .trigger('keydown', {which: 40, force: true})
+    .wait(1000);
+
+    // Johdanto has moved 2 steps down
+    itemNameIs(2, 'Johdanto');
+
+  });
+
+  it('Item skips back to beginning from bottom of the list', function() {
+
+    // First item has text Johdanto
+    itemNameIs(2, 'Jotain muuta 2');
+
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=page-item]')
+    .eq(2)
+    .focus()
+    .trigger('keydown', {which: 40, force: true})
+    .wait(1000);
+
+    // Johdanto has moved 2 steps down
+    itemNameIs(0, 'Jotain muuta 2');
+
+  });
+
+  it('Item skips back to the end of the list from top of the list', function() {
+
+    // First item has text Johdanto
+    itemNameIs(0, 'Johdanto');
+
+    cy.get('[data-cy=playlist-edit-dialog]')
+    .find('[data-cy=page-item]')
+    .eq(0)
+    .focus()
+    .trigger('keydown', {which: 38, force: true})
+    .wait(1000);
+
+    // Johdanto has moved 2 steps down
+    itemNameIs(2, 'Johdanto');
+
+  });
+
+
+});
