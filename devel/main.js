@@ -9,6 +9,7 @@ import CloubiProductThemeComponents, {
   AccountApiWrapper,
   NotesApiWrapper,
   SearchApiWrapper,
+  GamificationApiWrapper,
   translations,
   CloubiTranslations,
   PageTurners,
@@ -17,7 +18,8 @@ import CloubiProductThemeComponents, {
   AccountApi as accountApi,
   NotesApi as notesApi,
   PlaylistApi as playlistApi,
-  SearchApi as searchApi
+  SearchApi as searchApi,
+  GamificationApi as gamificationApi
 } from 'cloubi2-default-product-theme-components-vue';
 
 import App from './App.vue';
@@ -37,6 +39,7 @@ const playlistApiWrapper = new PlaylistApiWrapper(playlistApi, materialApi);
 const accountApiWrapper = new AccountApiWrapper(accountApi);
 const notesApiWrapper = new NotesApiWrapper(notesApi);
 const searchApiWrapper = new SearchApiWrapper(searchApi);
+const gamificationApiWrapper = new GamificationApiWrapper(gamificationApi);
 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
@@ -63,6 +66,7 @@ const app = () =>
           notesApi: notesApiWrapper,
           accountApi: accountApiWrapper,
           searchApi: searchApiWrapper,
+          gamificationApi: gamificationApiWrapper,
           eventBus
         }
       })

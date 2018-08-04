@@ -99,16 +99,27 @@
         </template>
       </cloubi-dropdown>
     </cloubi-menu-item>
+
+    <cloubi-menu-item>
+      <cloubi-theme-gamification-dropdown
+        :event-bus="eventBus"
+        :gamification-api="gamificationApi"
+      />
+    </cloubi-menu-item>
+
   </cloubi-menu>
+
 </template>
 
 <script>
 import CloubiThemeSearchDropdown from './CloubiThemeSearchDropdown.vue';
+import CloubiThemeGamificationDropdown from './CloubiThemeGamificationDropdown.vue';
 
 export default {
   name: 'CloubiThemeTopbarMenuRight',
   components: {
-    'cloubi-theme-search-dropdown': CloubiThemeSearchDropdown
+    'cloubi-theme-search-dropdown': CloubiThemeSearchDropdown,
+    CloubiThemeGamificationDropdown
   },
 
   props: {
@@ -117,7 +128,8 @@ export default {
     playlistApi: { type: Object, required: true },
     searchApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
-    accountApi: { type: Object, required: true }
+    accountApi: { type: Object, required: true },
+    gamificationApi: { type: Object, required: true }
   },
 
   methods: {

@@ -8,6 +8,7 @@
       :notes-api="notesApi"
       :search-api="searchApi"
       :additional-content-api="additionalContentApi"
+      :gamification-api="gamificationApi"
     />
   </div>
 </template>
@@ -27,6 +28,7 @@ export default {
     notesApi: { type: Object, required: true },
     eventBus: { type: Object, required: true },
     searchApi: { type: Object, required: true },
+    gamificationApi: { type: Object, required: true },
     additionalContentApi: {
       type: Object,
       default: () => ({})
