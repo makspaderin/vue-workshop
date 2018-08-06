@@ -21,7 +21,7 @@ command.
 
 ### Deploy to local Cloubi 2 instance
 
-The theme can be deployed to the a local Cloubi server to test it with a real server backend. A version of the Cloubi server can be found in the *cloubi-2-vagrant*-repository. That repository also includes the setup instructions for it. It is strongly advised to test the theme using a real Cloubi server, as the development server (explained later) does **not** fully represent the real server behaviour.
+The theme can be deployed to the a local Cloubi server to test it with a real server backend. A version of the Cloubi server can be found in the *cloubi-2-vagrant*-repository. That repository also includes the setup instructions for it.
 
 To deploy the theme to a server, first set the deployment target directory. It is done by copying *user.properties.template* as *user.properties* and changing *local.server.deploy.dir* property, so it points to your local Cloubi 2 deploy directory.
 
@@ -32,9 +32,9 @@ Note any changes made to the theme requires a re-deployment to take effect on th
 
 ### Run a Node.js development server
 
-To run a rudimentary development server, run
+To run the theme in a more rudimentary Node.js development server, run
 `npm run dev`.
-This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to the theme. However, as described in the *Deploy to local Cloubi 2 instance* -section, this method should **not** be the only method of testing the theme.
+This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in *Deploy to local Cloubi 2 instance*), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
 
 ### Customizing the theme
 
