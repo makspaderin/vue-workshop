@@ -7,7 +7,20 @@ The purpose of the theme is to define a layout for the product and to define the
 
 These instructions cover the basic development use-cases for the theme project and a FAQ.
 
-## Usage
+## Running the theme on a server
+
+TL;DR:
+
+Running the theme on a Cloubi 2 server
+1. run `npm install` (needs to be done only once or if dependencies change)
+2. copy *user.properties.template* as *user.properties*
+3. change *local.server.deploy.dir* to the cloubi 2 server deployment directory
+4. make sure the Cloubi 2 server is running and fully booted up
+5. run `npm run deploy`.
+
+To run a Node.js dev server
+1. run `npm install` (if not done already)
+2. run `npm run dev`.
 
 ### Install
 
@@ -26,7 +39,7 @@ The theme can be deployed to the a local Cloubi server to test it with a real se
 To deploy the theme to a server, first set the deployment target directory. It is done by copying *user.properties.template* as *user.properties* and changing *local.server.deploy.dir* property, so it points to your local Cloubi 2 deploy directory.
 
 After the server directory has been set, build and deploy product theme to your local Cloubi 2 by running
-`npm run deploy`.
+`npm run deploy`. TODO: Server must be running to accept it.
 
 Note any changes made to the theme requires a re-deployment to take effect on the server.
 
@@ -36,22 +49,22 @@ To run the theme in a more rudimentary Node.js development server, run
 `npm run dev`.
 This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in *Deploy to local Cloubi 2 instance*), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
 
-### Customizing the theme
+## Customizing the theme
 
 There are 3 main ways of customizing the theme: overwriting sass-variables for the UI component library, redefining the layout, and rewriting the UI components in the component library.
 
-#### Overwriting sass-variables
+### Overwriting sass-variables
 
 The UI component library uses SASS to define global CSS values, such as colours, fonts, and font sizes. These can be overriden by altering
 `config/sassVars.js`-file in the theme-project.
 
 The alterable SASS-values are defined in the *cloubi2-default-product-theme-components-vue/src/_variables.scss*-file.
 
-#### Redefining the layout
+### Redefining the layout
 
 The theme layout is defined in the `src/components`-Vue-files. These can be altered to change the layout and behaviour of the theme.
 
-#### Rewriting UI components
+### Rewriting UI components
 
 If the UI components do not fit the theme after changing the sass variables, it is possible to clone the *cloubi2-default-product-theme-components-vue*-repository and edit the components directly. In this case, remember to update the `cloubi2-default-product-theme-components-vue` dependency in `package.json` to point to the new UI component library implementation. After editing the dependencies, run `npm install` once to install them.
 
