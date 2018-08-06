@@ -44,6 +44,7 @@
         :event-bus="eventBus"
         :playlist-api="playlistApi"
         :account-api="accountApi"
+        :gamification-api="gamificationApi"
         @openDropdown="openDropdown"/>
     </template>
   </cloubi-navbar>
@@ -66,6 +67,7 @@ export default {
     notesApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
     searchApi: { type: Object, required: true },
+    gamificationApi: { type: Object, required: true },
     inPlaylistMode: { type: Boolean, required: true }
   },
 

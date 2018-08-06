@@ -11,6 +11,7 @@
         :account-api="accountApi"
         :playlist-api="playlistApi"
         :search-api="searchApi"
+        :gamification-api="gamificationApi"
         :in-playlist-mode="inPlaylistMode"
       />
 
@@ -124,7 +125,12 @@ export default {
     /**
      * SearchApiWrapper instance.
      */
-    searchApi: { type: Object, required: true }
+    searchApi: { type: Object, required: true },
+
+    /**
+     * GamificationApiWrapper instance.
+     */
+    gamificationApi: { type: Object, required: true }
   },
 
   data() {
