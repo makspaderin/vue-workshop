@@ -9,10 +9,12 @@ import CloubiProductThemeComponents, {
   AccountApiWrapper,
   NotesApiWrapper,
   SearchApiWrapper,
+  AdditionalContentApiWrapper,
   translations,
   CloubiTranslations,
   PageTurners,
   FontSizeInit,
+  AdditionalContentApi as additionalContentApi,
   MaterialApi as materialApi,
   AccountApi as accountApi,
   NotesApi as notesApi,
@@ -37,6 +39,9 @@ const playlistApiWrapper = new PlaylistApiWrapper(playlistApi, materialApi);
 const accountApiWrapper = new AccountApiWrapper(accountApi);
 const notesApiWrapper = new NotesApiWrapper(notesApi);
 const searchApiWrapper = new SearchApiWrapper(searchApi);
+const additionalContentApiWrapper = new AdditionalContentApiWrapper(
+  additionalContentApi
+);
 
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
@@ -63,6 +68,7 @@ const app = () =>
           notesApi: notesApiWrapper,
           accountApi: accountApiWrapper,
           searchApi: searchApiWrapper,
+          additionalContentApi: additionalContentApiWrapper,
           eventBus
         }
       })

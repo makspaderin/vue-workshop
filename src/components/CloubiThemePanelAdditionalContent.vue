@@ -9,6 +9,7 @@
     position="right"
     data-cy="side-panel-right">
     <cloubi-additional-content
+      :playlist-api="playlistApi"
       :material-api="materialApi"
       :additional-content-api="additionalContentApi"/>
   </cloubi-side-panel>
@@ -24,6 +25,7 @@ export default {
   components: {},
 
   props: {
+    playlistApi: { type: Object, required: true },
     materialApi: { type: Object, required: true },
     additionalContentApi: { type: Object, required: true },
     eventBus: { type: Object, default: () => new Vue() }
