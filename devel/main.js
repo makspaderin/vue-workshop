@@ -51,6 +51,118 @@ Vue.use(CloubiProductThemeComponents);
   }
 }); */
 
+// Init gamification api dummy
+
+export function initGamificationApi(gamificationApi) {
+  const MAX_AVATARS = 10;
+  const MAX_BADGES = 10;
+  const MAX_TROPHIES = 10;
+  const MAX_DIPLOMAS = 3;
+
+  let avatars = [];
+  for (let i = 0; i < MAX_AVATARS; i++) {
+    avatars[i] = require(`../assets/avatars/cloubiavatar (${i + 1}).png`);
+  }
+
+  let badgeNames = [
+    'First task',
+    'Tripple stars',
+    'Global',
+    'Collector',
+    'Diamons are forever',
+    'Gamer',
+    'Bulls eye',
+    'Finnished',
+    'Topped',
+    'Collaborator',
+    'A good listener',
+    'Multitasking',
+    'Marked',
+    'Book worm',
+    'No brainer',
+    'Quickes way out'
+  ];
+
+  let badges = [];
+  for (let i = 0; i < MAX_BADGES; i++) {
+    badges[i] = {
+      id: 'b' + i,
+      name: badgeNames[i],
+      image: require(`../assets/achievements/cloubibadge (${i + 1}).png`),
+      imageDisabled: require('../assets/achievements/cloubibadge_disabled.png'),
+      notificationText: 'Congratulations! You got a badge!'
+    };
+  }
+
+  let trophies = [];
+  for (let i = 0; i < MAX_TROPHIES; i++) {
+    trophies[i] = {
+      id: 't' + i,
+      name: `Trophy${i + 1}`,
+      image: require('../assets/achievements/trophy(1).png'),
+      imageDisabled: require('../assets/achievements/trophy_disabled.png'),
+      notificationText: 'Congratulations! You got a trophy!'
+    };
+  }
+
+  let diplomas = [];
+  for (let i = 0; i < MAX_DIPLOMAS; i++) {
+    diplomas[i] = {
+      id: 'd' + i,
+      name: 'Diploma ' + badgeNames[i],
+      image: require('../assets/achievements/trophy(1).png'),
+      imageDisabled: require('../assets/achievements/trophy_disabled.png'),
+      notificationText: 'Congratulations! You got a diploma!'
+    };
+  }
+
+  gamificationApi.init({
+    avatars,
+    items: {
+      keys: ['badges', 'trophies', 'diplomas'],
+      names: {
+        badges: 'Badges',
+        trophies: 'Trophies',
+        diplomas: 'Diplomas'
+      },
+      badges,
+      trophies,
+      diplomas
+    },
+    user: {
+      name: 'Bradyn Strickland',
+      firstLoggedIn: '16.06.2018',
+      avatar: avatars[0],
+      medalImages: [require('../assets/avatars/glasses.png')],
+      points: 130,
+      items: [
+        {
+          id: 'b0',
+          counter: 1
+        },
+        {
+          id: 'b1',
+          counter: 2
+        },
+        {
+          id: 'b2'
+        },
+        {
+          id: 't0'
+        },
+        {
+          id: 't3'
+        },
+        {
+          id: 'd0'
+        }
+      ]
+    }
+  });
+}
+
+initGamificationApi(gamificationApi);
+
 const eventBus = new Vue();
 
 FontSizeInit(materialApiWrapper, eventBus);
