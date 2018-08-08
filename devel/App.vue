@@ -31,7 +31,7 @@ export default {
     gamificationApi: { type: Object, required: true },
     additionalContentApi: {
       type: Object,
-      default: () => ({})
+      required: true
     }
   },
 
