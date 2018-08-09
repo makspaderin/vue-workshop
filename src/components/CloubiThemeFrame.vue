@@ -74,6 +74,10 @@
       :material-api="materialApi"
       :playlist-api="playlistApi"
     />
+    <cloubi-additional-content-auto-viewer
+      :material-api="materialApi"
+      :playlist-api="playlistApi"
+      :additional-content-api="additionalContentApi" />
   </div>
 </template>
 
