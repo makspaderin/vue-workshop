@@ -1,15 +1,18 @@
 # Cloubi Default Vue Product Theme
 
-## Introduction
+## Table of contents
+1. [Introduction](#introduction)
+
+## Introduction <a name="introduction"></a>
 
 The Cloubi Vue Product theme consists of two parts: the theme definition (this repository) and the theme UI component library (found in the *cloubi2-default-product-theme-components-vue*-repository).
 The purpose of the theme is to define a layout for the product and to define theme-specific behaviours. The theme itself can be built using the components found in the UI component library. It provides ready-to-use UI elements that utilise to the Cloubi APIs. It is recommended to familiarise oneself also with the UI component library, when building a theme. It should be a good basis for developing custom themes and components.
 
 These instructions cover the basic development use-cases for the theme project and a FAQ.
 
-## Running the theme on a server
+## 1. Running the theme on a server
 
-A TL;DR version of the instructions:
+A TL;DR version of this secttion's instructions:
 
 Running the theme on a Cloubi 2 server:
 1. run `npm install` (needs to be done only once or if dependencies change)
@@ -53,7 +56,7 @@ To run the theme in a more rudimentary Node.js development server, run
 `npm run dev`.
 This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in *Deploy to local Cloubi 2 instance*), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
 
-## Customizing the theme
+## 2. Customizing the theme
 
 There are 3 main ways of customizing the theme: overwriting sass-variables for the UI component library, redefining the layout, and rewriting the UI components in the component library.
 
@@ -72,7 +75,7 @@ The theme layout is defined in the `src/components`-Vue-files. These can be alte
 
 If the UI components do not fit the theme after changing the sass variables, it is possible to clone the *cloubi2-default-product-theme-components-vue*-repository and edit the components directly. In this case, remember to update the `cloubi2-default-product-theme-components-vue` dependency in `package.json` to point to the new UI component library implementation. After editing the dependencies, run `npm install` once to install them.
 
-## FAQ
+## 3. FAQ
 
 ### How do I edit the responses given by the Cloubi APIs in the Node.js development server?
 
@@ -80,7 +83,7 @@ The *cloubi2-default-product-theme-components-vue*-module provides dummy version
 
 Making changes to the dummy APIs is possible by copying and editing the dummy implementations from the UI components library. Provide the edited dummy APIs to the theme in the `devel/main.js`-file.
 
-### How come some things are behaving differently on the `npm run dev` server and when the theme is actually to the server deployed?
+### How come some things behave differently on the `npm run dev` development server and when the theme is actually deployed?
 
 This answer ties in with the previous question: *How do I edit the responses given by the Cloubi APIs in the Node.js development server?*. Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
 
@@ -91,3 +94,9 @@ Navigation menu pages are implemented as a separate component that is rendered d
 > It is possible to add a custom renderer for other types of content, too. More information about renderers can be found in the material API documentation.
 
 Altering the navigation page can be done by editing the `CloubiThemeMenu`-component or setting a custom renderer in the `src/script.js`.
+
+### What is the EventBus object?
+
+The event bus is a mechanism that allows components to send events to one another without necessarily sharing a common ancestor that handles events and props. In this theme it is used for simple tasks such as emitting globally an event of opening or closing a view.
+
+> The event bus pattern can cause issues because it introduces implicit dependencies between multiple components. Handling concurrency also can become difficult, when it used for complex tasks. **Use it sparingly** and prefer other methods such as plugins or state libraries e.g. Vuex.
