@@ -1,4 +1,6 @@
-# Cloubi Default Vue Product Theme
+# Cloubi Default Vue Product Theme Quickstart Guide
+
+<div style="background-color:#ff570e;height:2px;" />
 
 ## Table of contents
 1. [Introduction](#introduction)
@@ -6,16 +8,26 @@
 3. [Customising the theme](#customising-theme)
 4. [FAQ](#faq)
 
+# Terms
+| Term | Definition |
+| ---- | ---------- |
+| Cloubi 2 server | A server that has the real Cloubi 2 backend. |
+| Node.js server | A development server that is run using the `npm run dev` command and utilises Node.js. |
+| Dummy API | An API implementation that provides some limited functionalities of the API, yet enables developing components that utilise is. |
+| Content or Page Content | The main content on the page that is defined in the product and is provided by the server. |
+| Frame or Theme Frame | The theme's user interface overlay. |
+
 ## <a name="introduction"></a> Introduction
 
-The Cloubi Vue Product theme consists of two parts: the theme definition (this repository) and the theme UI component library (found in the *cloubi2-default-product-theme-components-vue*-repository).
-The purpose of the theme is to define a layout for the product and to define theme-specific behaviours. The theme itself can be built using the components found in the UI component library. It provides ready-to-use UI elements that utilise to the Cloubi APIs. It is recommended to familiarise oneself also with the UI component library, when building a theme. It should be a good basis for developing custom themes and components.
+The Cloubi Vue Product Theme consists of two parts: the theme definition and the theme UI component library ([cloubi2-default-product-theme-components-vue](https://github.com/ubiikkiltd/cloubi2-default-product-theme-components-vue)).
 
-These instructions cover the basic development use-cases for the theme project and a FAQ.
+The purpose of the theme is to define a layout for the product and to define theme-specific behaviours. It can be built using the components found in the UI component library, which provides ready-to-use UI elements that utilise to the Cloubi APIs. It is recommended to familiarise oneself also with the UI component library, when building a theme. It should be a good basis for developing custom themes and components.
+
+These instructions cover the basic development use-cases for the theme project and a [FAQ](#faq).
 
 ## <a name="run-server"></a> Running the theme on a server
 
-A TL;DR version of this secttion's instructions:
+A TL;DR version of this section's instructions:
 
 Running the theme on a Cloubi 2 server:
 1. run `npm install` (needs to be done only once or if dependencies change)
@@ -34,7 +46,7 @@ The rest of the section describes these processes in more detail.
 
 ### Install
 
-The theme has external dependencies such as the *cloubi2-default-product-theme-components-vue*-module. In order to load these dependencies to the local machine, run the
+The theme has external dependencies such as the cloubi2-default-product-theme-components-vue-module. In order to load these dependencies to the local machine, run the
 `npm install`
 command.
 
@@ -61,18 +73,58 @@ This server includes a hot-reload-mechanism, which automatically updates the bro
 
 ## <a name="customising-theme"></a> Customising the theme
 
-There are 3 main ways of customizing the theme: overwriting sass-variables for the UI component library, redefining the layout, and rewriting the UI components in the component library.
+There are 3 main ways of customising the theme: overwriting sass-variables for the UI component library, redefining the layout, and rewriting the UI components in the component library. How they are used is covered the following chapters.
 
 ### Overwriting sass-variables
 
 The UI component library uses SASS to define global CSS values, such as colours, fonts, and font sizes. These can be overriden by altering
 `config/sassVars.js`-file in the theme-project.
 
-The alterable SASS-values are defined in the *cloubi2-default-product-theme-components-vue/src/_variables.scss*-file.
+All of the alterable SASS-values are defined in the *cloubi2-default-product-theme-components-vue/src/_variables.scss*-file.
+
+For example, editing the heading font of the theme could be done by adding the following property somewhere in the `module.exports`-object, defined in the `config/sassVars.js`-file.
+```
+module.exports = {
+  ...
+  'cloubi-font-stack-heading': 'arial, sans-serif'
+  ...
+};
+```
+
+Note that the name of the value does not have the leading $-symbol.
+
+> Changing the font for the icons might not work directly through these values, because the names of the icons might not correspond to the component library's icon font's naming convention.
+
 
 ### Redefining the layout
 
 The theme layout is defined in the `src/components`-Vue-files. These can be altered to change the layout and behaviour of the theme.
+
+The Vue component files are divided into three different sections: template, script and style. The template defines the DOM-structure of the component, the script its behaviour and the style its CSS.
+
+The theme Vue files support either SASS or pure CSS style definitions. To enable SASS compilation, add the `lang="scss"` attribute to the style tag as follows:
+```
+<style lang="scss">
+```
+
+If left as default
+```
+<style>
+```
+the the style compiler will use only pure CSS.
+
+The Vue component styles can also be `scoped`. This means that the CSS only applies to the component defined in that specific Vue-file and do not "leak" to other components.
+
+Scoped styles can be defined by adding the `scoped` field in the tag:
+```
+<style scoped>
+```
+or
+```
+<style lang="scss" scoped>
+```
+
+> Theme-specific content styling is defined in `src/_content.scss`. If the page content itself requires styles, implement them there.
 
 ### Rewriting UI components
 
