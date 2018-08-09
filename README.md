@@ -1,7 +1,5 @@
 # Cloubi Default Vue Product Theme Quickstart Guide
 
-<div style="background-color:#ff570e;height:2px;" />
-
 ## Table of contents
 1. [Introduction](#introduction)
 2. [Running the server theme on a server](#run-server)
@@ -73,9 +71,9 @@ This server includes a hot-reload-mechanism, which automatically updates the bro
 
 ## <a name="customising-theme"></a> Customising the theme
 
-There are 3 main ways of customising the theme: overwriting sass-variables for the UI component library, redefining the layout, and rewriting the UI components in the component library. How they are used is covered the following chapters.
+There are 3 main ways of customising the theme: [overwriting sass-variables for the UI component library](#overwrite-sass), [redefining the layout](#redefine-layout), and [rewriting the UI components](#rewrite-ui-components) in the component library. Their usage is covered in the following chapters.
 
-### Overwriting sass-variables
+### <a name="overwrite-sass"></a> Overwriting sass-variables
 
 The UI component library uses SASS to define global CSS values, such as colours, fonts, and font sizes. These can be overriden by altering
 `config/sassVars.js`-file in the theme-project.
@@ -96,7 +94,7 @@ Note that the name of the value does not have the leading $-symbol.
 > Changing the font for the icons might not work directly through these values, because the names of the icons might not correspond to the component library's icon font's naming convention.
 
 
-### Redefining the layout
+### <a name="redefine-layout"></a> Redefining the layout
 
 The theme layout is defined in the `src/components`-Vue-files. These can be altered to change the layout and behaviour of the theme.
 
@@ -126,7 +124,7 @@ or
 
 > Theme-specific content styling is defined in `src/_content.scss`. If the page content itself requires styles, implement them there.
 
-### Rewriting UI components
+### <a name="rewrite-ui-components"></a> Rewriting UI components
 
 If the UI components do not fit the theme after changing the sass variables, it is possible to clone the *cloubi2-default-product-theme-components-vue*-repository and edit the components directly. In this case, remember to update the `cloubi2-default-product-theme-components-vue` dependency in `package.json` to point to the new UI component library implementation. After editing the dependencies, run `npm install` once to install them.
 
@@ -142,7 +140,7 @@ Making changes to the dummy APIs is possible by copying and editing the dummy im
 
 This answer ties in with the previous question: *How do I edit the responses given by the Cloubi APIs in the Node.js development server?*. Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
 
-### The navigation menu is not like the other components in the theme frame. What is up with it?
+### The navigation menu is not like the other components in the theme frame. Why?
 
 Navigation menu pages are implemented as a separate component that is rendered direcly into the content response by the server. Therefore it does not need to be explicitly injected by the frame or the theme, when the page is changed. In this theme the component that replaces the default content is the `CloubiThemeMenu`-component. It is set as the renderer for the navigation content type in `src/script.js`.
 
