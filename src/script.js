@@ -66,6 +66,10 @@ setUpPublicPath.then(() => {
        * Ex. store.registerModule('', myModule);
        */
 
+      /**
+       * The following code sets a custom renderer for the navigation menu
+       * pages.
+       */
       material.registerPageContentTypeRenderer(
         'navigation/menu',
         (page, contentId, callback) => {

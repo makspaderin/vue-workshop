@@ -9,18 +9,22 @@ These instructions cover the basic development use-cases for the theme project a
 
 ## Running the theme on a server
 
-TL;DR:
+A TL;DR version of the instructions:
 
-Running the theme on a Cloubi 2 server
+Running the theme on a Cloubi 2 server:
 1. run `npm install` (needs to be done only once or if dependencies change)
 2. copy *user.properties.template* as *user.properties*
 3. change *local.server.deploy.dir* to the cloubi 2 server deployment directory
 4. make sure the Cloubi 2 server is running and fully booted up
 5. run `npm run deploy`.
 
-To run a Node.js dev server
+Running a Node.js development server:
 1. run `npm install` (if not done already)
 2. run `npm run dev`.
+
+> **Note** Make sure to boot the Cloubi 2 server first, if you are intending to run both the Cloubi 2 server and the Node.js development server simultaneously. Otherwise the default port for the Cloubi server will be blocked by the development server.
+
+The rest of the section describes these processes in more detail.
 
 ### Install
 
@@ -38,10 +42,10 @@ The theme can be deployed to the a local Cloubi server to test it with a real se
 
 To deploy the theme to a server, first set the deployment target directory. It is done by copying *user.properties.template* as *user.properties* and changing *local.server.deploy.dir* property, so it points to your local Cloubi 2 deploy directory.
 
-After the server directory has been set, build and deploy product theme to your local Cloubi 2 by running
-`npm run deploy`. TODO: Server must be running to accept it.
+After the server directory has been set and the server has booted up, build and deploy product theme to your local Cloubi 2 by running
+`npm run deploy`.
 
-Note any changes made to the theme requires a re-deployment to take effect on the server.
+Note that any changes made to the theme requires a re-deployment to take effect on the server.
 
 ### Run a Node.js development server
 
@@ -75,3 +79,15 @@ If the UI components do not fit the theme after changing the sass variables, it 
 The *cloubi2-default-product-theme-components-vue*-module provides dummy versions of Cloubi APIs i.e. APIs that mimic the behaviour of the real Cloubi APIs to an extent. They are used when running the Node.js development server (`npm run dev`) for the theme. The theme uses the real Cloubi APIs when deployed version to a server (`npm run deploy`).
 
 Making changes to the dummy APIs is possible by copying and editing the dummy implementations from the UI components library. Provide the edited dummy APIs to the theme in the `devel/main.js`-file.
+
+### How come some things are behaving differently on the `npm run dev` server and when the theme is actually to the server deployed?
+
+This answer ties in with the previous question: *How do I edit the responses given by the Cloubi APIs in the Node.js development server?*. Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
+
+### The navigation menu is not like the other components in the theme frame. What is up with it?
+
+Navigation menu pages are implemented as a separate component that is rendered direcly into the content response by the server. Therefore it does not need to be explicitly injected by the frame or the theme, when the page is changed. In this theme the component that replaces the default content is the `CloubiThemeMenu`-component. It is set as the renderer for the navigation content type in `src/script.js`.
+
+> It is possible to add a custom renderer for other types of content, too. More information about renderers can be found in the material API documentation.
+
+Altering the navigation page can be done by editing the `CloubiThemeMenu`-component or setting a custom renderer in the `src/script.js`.
