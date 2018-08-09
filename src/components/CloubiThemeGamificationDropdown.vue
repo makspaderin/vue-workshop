@@ -18,11 +18,11 @@
         <cloubi-gamification-user-page
           :gamification-api="gamificationApi"
           :event-bus="eventBus"
-          empty-badge-image="https://image.flaticon.com/icons/svg/37/37496.svg"
-          empty-trophy-image="https://image.flaticon.com/icons/svg/37/37496.svg"
-          points-image="https://cdn3.iconfinder.com/data/icons/games-4-1/247/Star-512.png"
-          badge-image="https://cdn4.iconfinder.com/data/icons/awards-26/270932/14-512.png"
-          trophy-image="https://www.shareicon.net/download/2016/08/01/805319_award_512x512.png"
+          :empty-badge-image="require('../../assets/achievements/cloubibadge_disabled.png')"
+          :empty-trophy-image="require('../../assets/achievements/trophy_disabled.png')"
+          :points-image="require('../../assets/achievements/symbol1.png')"
+          :badge-image="require('../../assets/achievements/symbol2.png')"
+          :trophy-image="require('../../assets/achievements/symbol3.png')"
         />
       </div>
     </template>
