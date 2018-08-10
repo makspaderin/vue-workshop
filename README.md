@@ -11,7 +11,7 @@
 | ---- | ---------- |
 | Cloubi 2 server | A server that has the real Cloubi 2 backend. |
 | Node.js server | A development server that is run using the `npm run dev` command and utilises Node.js. |
-| Dummy API | An API implementation that provides some limited functionalities of the API, yet enables developing components that utilise is. |
+| Dummy API | An API implementation that only somewhat mimics the functionalities of the API, yet enables developing components that utilise it. |
 | Content or Page Content | The main content on the page that is defined in the product and is provided by the server. |
 | Frame or Theme Frame | The theme's user interface overlay. |
 
