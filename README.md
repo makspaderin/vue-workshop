@@ -52,9 +52,9 @@ command.
 
 `npm run build`
 
-### Deploy to local Cloubi 2 instance
+### <a name="deploy-local"></a>Deploy to local Cloubi 2 instance
 
-The theme can be deployed to the a local Cloubi server to test it with a real server backend. A version of the Cloubi server can be found in the *cloubi-2-vagrant*-repository. That repository also includes the setup instructions for it.
+The theme can be deployed to the a local Cloubi server to test it with a real server backend. A version of the Cloubi server can be found in the [cloubi-2-vagrant](https://github.com/ubiikkiltd/cloubi-2-vagrant)-repository. That repository also includes the setup instructions for it.
 
 To deploy the theme to a server, first set the deployment target directory. It is done by copying *user.properties.template* as *user.properties* and changing *local.server.deploy.dir* property, so it points to your local Cloubi 2 deploy directory.
 
@@ -67,7 +67,7 @@ Note that any changes made to the theme requires a re-deployment to take effect 
 
 To run the theme in a more rudimentary Node.js development server, run
 `npm run dev`.
-This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in *Deploy to local Cloubi 2 instance*), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
+This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in [Deploy to local Cloubi 2 instance](#deploy-local)), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
 
 ## <a name="customising-theme"></a> Customising the theme
 
@@ -78,7 +78,7 @@ There are 3 main ways of customising the theme: [overwriting sass-variables for 
 The UI component library uses SASS to define global CSS values, such as colours, fonts, and font sizes. These can be overriden by altering
 `config/sassVars.js`-file in the theme-project.
 
-All of the alterable SASS-values are defined in the *cloubi2-default-product-theme-components-vue/src/_variables.scss*-file.
+All of the alterable SASS-values are defined in the [cloubi2-default-product-theme-components-vue/src/_variables.scss](https://github.com/ubiikkiltd/cloubi2-default-product-theme-components-vue/blob/master/src/_variables.scss)-file.
 
 For example, editing the heading font of the theme could be done by adding the following property somewhere in the `module.exports`-object, defined in the `config/sassVars.js`-file.
 ```
@@ -130,7 +130,7 @@ If the UI components do not fit the theme after changing the sass variables, it 
 
 ## <a name="faq"></a>FAQ
 
-### How do I edit the responses given by the Cloubi APIs in the Node.js development server?
+### <a name="how-to-edit-dev-apis"></a> How do I edit the responses given by the Cloubi APIs in the Node.js development server?
 
 The *cloubi2-default-product-theme-components-vue*-module provides dummy versions of Cloubi APIs i.e. APIs that mimic the behaviour of the real Cloubi APIs to an extent. They are used when running the Node.js development server (`npm run dev`) for the theme. The theme uses the real Cloubi APIs when deployed version to a server (`npm run deploy`).
 
@@ -138,7 +138,7 @@ Making changes to the dummy APIs is possible by copying and editing the dummy im
 
 ### How come some things behave differently on the `npm run dev` development server and when the theme is actually deployed?
 
-This answer ties in with the previous question: *How do I edit the responses given by the Cloubi APIs in the Node.js development server?*. Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
+This answer ties in with the [previous question](#how-to-edit-dev-apis). Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
 
 ### The navigation menu is not like the other components in the theme frame. Why?
 
