@@ -3,14 +3,14 @@ import Vue from 'vue';
 import CloubiProductThemeComponents, {
   translations,
   CloubiTranslations,
+  FontSizeInit,
   MaterialApiWrapper,
   PlaylistApiWrapper,
   AccountApiWrapper,
+  AdditionalContentApiWrapper,
   NotesApiWrapper,
   PageTurners,
-  SearchApiWrapper,
-  // TODO: remove these dummies:
-  PlaylistApi as playlistApiDev
+  SearchApiWrapper
 } from 'cloubi2-default-product-theme-components-vue';
 
 import setUpPublicPath from './public-path';
@@ -19,13 +19,15 @@ import './style.scss';
 import CloubiThemeFrame from './components/CloubiThemeFrame.vue';
 import CloubiThemeMenu from './components/CloubiThemeMenu.vue';
 import TranslationPlugin from './plugin/TranslationPlugin';
+import ThemeTranslations from './translations.json';
 
-CloubiTranslations.registerTranslations(translations); // TODO: REMOVE THIS FOR REAL ENVIRONMENT
+const combinedTranslations = { ...translations, ...ThemeTranslations };
 
+CloubiTranslations.registerTranslations(combinedTranslations); // TODO: REMOVE THIS FOR REAL ENVIRONMENT
 Vue.use(TranslationPlugin);
 Vue.use(CloubiProductThemeComponents);
 
-const STICKY_PAGE_TURNER_SELECTOR = '.cb-content-begin';
+const STICKY_PAGE_TURNER_SELECTOR = '.template-header';
 
 setUpPublicPath.then(() => {
   /* eslint-disable no-undef */
@@ -35,14 +37,27 @@ setUpPublicPath.then(() => {
       'fi.cloubi.frontend/settings',
       'fi.cloubi.frontend/account',
       'fi.cloubi.frontend/notes',
-      'fi.cloubi.frontend/search'
+      'fi.cloubi.frontend/search',
+      'fi.cloubi.frontend/playlists',
+      'fi.cloubi.frontend/additional-content'
     ],
-    (material, settings, account, notes, search) => {
+    (
+      material,
+      settings,
+      account,
+      notes,
+      search,
+      playlist,
+      additionalContent
+    ) => {
       const materialApi = new MaterialApiWrapper(material);
       const accountApi = new AccountApiWrapper(account);
       const notesApi = new NotesApiWrapper(notes);
       const searchApi = new SearchApiWrapper(search);
-      const playlistApi = new PlaylistApiWrapper(playlistApiDev); // TODO: supply real playlist api
+      const playlistApi = new PlaylistApiWrapper(playlist);
+      const additionalContentApi = new AdditionalContentApiWrapper(
+        additionalContent
+      );
 
       const eventBus = new Vue();
 
@@ -51,6 +66,10 @@ setUpPublicPath.then(() => {
        * Ex. store.registerModule('', myModule);
        */
 
+      /**
+       * The following code sets a custom renderer for the navigation menu
+       * pages.
+       */
       material.registerPageContentTypeRenderer(
         'navigation/menu',
         (page, contentId, callback) => {
@@ -110,6 +129,7 @@ setUpPublicPath.then(() => {
               el: document.getElementById('top-content'),
               render: h => h(ThemeTopbar, {props: {materialApi:materialApi,eventBus}})
             }); */
+          FontSizeInit(materialApi, eventBus);
 
           const contentElement = document.getElementById('content');
 
@@ -122,7 +142,8 @@ setUpPublicPath.then(() => {
                   playlistApi,
                   accountApi,
                   notesApi,
-                  searchApi
+                  searchApi,
+                  additionalContentApi
                 }
               })
           });

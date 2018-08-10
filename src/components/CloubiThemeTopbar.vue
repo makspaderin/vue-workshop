@@ -1,22 +1,24 @@
 <template>
   <cloubi-navbar
-    :is-transparent="isRoot">
+    :is-transparent="isRoot"
+    class="cb-topbar">
     <template slot="left-content">
       <cloubi-skiplink
-        text="Skip to main content"
-        title="Skip to main content"
+        :text="$translate('cloubi-default-product-theme-skip-to-main-content')"
+        :title="$translate('cloubi-default-product-theme-skip-to-main-content')"
         access-key="e"
         content-id="#content"
       />
       <cloubi-menu
+        v-if="!inPlaylistMode"
         :horizontal="true"
         label="menu-bar">
         <cloubi-menu-item>
           <cloubi-side-panel-switch
             :class="[{'cb-hidden': isRoot}]"
             :event-bus="eventBus"
-            hint="Main menu"
-            label="Open/Close main sidepanel."
+            :hint="$translate('cloubi-default-product-theme-main-menu')"
+            :label="$translate('cloubi-default-product-theme-open-close-main-side-panel')"
             side-panel-id="main"
             data-cy="side-panel-switch-main" />
         </cloubi-menu-item>
@@ -34,115 +36,28 @@
         :material-api="materialApi" />
     </template>
     <template slot="right-content">
-      <cloubi-menu
-        :horizontal="true"
-        label="menu-bar">
-        <cloubi-menu-item>
-          <cloubi-theme-search-dropdown
-            :event-bus="eventBus"
-            :search-api="searchApi"
-            :material-api="materialApi" />
-        </cloubi-menu-item>
-
-        <cloubi-menu-item>
-          <cloubi-user-dropdown
-            :account-api="accountApi"
-            align="right"
-            name="user" />
-        </cloubi-menu-item>
-
-        <cloubi-menu-item>
-          <cloubi-ruler-button
-            :event-bus="eventBus"
-            closed-color="see-through"/>
-        </cloubi-menu-item>
-
-        <cloubi-menu-item>
-          <cloubi-notes-counter
-            :notes-api="notesApi"
-            :material-api="materialApi">
-            <cloubi-side-panel-switch
-              color="see-through"
-              label="Open/close notes panel."
-              hint="Notes"
-              data-cy="side-panel-switch-notes"
-              side-panel-id="notes"
-              icon="file-alt"
-              name="notes" />
-          </cloubi-notes-counter>
-        </cloubi-menu-item>
-
-        <cloubi-menu-item>
-          <cloubi-side-panel-switch
-            color="see-through"
-            hint="Additional content"
-            label="Open/close additional content panel."
-            data-cy="side-panel-switch-notes"
-            side-panel-id="additional-content"
-            icon="paperclip"
-            name="notes"
-          />
-        </cloubi-menu-item>
-
-        <cloubi-menu-item>
-          <cloubi-dropdown
-            :pointing="false"
-            :floating="false"
-            :event-bus="eventBus"
-            icon="text-height"
-            label="Open/close font size selector"
-            name="font size"
-            dropdown-id="font-size"
-            title=""
-            button-color="see-through"
-            align="right"
-            hint="Font size">
-            <template>
-              <cloubi-font-size-editor
-                :material-api="materialApi"
-                :event-bus="eventBus"
-              />
-            </template>
-          </cloubi-dropdown>
-        </cloubi-menu-item>
-
-        <cloubi-menu-item>
-          <cloubi-dropdown
-            :pointing="false"
-            :floating="false"
-            :event-bus="eventBus"
-            :icon-outline="true"
-            label="Open/close playlist"
-            data-cy="open-playlist-editor-button"
-            name="playlist"
-            dropdown-id="playlist"
-            icon="star"
-            button-color="see-through"
-            hint="Playlist"
-            align="right">
-            <template>
-              <cloubi-playlist-editor
-                :material-api="materialApi"
-                :playlist-api="playlistApi"
-                :event-bus="eventBus"
-                data-cy="playlist-editor"
-              />
-            </template>
-          </cloubi-dropdown>
-        </cloubi-menu-item>
-      </cloubi-menu>
+      <cloubi-theme-topbar-menu-right
+        v-if="!inPlaylistMode"
+        :material-api="materialApi"
+        :notes-api="notesApi"
+        :search-api="searchApi"
+        :event-bus="eventBus"
+        :playlist-api="playlistApi"
+        :account-api="accountApi"
+        :gamification-api="gamificationApi"
+        @openDropdown="openDropdown"/>
     </template>
   </cloubi-navbar>
 </template>
 
 <script>
-import CloubiThemeSearchDropdown from './CloubiThemeSearchDropdown.vue';
+import CloubiThemeTopbarMenuRight from './CloubiThemeTopbarMenuRight.vue';
 
 export default {
   name: 'CloubiThemeTopbar',
 
   components: {
-    'cloubi-theme-search-dropdown': CloubiThemeSearchDropdown
+    'cloubi-theme-topbar-menu-right': CloubiThemeTopbarMenuRight
   },
 
   props: {
@@ -151,7 +66,9 @@ export default {
     accountApi: { type: Object, required: true },
     notesApi: { type: Object, required: true },
     playlistApi: { type: Object, required: true },
-    searchApi: { type: Object, required: true }
+    searchApi: { type: Object, required: true },
+    gamificationApi: { type: Object, required: true },
+    inPlaylistMode: { type: Boolean, required: true }
   },
 
   data() {
@@ -167,6 +84,10 @@ export default {
     self.materialApi.getCurrentPage().then(page => {
       self.$pageChanged(page);
     });
+
+    // Register dropdown pseudo-sidepanel, this exists
+    // to cause other side panels to close.
+    this.$getSidePanelState('dropdown');
   },
 
   methods: {
@@ -179,18 +100,26 @@ export default {
       } else {
         this.isRoot = false;
       }
+    },
+
+    openDropdown() {
+      // Open the dropdown pseudo-sidepanel
+      this.$changeSidePanelState('dropdown', { isOpen: true });
     }
   }
 };
 </script>
 
-<style>
-.cb-hidden {
-  display: none;
-}
+<style lang="scss">
+.cb-topbar {
+  z-index: 1500;
+  .cb-hidden {
+    display: none;
+  }
 
-.cb-search {
-  width: 340px;
+  .cb-search {
+    width: 340px;
+  }
 }
 
 @media only screen and (max-width: 760px) {

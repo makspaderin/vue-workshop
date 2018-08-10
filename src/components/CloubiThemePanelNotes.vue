@@ -21,7 +21,7 @@
       <div>
         <cloubi-side-panel-switch
           :event-bus="eventBus"
-          label="Close notes panel"
+          :label="$translate('cloubi-default-product-theme-close-notes-panel')"
           side-panel-id="notes"
           icon="times"
           class="cb-close-notes-btn" />

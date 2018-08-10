@@ -5,7 +5,8 @@
     <div class="dummy-content">
       <div class="cb-row">
         <h1
-          id="donk">{{ header }}</h1>
+          id="donk"
+          data-cy="main-content-header">{{ header }}</h1>
         <div
           id="content-start">
           Content start
@@ -26,6 +27,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../src/style.scss';
+
 .dummy-content-container {
   margin-top: 0px;
   padding-top: 0px;

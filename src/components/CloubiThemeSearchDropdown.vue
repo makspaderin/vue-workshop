@@ -3,15 +3,17 @@
     :pointing="false"
     :floating="false"
     :event-bus="eventBus"
+    :label="$translate('cloubi-default-product-theme-open-close-search')"
+    :hint="$translate('cloubi-default-product-theme-search')"
     icon="search"
-    label="Open/close font size selector"
     name="font size"
     dropdown-id="search"
     title=""
     button-color="see-through"
     align="window-width"
     data-cy="search-panel-button"
-    hint="Search">
+    @open="open"
+    @close="close">
     <cloubi-search
       :search-api="searchApi"
       :material-api="materialApi"
@@ -38,11 +40,27 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  methods: {
+    open() {
+      document.documentElement.classList.add('cb-prevent-scroll');
+      this.$emit('open');
+    },
+
+    close() {
+      document.documentElement.classList.remove('cb-prevent-scroll');
+      this.$emit('close');
+    }
   }
 };
 </script>
 
 <style lang="scss">
+.cb-prevent-scroll {
+  overflow: hidden;
+}
+
 .cb-search-container {
   max-height: calc(100vh - #{$cloubi-navbar-height});
 }

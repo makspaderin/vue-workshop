@@ -11,6 +11,8 @@
         :account-api="accountApi"
         :playlist-api="playlistApi"
         :search-api="searchApi"
+        :gamification-api="gamificationApi"
+        :in-playlist-mode="inPlaylistMode"
       />
 
       <theme-side-panel
@@ -24,7 +26,9 @@
 
       <theme-additional-content-panel
         :event-bus="eventBus"
-        :additional-content-api="additionalContentApi" />
+        :additional-content-api="additionalContentApi"
+        :material-api="materialApi"
+        :playlist-api="playlistApi" />
 
       <theme-bottombar
         :event-bus="eventBus"
@@ -39,9 +43,9 @@
             mode="round" />
           <cloubi-side-panel-switch
             :event-bus="eventBus"
+            :label="$translate('cloubi-default-product-theme-open-close-notes-side-panel')"
             data-cy="side-panel-switch-notes"
             side-panel-id="notes"
-            label="Open/close notes panel"
             icon="file-alt"
             mode="round" />
         </cloubi-floatbar>
@@ -56,6 +60,11 @@
         <div
           id="content-frame"
           class="cb-container">
+          <cloubi-playlist-info
+            v-if="inPlaylistMode"
+            :material-api="materialApi"
+            :playlist-api="playlistApi"
+            class="container" />
           <div id="content-mount"/>
         </div>
       </div>
@@ -65,6 +74,10 @@
       :material-api="materialApi"
       :playlist-api="playlistApi"
     />
+    <cloubi-additional-content-auto-viewer
+      :material-api="materialApi"
+      :playlist-api="playlistApi"
+      :additional-content-api="additionalContentApi" />
   </div>
 </template>
 
@@ -116,11 +129,18 @@ export default {
     /**
      * SearchApiWrapper instance.
      */
-    searchApi: { type: Object, required: true }
+    searchApi: { type: Object, required: true },
+
+    /**
+     * GamificationApiWrapper instance.
+     */
+    gamificationApi: { type: Object, required: true }
   },
 
   data() {
-    return {};
+    return {
+      inPlaylistMode: false
+    };
   },
 
   created() {
@@ -135,6 +155,25 @@ export default {
       // to playlist editor dropdown when user has selected an action from it.
       self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
     });
+
+    this.materialApi.onPageChange(this.$updatePlaylistMode);
+  },
+
+  methods: {
+    $updatePlaylistMode() {
+      const self = this;
+
+      self.materialApi.getCurrentPlaylist().then(playlist => {
+        if (playlist) {
+          if (!self.inPlaylistMode) {
+            self.inPlaylistMode = true;
+            self.$closeAllSidePanels();
+          }
+        } else {
+          self.inPlaylistMode = false;
+        }
+      });
+    }
   }
 };
 </script>
@@ -167,6 +206,11 @@ export default {
 
 .cb-notes {
   height: calc(100vh - #{$cloubi-navbar-height});
+}
+
+.cb-playlist {
+  height: 200px;
+  background-color: blue;
 }
 
 @media only screen and (max-width: 760px) {
