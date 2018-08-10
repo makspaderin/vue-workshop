@@ -38,7 +38,7 @@ Running a Node.js development server:
 1. run `npm install` (if not done already)
 2. run `npm run dev`.
 
-> **Note** Make sure to boot the Cloubi 2 server first, if you are intending to run both the Cloubi 2 server and the Node.js development server simultaneously. Otherwise the default port for the Cloubi server will be blocked by the development server.
+> Make sure to boot the Cloubi 2 server first, if you are intending to run both the Cloubi 2 server and the Node.js development server simultaneously. Otherwise the default port for the Cloubi server will be blocked by the development server.
 
 The rest of the section describes these processes in more detail.
 
@@ -63,11 +63,15 @@ After the server directory has been set and the server has booted up, build and 
 
 Note that any changes made to the theme requires a re-deployment to take effect on the server.
 
+> This method compiles the theme script files using the `src/script.js`-file as its entry point script. Changes made to that file **only apply** to the **deployed** theme.
+
 ### Run a Node.js development server
 
 To run the theme in a more rudimentary Node.js development server, run
 `npm run dev`.
 This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in [Deploy to local Cloubi 2 instance](#deploy-local)), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
+
+> This method uses the `devel/main.js`-file as its entry point script. Changes made to that file **only apply** to the **development** version of the theme.
 
 ## <a name="customising-theme"></a> Customising the theme
 
@@ -140,6 +144,8 @@ Making changes to the dummy APIs is possible by copying and editing the dummy im
 
 This answer ties in with the [previous question](#how-to-edit-dev-apis). Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
 
+Another reason why the theme might behave differently in the two environments is that there are two different entry point scripts. These are the scripts that the server first loads to initiate the theme. Changes made to these files only apply either in the deployment or development environment correspondingly. The deployment script is defined in `src/script.js` and the development is in the `devel/main.js`-file. Remember to apply changes to both of these files.
+
 ### The navigation menu is not like the other components in the theme frame. Why?
 
 Navigation menu pages are implemented as a separate component that is rendered direcly into the content response by the server. Therefore it does not need to be explicitly injected by the frame or the theme, when the page is changed. In this theme the component that replaces the default content is the `CloubiThemeMenu`-component. It is set as the renderer for the navigation content type in `src/script.js`.
@@ -152,4 +158,4 @@ Altering the navigation page can be done by editing the `CloubiThemeMenu`-compon
 
 The event bus is a mechanism that allows components to send events to one another without necessarily sharing a common ancestor that handles events and props. In this theme it is used for simple tasks such as emitting globally an event of opening or closing a view.
 
-> The event bus pattern can cause issues because it introduces implicit dependencies between multiple components. Handling concurrency also can become difficult, when it used for complex tasks. **Use it sparingly** and prefer other methods such as plugins or state libraries e.g. Vuex.
+> The event bus pattern can cause issues because it introduces implicit dependencies between multiple components. Handling concurrency also can become difficult, when it is used for complex tasks. **Use it sparingly** and prefer other methods such as plugins or state libraries e.g. Vuex.
