@@ -108,6 +108,7 @@ setUpPublicPath.then(() => {
             h(PageTurners, {
               props: {
                 materialApi,
+                playlistApi,
                 sidePanelId: 'main',
                 anchorElementSelector: STICKY_PAGE_TURNER_SELECTOR
               }

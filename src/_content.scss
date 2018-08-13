@@ -19,11 +19,6 @@
   }
 }
 
-.row .template-header {
-  margin-right: calc(-100vw / 2 + 1140px / 2 + 7px) !important;
-  margin-left: calc(-100vw / 2 + 1140px / 2 + 7px) !important;
-}
-
 .cloubi-content-element {
   h1, h2, h3 {
     font-family: Montserrat,Open Sans,Helvetica,Arial,sans-serif;
@@ -40,7 +35,14 @@
   background-color: $cloubi-color-attention;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 1200px) {
+  .row .template-header {
+    margin-right: calc(-100vw / 2 + 1140px / 2 + 7px) !important;
+    margin-left: calc(-100vw / 2 + 1140px / 2 + 7px) !important;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
   .cb-item-full-width,
   .template-header {
     margin-left: calc(-100vw / 2 + 940px / 2) !important;
@@ -48,7 +50,7 @@
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 992px) and (min-width: 770px) {
   .cb-item-full-width,
   .template-header {
     margin-left: calc(-100vw / 2 + 720px / 2) !important;

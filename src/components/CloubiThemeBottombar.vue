@@ -5,12 +5,14 @@
     <template slot="left-content">
       <cloubi-turner-page
         :material-api="materialApi"
+        :playlist-api="playlistApi"
         turner-direction="previous" />
     </template>
     <template slot="center-content"/>
     <template slot="right-content">
       <cloubi-turner-page
         :material-api="materialApi"
+        :playlist-api="playlistApi"
         turner-direction="next" />
     </template>
   </cloubi-navbar>
@@ -24,6 +26,7 @@ export default {
 
   props: {
     materialApi: { type: Object, required: true },
+    playlistApi: { type: Object, required: true },
     eventBus: { type: Object, required: true }
   },
 

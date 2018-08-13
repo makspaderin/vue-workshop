@@ -32,7 +32,8 @@
 
       <theme-bottombar
         :event-bus="eventBus"
-        :material-api="materialApi" />
+        :material-api="materialApi"
+        :playlist-api="playlistApi" />
       <cloubi-content-positioner
         :event-bus="eventBus"
         side-panel-id="main"

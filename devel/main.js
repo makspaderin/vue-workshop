@@ -244,6 +244,7 @@ materialApiWrapper.onPageChange(page => {
       render: h =>
         h(PageTurners, {
           props: {
+            playlistApi: playlistApiWrapper,
             materialApi: materialApiWrapper,
             sidePanelId: 'main'
           }
