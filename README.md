@@ -75,7 +75,7 @@ This server includes a hot-reload-mechanism, which automatically updates the bro
 
 ## <a name="customising-theme"></a> Customising the theme
 
-There are 3 main ways of customising the theme: [overwriting sass-variables for the UI component library](#overwrite-sass), [redefining the layout](#redefine-layout), and [rewriting the UI components](#rewrite-ui-components) in the component library. Their usage is covered in the following chapters.
+There are 4 main ways of customising the theme: [overwriting sass-variables for the UI component library](#overwrite-sass), [overwrite component styles](#overwrite-component-styles), [redefining the layout](#redefine-layout), and [rewriting the UI components](#rewrite-ui-components) in the component library. Their usage is covered in the following chapters.
 
 ### <a name="overwrite-sass"></a> Overwriting sass-variables
 
@@ -97,6 +97,40 @@ Note that the name of the value does not have the leading $-symbol.
 
 > Changing the font for the icons might not work directly through these values, because the names of the icons might not correspond to the component library's icon font's naming convention.
 
+### <a name="overwrite-component-styles"></a> Overwriting component styles
+
+All components in cloubi-default-theme-components-vue use non scoped, and hierarchically named styles.
+You can redefine these styles to alter the looks of the components in your theme.
+
+You can do this in *.vue files <styles> section:
+```
+...
+  <styles>
+  .cb-main-menu-item {
+    background: yellow;
+
+    .cb-main-menu-item-image {
+      display: none;
+    }
+
+  }
+...
+```
+Or in separate *.scss file, for example in `style.scss`:
+```
+...
+  .cb-main-menu-item {
+    background: yellow;
+
+    .cb-main-menu-item-image {
+      display: none;
+    }
+
+  }
+...
+```
+
+The example would give you main menu with no images.
 
 ### <a name="redefine-layout"></a> Redefining the layout
 
@@ -131,6 +165,15 @@ or
 ### <a name="rewrite-ui-components"></a> Rewriting UI components
 
 If the UI components do not fit the theme after changing the sass variables, it is possible to clone the *cloubi2-default-product-theme-components-vue*-repository and edit the components directly. In this case, remember to update the `cloubi2-default-product-theme-components-vue` dependency in `package.json` to point to the new UI component library implementation. After editing the dependencies, run `npm install` once to install them.
+
+Your `package.json` for development could look for example like this, where `my-modified-product-theme-components-vue` is your modified version of `cloubi2-default-product-theme-components-vue`:
+```
+...
+  "dependencies": {
+    "cloubi2-default-product-theme-components-vue": "file://../my-modified-product-theme-components-vue",
+    "vue": "^2.5.16",
+...
+```
 
 ## <a name="faq"></a>FAQ
 
