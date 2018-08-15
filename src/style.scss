@@ -13,6 +13,8 @@ html {
 
 body {
     background-color: $commonViewBgColor;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .cloubi-navigation-menu-page {

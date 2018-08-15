@@ -8,6 +8,7 @@
     side-panel-id="notes"
     position="right"
     data-cy="side-panel-notes">
+    <template slot-scope="slotProps">
     <div
       class="cb-notes-top-bar"
       data-cy="side-panel-notes-content">
@@ -31,7 +32,9 @@
       :notes-api="notesApi"
       :material-api="materialApi"
       :event-bus="eventBus"
+      :on-initialised-callback="slotProps.onInitialised"
       class="cb-notes" />
+    </template>
   </cloubi-side-panel>
 </template>
 

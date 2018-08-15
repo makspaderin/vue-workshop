@@ -4,7 +4,7 @@
     side-panel-id="main"
     position="left"
     data-cy="side-panel-main">
-    <template>
+    <template slot-scope="slotProps">
       <div
         class="cb-side-panel-column"
         data-cy="side-panel-main-content">
@@ -13,7 +13,8 @@
         <cloubi-heading-nav-level
           :material-api="materialApi" />
         <cloubi-material-accordion
-          :material-api="materialApi" />
+          :material-api="materialApi"
+          :on-initialised-callback="slotProps.onInitialised" />
       </div>
     </template>
   </cloubi-side-panel>

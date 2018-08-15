@@ -8,10 +8,13 @@
     side-panel-id="additional-content"
     position="right"
     data-cy="side-panel-right">
-    <cloubi-additional-content
-      :playlist-api="playlistApi"
-      :material-api="materialApi"
-      :additional-content-api="additionalContentApi"/>
+    <template slot-scope="slotProps">
+      <cloubi-additional-content
+        :playlist-api="playlistApi"
+        :material-api="materialApi"
+        :additional-content-api="additionalContentApi"
+        :on-initialised-callback="slotProps.onInitialised"/>
+    </template>
   </cloubi-side-panel>
 </template>
 
