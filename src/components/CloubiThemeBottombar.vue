@@ -48,7 +48,7 @@ export default {
   right: 0px;
 }
 
-@media only screen and (min-width: 761px) {
+@media only screen and (min-width: 769px) {
   .cb-bottombar {
     display: none;
   }

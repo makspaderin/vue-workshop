@@ -38,7 +38,7 @@ export default {
   .dummy-content {
     margin-top: 0px;
     margin-bottom: 50px;
-    width: 1170px;
+    width: 800px;
     min-height: 2000px;
     background-color: white;
     margin-right: auto;

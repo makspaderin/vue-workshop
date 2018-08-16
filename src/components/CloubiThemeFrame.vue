@@ -38,7 +38,9 @@
         :event-bus="eventBus"
         side-panel-id="main"
         data-cy="cb-content-pos">
-        <cloubi-floatbar>
+        <cloubi-floatbar
+          class="theme-floatbar"
+        >
           <cloubi-ruler-button
             :event-bus="eventBus"
             mode="round" />
@@ -214,8 +216,12 @@ export default {
   background-color: blue;
 }
 
-@media only screen and (max-width: 760px) {
-  .cb-floating-page-turners {
+
+@media only screen and (max-width: 769px) {
+  .cb-page-turners-container {
+    display: none !important;
+  }
+  .theme-floatbar {
     display: none !important;
   }
 }
