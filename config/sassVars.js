@@ -11,5 +11,7 @@
 // overwrite these variables.
 module.exports = {
   'cloubi-color-attention': '#ff570e',
-  'cloubi-navbar-height': '5.0rem'
+  'cloubi-navbar-height': '5.0rem',
+  'cloubi-color-primary': '#ff570e',
+  'cloubi-color-default': '#606470'
 };
