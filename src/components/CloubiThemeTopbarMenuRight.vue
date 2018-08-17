@@ -105,6 +105,7 @@
 
       <cloubi-menu-item>
         <cloubi-theme-gamification-dropdown
+          v-if="gamificationEnabled"
           :event-bus="eventBus"
           :gamification-api="gamificationApi"
         />
@@ -149,6 +150,12 @@ export default {
     notesApi: { type: Object, required: true },
     accountApi: { type: Object, required: true },
     gamificationApi: { type: Object, required: true }
+  },
+
+  data: () => {
+    return {
+      gamificationEnabled: GAMIFICATION_ENABLED
+    }
   },
 
   methods: {

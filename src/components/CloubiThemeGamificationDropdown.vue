@@ -18,11 +18,6 @@
         <cloubi-gamification-user-page
           :gamification-api="gamificationApi"
           :event-bus="eventBus"
-          :empty-badge-image="require('../../assets/achievements/cloubibadge_disabled.png')"
-          :empty-trophy-image="require('../../assets/achievements/trophy_disabled.png')"
-          :points-image="require('../../assets/achievements/symbol1.png')"
-          :badge-image="require('../../assets/achievements/symbol2.png')"
-          :trophy-image="require('../../assets/achievements/symbol3.png')"
         />
       </div>
     </template>

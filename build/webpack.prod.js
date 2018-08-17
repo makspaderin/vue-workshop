@@ -116,6 +116,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist'], { root: path.resolve(__dirname, '../') }),
 
+    new webpack.DefinePlugin({
+      GAMIFICATION_ENABLED: JSON.stringify(false)
+    }),
+
     new webpack.LoaderOptionsPlugin({
       minimize: true
     }),

@@ -85,5 +85,11 @@ module.exports = {
     hints: false
   },
   devtool: '#eval-source-map',
-  plugins: [new VueLoaderPlugin(), new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      GAMIFICATION_ENABLED: JSON.stringify(true)
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
