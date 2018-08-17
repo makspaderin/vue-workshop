@@ -181,7 +181,7 @@ Your `package.json` for development could look for example like this, where `my-
 
 The *cloubi2-default-product-theme-components-vue*-module provides dummy versions of Cloubi APIs i.e. APIs that mimic the behaviour of the real Cloubi APIs to an extent. They are used when running the Node.js development server (`npm run dev`) for the theme. The theme uses the real Cloubi APIs when deployed version to a server (`npm run deploy`).
 
-Making changes to the dummy APIs is possible by copying and editing the dummy implementations from the UI components library. Provide the edited dummy APIs to the theme in the `devel/main.js`-file.
+Making changes to the dummy APIs is possible by either using the development-functions provided them or by copying and editing them. The dev-functions allow redefining the state within the dummy APIs. They are not available in the real Cloubi API and are denoted by the leading $-sign. Changing the state can be done in the `devel/main.js`-file, before the API is injected into the Vue components. If there is a need to change the behaviour of the dummy APIs, create an edited copy of them. Provide them to the theme in the `devel/main.js`-file.
 
 ### How come some things behave differently on the `npm run dev` development server and when the theme is actually deployed?
 

@@ -58,5 +58,6 @@ export default {
 #content-start {
   margin-top: 400px;
   margin-bottom: 400px;
+  margin-left: -59px;
 }
 </style>
