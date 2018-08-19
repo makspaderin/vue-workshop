@@ -7,7 +7,18 @@
     <cloubi-main-menu-grid
       :pages="pageChildPages"
       :last-visited-page="lastVisitedPageId"
-      @click-page="onChangePage"/>
+      @click-page="onChangePage">
+      <!-- <template slot="items" slot-scope="slotProps">
+        <cloubi-button
+          :title="slotProps.page.title"
+          :color="buttonColor(slotProps.index)"
+          class="alt-menu-item"
+          mode="sharp"
+          size="large"
+          @click="onChangePage(slotProps.page.id)"
+        />
+      </template> -->
+    </cloubi-main-menu-grid>
   </main>
 </template>
 
@@ -64,6 +75,11 @@ export default {
 
     onChangePage(pageID) {
       this.materialApi.changePage(pageID);
+    },
+
+    buttonColor(index) {
+      const colors = ['default','primary','success','warning'];
+      return colors[index % colors.length];
     }
   }
 };
