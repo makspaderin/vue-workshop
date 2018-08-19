@@ -1,6 +1,7 @@
 <template>
   <cloubi-navbar
-    :is-transparent="isRoot"
+    :is-transparent="isRoot && scroll <= 100"
+    :colorTransitionEnabled="scroll > 0 && isRoot"
     class="cb-topbar">
     <template slot="left-content">
       <cloubi-skiplink
@@ -73,7 +74,8 @@ export default {
 
   data() {
     return {
-      isRoot: false
+      isRoot: false,
+      scroll: 0
     };
   },
 
@@ -90,7 +92,20 @@ export default {
     this.$getSidePanelState('dropdown');
   },
 
+  beforeMount() {
+    window.addEventListener('scroll', this.$handleScroll);
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.$handleScroll);
+  },
+
   methods: {
+
+    $handleScroll() {
+      this.scroll = window.scrollY;
+    },
+
     $pageChanged(page) {
       if (page.breadcrump.length === 1) {
         this.isRoot = true;

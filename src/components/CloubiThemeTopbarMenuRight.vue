@@ -115,6 +115,7 @@
     </cloubi-menu>
 
     <cloubi-menu
+      label="menu-bar"
       class="theme-right-menu-dropdown"
     >
       <cloubi-menu-item>

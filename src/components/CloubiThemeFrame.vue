@@ -59,7 +59,8 @@
     <cloubi-content-positioner
       :event-bus="eventBus"
       side-panel-id="main">
-      <div class="cb-app container">
+      <div
+        class="cb-app container">
         <div
           id="content-frame"
           class="cb-container">
@@ -72,6 +73,7 @@
         </div>
       </div>
     </cloubi-content-positioner>
+    <cloubi-theme-footer/>
     <cloubi-playlist-root
       :event-bus="eventBus"
       :material-api="materialApi"
@@ -91,9 +93,11 @@ import CloubiThemeBackground from './CloubiThemeBackground.vue';
 import CloubiThemeBottombar from './CloubiThemeBottombar.vue';
 import CloubiThemeNotesPanel from './CloubiThemePanelNotes.vue';
 import CloubiThemeAdditionalContentPanel from './CloubiThemePanelAdditionalContent.vue';
+import CloubiThemeFooter from './CloubiThemeFooter.vue';
 
 export default {
   components: {
+    CloubiThemeFooter,
     'theme-side-panel': CloubiThemeSidePanel,
     'theme-topbar': CloubiThemeTopbar,
     'theme-background': CloubiThemeBackground,
@@ -215,7 +219,6 @@ export default {
   height: 200px;
   background-color: blue;
 }
-
 
 @media only screen and (max-width: 769px) {
   .cb-page-turners-container {
