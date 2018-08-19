@@ -7,7 +7,7 @@
     :auto-hide-panel-ids="['main']"
     side-panel-id="additional-content"
     position="right"
-    data-cy="side-panel-right">
+    data-cy="side-panel-additional-content">
     <template slot-scope="slotProps">
       <cloubi-additional-content
         :playlist-api="playlistApi"

@@ -47,7 +47,7 @@
           :hint="$translate('cloubi-default-product-theme-additional-content')"
           :label="$translate('cloubi-default-product-theme-open-close-additional-content-side-panel')"
           color="see-through"
-          data-cy="side-panel-switch-notes"
+          data-cy="side-panel-switch-additional-content"
           side-panel-id="additional-content"
           icon="paperclip"
           name="notes"
