@@ -67,6 +67,7 @@
           title=""
           button-color="see-through"
           align="right"
+          data-cy="font-size-dropdown-switch"
           @open="openDropdown">
           <template>
             <cloubi-font-size-editor
