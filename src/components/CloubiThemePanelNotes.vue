@@ -59,6 +59,11 @@ export default {
 // @import '../_variables.scss';
 
 .cb-notes-top-bar {
+  min-height: $cloubi-navbar-height;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .cb-notes-panel-content {
@@ -83,8 +88,5 @@ export default {
 .cb-download-notes-btn {
   height: $cloubi-navbar-height;
   width: $cloubi-navbar-height;
-  margin-left: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 </style>
