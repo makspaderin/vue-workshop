@@ -23,14 +23,6 @@
           @click="openSearch"
         />
         <cloubi-button
-          :title="userButtonTitle"
-          :label="userButtonTitle"
-          icon="user"
-          color="see-through"
-          mode="sharp"
-          @click="openUser"
-        />
-        <cloubi-button
           :title="$translate('cloubi-default-product-theme-reading-aide')"
           :label="$translate('cloubi-default-product-theme-reading-aide')"
           color="see-through"
@@ -86,15 +78,6 @@ components: {
     }
   },
 
-  computed: {
-    userButtonTitle() {
-      return this.isLoggedIn ? 'User ' : this.$translate('cloubi-default-product-theme-sign-in-prompt');
-    },
-    userButtonIcon() {
-      return this.isLoggedIn ? 'user' : '';
-    }
-  },
-
   created() {
     const self = this;
     self.accountApi.isLoggedIn().then(loggedIn => {
@@ -106,10 +89,6 @@ components: {
     openSearch() {
       this.eventBus.$emit('dropdown-close', { dropdownId: 'mobile-menu' });
       this.eventBus.$emit('dropdown-open', { dropdownId: 'search' });
-    },
-    openUser() {
-      this.eventBus.$emit('dropdown-close', { dropdownId: 'mobile-menu' });
-      this.eventBus.$emit('dropdown-open', { dropdownId: 'user' });
     },
     toggleRuler() {
       this.eventBus.$emit('dropdown-close', { dropdownId: 'mobile-menu' });

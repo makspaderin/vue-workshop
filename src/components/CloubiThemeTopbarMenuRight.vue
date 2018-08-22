@@ -115,8 +115,19 @@
     </cloubi-menu>
 
     <cloubi-menu
+      :horizontal="true"
+      label="menu-bar"
       class="theme-right-menu-dropdown"
     >
+      <cloubi-menu-item>
+        <cloubi-user-dropdown
+          :account-api="accountApi"
+          :event-bus="eventBus"
+          align="right"
+          name="user"
+          @open="openDropdown" />
+      </cloubi-menu-item>
+
       <cloubi-menu-item>
         <cloubi-theme-mobile-menu
           :account-api="accountApi"
