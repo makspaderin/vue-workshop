@@ -36,6 +36,9 @@ const combinedTranslations = { ...translations, ...ThemeTranslations };
 
 CloubiTranslations.registerTranslations(combinedTranslations);
 
+// Inject material api into the playlist API, as they need to communicate directly.
+playlistApi.$init(materialApi);
+
 const materialApiWrapper = new MaterialApiWrapper(materialApi);
 const playlistApiWrapper = new PlaylistApiWrapper(playlistApi, materialApi);
 const accountApiWrapper = new AccountApiWrapper(accountApi);

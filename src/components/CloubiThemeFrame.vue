@@ -171,6 +171,8 @@ export default {
       const self = this;
 
       self.materialApi.getCurrentPlaylist().then(playlist => {
+        console.log('UPDATE PLAYLIST MODE');
+        console.log(playlist);
         if (playlist) {
           if (!self.inPlaylistMode) {
             self.inPlaylistMode = true;
