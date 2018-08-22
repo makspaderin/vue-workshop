@@ -83,5 +83,8 @@ export default {
 .cb-download-notes-btn {
   height: $cloubi-navbar-height;
   width: $cloubi-navbar-height;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>
