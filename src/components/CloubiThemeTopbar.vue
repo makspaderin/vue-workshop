@@ -127,7 +127,7 @@ export default {
 
 <style lang="scss">
 .cb-topbar {
-  z-index: 1500;
+  z-index: 100000;
   .cb-hidden {
     display: none;
   }

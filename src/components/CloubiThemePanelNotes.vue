@@ -89,4 +89,10 @@ export default {
   height: $cloubi-navbar-height;
   width: $cloubi-navbar-height;
 }
+
+@media only screen and (max-width: 768px) {
+  .cb-notes-panel-content {
+    height: calc(100vh - #{$cloubi-navbar-height} - #{$cloubi-navbar-height});
+  }
+}
 </style>

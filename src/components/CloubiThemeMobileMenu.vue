@@ -117,6 +117,7 @@ components: {
   display: flex;
   background: $cloubi-color-default;
   flex-direction: column;
+  z-index: 1500;
 }
 
 </style>
