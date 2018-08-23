@@ -1,6 +1,6 @@
 <template>
   <cloubi-side-panel
-    :full-height="true"
+    :full-height="false"
     :trap-focus="true"
     :auto-hide-enabled="true"
     :auto-hide-mode="'hide-on-other'"
@@ -9,31 +9,25 @@
     position="right"
     data-cy="side-panel-notes">
     <template slot-scope="slotProps">
-    <div
-      class="cb-notes-top-bar"
-      data-cy="side-panel-notes-content">
-      <div>
-        <cloubi-notes-download-button
+      <div class="cb-notes-panel-content">
+        <div
+          class="cb-notes-top-bar"
+          data-cy="side-panel-notes-content">
+          <div>
+            <cloubi-notes-download-button
+              :notes-api="notesApi"
+              :material-api="materialApi"
+              :event-bus="eventBus"
+              class="cb-download-notes-btn"/>
+          </div>
+        </div>
+        <cloubi-notes
           :notes-api="notesApi"
           :material-api="materialApi"
           :event-bus="eventBus"
-          class="cb-download-notes-btn"/>
+          :on-initialised-callback="slotProps.onInitialised"
+          class="cb-notes" />
       </div>
-      <div>
-        <cloubi-side-panel-switch
-          :event-bus="eventBus"
-          :label="$translate('cloubi-default-product-theme-close-notes-panel')"
-          side-panel-id="notes"
-          icon="times"
-          class="cb-close-notes-btn" />
-      </div>
-    </div>
-    <cloubi-notes
-      :notes-api="notesApi"
-      :material-api="materialApi"
-      :event-bus="eventBus"
-      :on-initialised-callback="slotProps.onInitialised"
-      class="cb-notes" />
     </template>
   </cloubi-side-panel>
 </template>
@@ -65,16 +59,40 @@ export default {
 // @import '../_variables.scss';
 
 .cb-notes-top-bar {
+  min-height: $cloubi-navbar-height;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.cb-notes-panel-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  height: calc(100vh - #{$cloubi-navbar-height});
 }
 
 .cb-notes {
-  height: calc(100vh - #{$cloubi-navbar-height});
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cb-notes-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .cb-download-notes-btn {
   height: $cloubi-navbar-height;
   width: $cloubi-navbar-height;
+}
+
+@media only screen and (max-width: 768px) {
+  .cb-notes-panel-content {
+    height: calc(100vh - #{$cloubi-navbar-height} - #{$cloubi-navbar-height});
+  }
 }
 </style>

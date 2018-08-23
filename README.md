@@ -19,6 +19,8 @@
 
 The Cloubi Vue Product Theme consists of two parts: the theme definition and the theme UI component library ([cloubi2-default-product-theme-components-vue](https://github.com/ubiikkiltd/cloubi2-default-product-theme-components-vue)).
 
+![alt text](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/dev/doc/Theme%20Project%20Modules.png?raw=true "Product Theme Modules")
+
 The purpose of the theme is to define a layout for the product and to define theme-specific behaviours. It can be built using the components found in the UI component library, which provides ready-to-use UI elements that utilise to the Cloubi APIs. It is recommended to familiarise oneself also with the UI component library, when building a theme. It should be a good basis for developing custom themes and components.
 
 These instructions cover the basic development use-cases for the theme project and a [FAQ](#faq).

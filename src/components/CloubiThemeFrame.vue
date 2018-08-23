@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div
+    :class="pageStyleClasses">
     <theme-background
       :material-api="materialApi"
     />
@@ -146,7 +147,8 @@ export default {
 
   data() {
     return {
-      inPlaylistMode: false
+      inPlaylistMode: false,
+      pageStyleClasses: []
     };
   },
 
@@ -163,12 +165,18 @@ export default {
       self.eventBus.$emit('dropdown-close', { dropdownId: 'playlist' });
     });
 
-    this.materialApi.onPageChange(this.$updatePlaylistMode);
+    this.materialApi.getCurrentPage().then((page) => {
+      this.pageStyleClasses = page.styleClasses;
+    });
+
+    this.materialApi.onPageChange(this.$updateState);
   },
 
   methods: {
-    $updatePlaylistMode() {
+    $updateState(page) {
       const self = this;
+
+      this.pageStyleClasses = page.styleClasses;
 
       self.materialApi.getCurrentPlaylist().then(playlist => {
         if (playlist) {

@@ -6,7 +6,7 @@
     data-cy="side-panel-main">
     <template slot-scope="slotProps">
       <div
-        class="cb-side-panel-column"
+        class="cb-side-panel-column side-panel-main-content"
         data-cy="side-panel-main-content">
         <cloubi-turners-chapter
           :material-api="materialApi" />

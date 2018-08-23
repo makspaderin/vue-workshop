@@ -46,6 +46,7 @@ export default {
   bottom: 0px;
   left: 0px;
   right: 0px;
+  z-index: 10000;
 }
 
 @media only screen and (min-width: 769px) {
