@@ -1,7 +1,9 @@
 {
   "name": "cloubi-default-product-theme-vue",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cloubi 2 Example Product Theme Vue Components",
+  "author": "Ubiikki Ltd",
+  "license": "Proprietary",
   "main": "dist/index.js",
   "module": "src/index.js",
   "scripts": {
@@ -13,8 +15,6 @@
     "dev": "webpack-dev-server --mode development --open --hot --content-base devel/ --config build/webpack.devel.js",
     "cypress:open": "cypress open"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cloubi2-default-product-theme-components-vue": "file://../cloubi2-default-product-theme-components-vue",
     "vue": "^2.5.16",
@@ -33,6 +33,7 @@
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.11",
     "cypress": "^2.1.0",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -50,15 +51,16 @@
     "ts-loader": "^4.3.1",
     "typescript": "^2.9.1",
     "url-loader": "^1.0.1",
-    "vue": "^2.5.16",
     "vue-loader": "^15.2.4",
     "vue-prettier": "^0.2.0",
     "vue-router": "^3.0.1",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.4",
     "webpack-dev-server": "^3.1.4",
+    "webpack-visualizer-plugin": "^0.1.11",
     "zip-webpack-plugin": "^3.0.0"
   },
   "publishConfig": {

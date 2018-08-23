@@ -10,6 +10,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const Visualizer = require('webpack-visualizer-plugin');
+
+var DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
+
 const extractSass = new ExtractTextPlugin({
   filename: 'style.css',
   disable: process.env.NODE_ENV === 'development'
@@ -22,7 +28,20 @@ module.exports = {
     filename: 'script.js',
     path: path.resolve(__dirname, '../dist')
   },
-  externals: {},
+  externals: {
+    jquery: {
+      commonjs: 'jquery',
+      commonjs2: 'jquery',
+      amd: 'jquery',
+      root: '$'
+    },
+    // vue: {
+    //   commonjs: 'vue',
+    //   commonjs2: 'vue',
+    //   amd: 'vue',
+    //   root: 'Vue'
+    // }
+  },
   module: {
     rules: [
       {
@@ -120,10 +139,6 @@ module.exports = {
       GAMIFICATION_ENABLED: JSON.stringify(false)
     }),
 
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    }),
-
     extractSass,
 
     new CopyWebpackPlugin([
@@ -131,6 +146,15 @@ module.exports = {
     ]),
 
     new VueLoaderPlugin(),
+
+    //new BundleAnalyzerPlugin(),
+    //new Visualizer(),
+
+    new DuplicatePackageCheckerPlugin(),
+
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    }),
 
     new ZipPlugin({
       filename: `${properties.get('name')  }.zip`
