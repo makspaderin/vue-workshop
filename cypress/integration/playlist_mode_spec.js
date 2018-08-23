@@ -11,6 +11,7 @@ describe('Playlist mode', function(){
   it('Shows playlist status', function() {
     cy.get('[data-cy=playlist-info]').should('be.visible');
     cy.get('[data-cy=playlist-info]').find('[data-cy=playlist-progress]').should('contain', '1/2');
+    cy.get('[data-cy=topbar-action-buttons]').should('not.be.visible');
   });
 
   it('Changes page and shows additional content automatically', function() {

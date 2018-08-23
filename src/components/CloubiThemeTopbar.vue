@@ -13,7 +13,8 @@
       <cloubi-menu
         v-if="!inPlaylistMode"
         :horizontal="true"
-        label="menu-bar">
+        label="menu-bar"
+        data-cy="topbar-action-buttons">
         <cloubi-menu-item>
           <cloubi-side-panel-switch
             :class="[{'cb-hidden': isRoot}]"
@@ -46,6 +47,7 @@
         :playlist-api="playlistApi"
         :account-api="accountApi"
         :gamification-api="gamificationApi"
+        data-cy="topbar-action-buttons"
         @openDropdown="openDropdown"/>
     </template>
   </cloubi-navbar>
