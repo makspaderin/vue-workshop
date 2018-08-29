@@ -36,6 +36,8 @@ Running the theme on a Cloubi 2 server:
 4. make sure the Cloubi 2 server is running and fully booted up
 5. run `npm run deploy`.
 
+> The login credentials for Cloubi are email: admin@cloubi.com password: test
+
 Running a Node.js development server:
 1. run `npm install` (if not done already)
 2. run `npm run dev`.
@@ -176,6 +178,10 @@ Your `package.json` for development could look for example like this, where `my-
     "vue": "^2.5.16",
 ...
 ```
+
+### <a name="change-metadata"></a> Changing the theme's metadata
+
+The theme has additional data that such as its name and version that is shown in the products’ Appearance-tabs. For each individual theme they are defined in the `src/theme.properties`-file. The changeable options are the theme’s name, version, developer, and description. The navigation property needs to stay the same (`appearance/cloubi/blank/theme`) for Javascript themes.
 
 ## <a name="faq"></a>FAQ
 
