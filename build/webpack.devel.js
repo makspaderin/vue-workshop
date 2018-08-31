@@ -16,12 +16,7 @@ module.exports = {
     filename: 'build.js'
   },
   externals: {
-    jquery: {
-      commonjs: 'jquery',
-      commonjs2: 'jquery',
-      amd: 'jquery',
-      root: '$'
-    },
+    jquery: 'jQuery'
     // vue: {
     //   commonjs: 'vue',
     //   commonjs2: 'vue',

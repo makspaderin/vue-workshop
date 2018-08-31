@@ -34,6 +34,9 @@ describe('Additional Content', function(){
   });
 
   it('Adds file to playlist', function() {
+    // first need to change to page that is not navigation
+    cy.get('[data-cy=main-menu-item]').first().click()
+
     cy.get('[data-cy=side-panel-additional-content]').find('[data-cy=add-to-playlist-button]').first().click();
     cy.get('[data-cy=add-to-playlist]').find('[data-cy=add-to-playlist-button]').first().click();
     cy.get('[data-cy=add-to-playlist]').find('[data-cy=remove-from-playlist-button]').first().click();

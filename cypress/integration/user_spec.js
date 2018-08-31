@@ -46,7 +46,7 @@ const getSignUpForm = () => {
 }
 
 const openUserPanel = () => {
-  cy.get('[data-cy=user-dropdown-button]').click()
+  cy.get('[data-cy=user-dropdown-button]').first().click()
 }
 
 const SIGN_UP_FIELDS_EMAIL = [
@@ -344,7 +344,7 @@ describe('User', function(){
     login('username');
 
     cy.get('[data-cy=user-panel]').should('not.be.visible')
-    cy.get('[data-cy=user-dropdown-button]').click()
+    openUserPanel();
     /* User details should now be visible instead of login form. */
     getUserDetails().should('be.visible')
     getLoginForm().should('not.be.visible')

@@ -11,11 +11,11 @@ describe('Notes', function(){
     cy.get('[data-cy=notes-list-page]').should('be.visible');
     cy.get('[data-cy=notes-list-page]').children().should('have.length', 1);
 
-    cy.get('[data-cy=note-type-selector-all').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('All Notes').click();
     cy.get('[data-cy=notes-list-all]').should('be.visible');
     cy.get('[data-cy=notes-list-all]').children().should('have.length', 2);
 
-    cy.get('[data-cy=note-type-selector-page').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('Page Notes').click();
     cy.get('[data-cy=notes-list-page]').should('be.visible');
     cy.get('[data-cy=notes-list-page]').children().should('have.length', 1);
   })
@@ -29,7 +29,7 @@ describe('Notes', function(){
     cy.get('[data-cy=notes-container]').find('[data-cy=note-item]').contains('Nyy nööt')
     cy.get('[data-cy=notes-list-page]').children().should('have.length', 2);
 
-    cy.get('[data-cy=note-type-selector-all').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('All Notes').click();
     cy.get('[data-cy=notes-list-all]').children().should('have.length', 3);
   });
 
@@ -46,9 +46,9 @@ describe('Notes', function(){
 
     cy.get('[data-cy=notes-list-page]').children().should('have.length', 1);
 
-    cy.get('[data-cy=note-type-selector-all]').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('All Notes').click();
     cy.get('[data-cy=notes-list-all]').children().should('have.length', 2);
-    cy.get('[data-cy=note-type-selector-page]').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('Page Notes').click();
 
     /* Delete properly */
 
@@ -60,7 +60,7 @@ describe('Notes', function(){
     cy.get('[data-cy=note-dialog-delete]').should('not.be.visible');
     cy.get('[data-cy=notes-list-page]').children().should('have.length', 0);
 
-    cy.get('[data-cy=note-type-selector-all').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('All Notes').click();
     cy.get('[data-cy=notes-list-all]').children().should('have.length', 1);
   });
 
@@ -95,7 +95,7 @@ describe('Notes', function(){
 
     /* Check all notes too */
 
-    cy.get('[data-cy=note-type-selector-all').click();
+    cy.get('[data-cy=notes-container').find('[data-cy=tab-button]').contains('All Notes').click();
     cy.get('[data-cy=notes-list-all]').children().first().find('[data-cy=note-text]').contains('Note 12');
   });
 
