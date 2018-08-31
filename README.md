@@ -45,12 +45,15 @@ Now it is possible to “pull” from this repository with
 which copies the files from the cloubi2-default-product-theme-vue to the local machine.
 
 Add and push the changes to the newly created repository with the commands
-`$ git add *`
-`$ git commit -m “Copied default theme”`
-`$ git push origin master`
+```
+$ git add *
+$ git commit -m “Copied default theme”
+$ git push origin master
+```
 
 A version of the default theme should now be copied to the new repository. Complete the same procedure for the component library repository to edit it.
 
+> The framework projects generally have a `master` and a `dev` branch. The `master` branch should always contain working code whereas the `dev` branch is for development purposes and can be broken from time to time.
 
 ## <a name="run-server"></a> Running the theme on a server
 
