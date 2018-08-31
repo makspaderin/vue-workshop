@@ -105,7 +105,7 @@ To run the theme in a more rudimentary Node.js development server, run
 `$ npm run dev`.
 This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in [Deploy to local Cloubi 2 instance](#deploy-local)), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
 
-> This method uses the `devel/main.js`-file as its entry point script. Changes made to that file **only apply** to the **development** version of the theme.
+> This method uses the [devel/main.js](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/devel/main.js)-file as its entry point script. Changes made to that file **only apply** to the **development** version of the theme.
 
 ## <a name="customising-theme"></a> Customising the theme
 
@@ -113,8 +113,7 @@ This chapter describes what approaches there are to customise the theme.
 
 ### <a name="change-metadata"></a> Changing the theme's metadata
 
-The theme has additional data that such as its name and version that is shown in the products’ Appearance-tabs. They are defined in the `src/theme.properties`-file. The changeable options are the theme’s name, version, developer, and description. The navigation property needs to stay the same (`appearance/cloubi/blank/theme`) for Javascript themes.
-
+The theme has additional data that such as its name and version that is shown in the products’ Appearance-tabs. They are defined in the [src/theme.properties](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/src/theme.properties)-file. The changeable options are the theme’s name, version, developer, and description. The navigation property needs to stay the same (`appearance/cloubi/blank/theme`) for Javascript themes.
 
 ### Editing Theme Frame
 
@@ -125,7 +124,7 @@ There are 4 main ways of customising the theme frame: [overwriting sass-variable
 #### <a name="overwrite-sass"></a> Overwriting sass-variables
 
 The UI component library uses SASS to define global CSS values, such as colours, fonts, and font sizes. These can be overriden by altering
-`config/sassVars.js`-file in the theme-project.
+[config/sassVars.js](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/config/sassVars.js)-file in the theme-project.
 
 All of the alterable SASS-values are defined in the [cloubi2-default-product-theme-components-vue/src/_variables.scss](https://github.com/ubiikkiltd/cloubi2-default-product-theme-components-vue/blob/master/src/_variables.scss)-file.
 
@@ -205,7 +204,7 @@ or
 <style lang="scss" scoped>
 ```
 
-> Theme-specific content styling is defined in `src/_content.scss`. If the page content itself requires styles, implement them there.
+> Theme-specific content styling is defined in [src/_content.scss](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/src/_content.scss). If the page content itself requires styles, implement them there.
 
 #### <a name="rewrite-ui-components"></a> Rewriting UI components
 
@@ -226,7 +225,7 @@ There are 3 ways to edit the page content itself: with [CSS/Sass](#content-css-s
 
 #### <a name="content-css-sass"></a> Editing content with CSS/Sass
 
-The content’s styling can be edited with CSS or Sass directly. In the default theme such styles are defined in the `cloubi2-default-product-theme/src/_content.scss`-file.
+The content’s styling can be edited with CSS or Sass directly. In the default theme such styles are defined in the [cloubi2-default-product-theme/src/_content.scss](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/src/_content.scss)-file.
 
 #### <a name="froala-styles"></a> Adding Froala-selectable styles
 
@@ -282,13 +281,13 @@ Once the user navigates to a page with this type the custom component is used in
 
 The *cloubi2-default-product-theme-components-vue*-module provides dummy versions of Cloubi APIs i.e. APIs that mimic the behaviour of the real Cloubi APIs to an extent. They are used when running the Node.js development server (`npm run dev`) for the theme. The theme uses the real Cloubi APIs when deployed version to a server (`npm run deploy`).
 
-Making changes to the dummy APIs is possible by either using the development-functions provided them or by copying and editing them. The dev-functions allow redefining the state within the dummy APIs. They are not available in the real Cloubi API and are denoted by the leading $-sign. Changing the state can be done in the `devel/main.js`-file, before the API is injected into the Vue components. If there is a need to change the behaviour of the dummy APIs, create an edited copy of them. Provide them to the theme in the `devel/main.js`-file.
+Making changes to the dummy APIs is possible by either using the development-functions provided them or by copying and editing them. The dev-functions allow redefining the state within the dummy APIs. They are not available in the real Cloubi API and are denoted by the leading $-sign. Changing the state can be done in the [devel/main.js](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/devel/main.js)-file, before the API is injected into the Vue components. If there is a need to change the behaviour of the dummy APIs, create an edited copy of them. Provide them to the theme in the `devel/main.js`-file.
 
 ### How come some things behave differently on the `npm run dev` development server and when the theme is actually deployed?
 
 This answer ties in with the [previous question](#how-to-edit-dev-apis). Because the Node.js server, that is run with the `npm run dev`-command only uses a dummy API, it can sometimes behave drastically differently from the actual Cloubi APis. It is heavily encouraged that the theme is deployed for API integration and testing.
 
-Another reason why the theme might behave differently in the two environments is that there are two different entry point scripts. These are the scripts that the server first loads to initiate the theme. Changes made to these files only apply either in the deployment or development environment correspondingly. The deployment script is defined in `src/script.js` and the development is in the `devel/main.js`-file. Remember to apply changes to both of these files.
+Another reason why the theme might behave differently in the two environments is that there are two different entry point scripts. These are the scripts that the server first loads to initiate the theme. Changes made to these files only apply either in the deployment or development environment correspondingly. The deployment script is defined in [src/script.js](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/src/script.js) and the development is in the [devel/main.js](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/devel/main.js)-file. Remember to apply changes to both of these files.
 
 ### The navigation menu is not like the other components in the theme frame. Why?
 
@@ -296,7 +295,7 @@ Navigation menu pages are implemented as a separate component that is rendered d
 
 > It is possible to add a custom renderer for other types of content, too. More information about renderers can be found in the material API documentation.
 
-Altering the navigation page can be done by editing the `CloubiThemeMenu`-component or setting a custom renderer in the `src/script.js`.
+Altering the navigation page can be done by editing the `CloubiThemeMenu`-component or setting a custom renderer in [src/script.js](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/master/src/script.js).
 
 ### What is the EventBus object?
 
