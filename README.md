@@ -119,6 +119,10 @@ The theme has additional data that such as its name and version that is shown in
 
 The theme frame is the overlay that is placed on top of the page content. It consists of the parts of the UI that are not provided by the Cloubi server and cannot be edited from the product structure or Froala editors. This includes for example all the various bars, side panels and tools that are placed in the user's view.
 
+![The frame is an overlay on top of the page content.](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/dev/doc/Frame%20and%20Content.png?raw=true "The frame is an overlay on top of the page content.")
+
+In the figure above the green hue marks the page content and the pink outlines mark the frame.
+
 There are 4 main ways of customising the theme frame: [overwriting sass-variables for the UI component library](#overwrite-sass), [overwrite component styles](#overwrite-component-styles), [redefining the layout](#redefine-layout), and [rewriting the UI components](#rewrite-ui-components) in the component library. Their usage is covered in the following chapters.
 
 #### <a name="overwrite-sass"></a> Overwriting sass-variables
