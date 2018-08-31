@@ -2,6 +2,7 @@
 
 ## Table of contents
 1. [Introduction](#introduction)
+2. [Setting up the theme project version control](#setup-theme)
 2. [Running the server theme on a server](#run-server)
 3. [Customising the theme](#customising-theme)
 4. [FAQ](#faq)
@@ -15,32 +16,58 @@
 | Content or Page Content | The main content on the page that is defined in the product and is provided by the server. |
 | Frame or Theme Frame | The theme's user interface overlay. |
 
+> In this documentation the `$`-symbol denotes a console command. It is not part of the command itself.
+
 ## <a name="introduction"></a> Introduction
 
-The Cloubi Vue Product Theme consists of two parts: the theme definition and the theme UI component library ([cloubi2-default-product-theme-components-vue](https://github.com/ubiikkiltd/cloubi2-default-product-theme-components-vue)).
+The Cloubi Vue Product Theme framework consists of two parts: the theme definition and the theme UI component library ([cloubi2-default-product-theme-components-vue](https://github.com/ubiikkiltd/cloubi2-default-product-theme-components-vue)).
 
-![alt text](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/dev/doc/Theme%20Project%20Modules.png?raw=true "Product Theme Modules")
+![The framework consists of a layout project and a UI component project.](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/dev/doc/Theme%20Project%20Modules.png?raw=true "Product Theme Modules")
 
 The purpose of the theme is to define a layout for the product and to define theme-specific behaviours. It can be built using the components found in the UI component library, which provides ready-to-use UI elements that utilise to the Cloubi APIs. It is recommended to familiarise oneself also with the UI component library, when building a theme. It should be a good basis for developing custom themes and components.
 
 These instructions cover the basic development use-cases for the theme project and a [FAQ](#faq).
+
+## <a name="setup-theme"></a> Setting up the theme project version control
+
+It is recommended to store the theme in version control. One option is to use Git. These
+First a new repository needs to be created. On Github it can be done by pressing the `+`-icon in the header bar and selecting `New repository`. Set up the repository as fits the new project with the form provided.
+
+Once the empty repository has been created, clone it with
+`$ git clone your-repositorys-https-address/ssh-address`
+Replace the your-repositorys-https-address/ssh-address-part with the address that Github has created for the project.
+
+In the newly created folder on the local machine, set the cloubi2-default-product-theme-vue as one of its remote repositories with
+`$ git remote add cloubi-theme https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue.git`
+
+Now it is possible to “pull” from this repository with
+`$ git pull cloubi-theme master`
+which copies the files from the cloubi2-default-product-theme-vue to the local machine.
+
+Add and push the changes to the newly created repository with the commands
+`$ git add *`
+`$ git commit -m “Copied default theme”`
+`$ git push origin master`
+
+A version of the default theme should now be copied to the new repository. Complete the same procedure for the component library repository to edit it.
+
 
 ## <a name="run-server"></a> Running the theme on a server
 
 A TL;DR version of this section's instructions:
 
 Running the theme on a Cloubi 2 server:
-1. run `npm install` (needs to be done only once or if dependencies change)
+1. run `$ npm install` (needs to be done only once or if dependencies change)
 2. copy *user.properties.template* as *user.properties*
 3. change *local.server.deploy.dir* to the cloubi 2 server deployment directory
 4. make sure the Cloubi 2 server is running and fully booted up
-5. run `npm run deploy`.
+5. run `$ npm run deploy`.
 
-> The login credentials for Cloubi are email: admin@cloubi.com password: test
+> The login credentials for Cloubi are email: **admin@cloubi.com** password: **test**
 
 Running a Node.js development server:
-1. run `npm install` (if not done already)
-2. run `npm run dev`.
+1. run `$ npm install` (if not done already)
+2. run `$ npm run dev`.
 
 > Make sure to boot the Cloubi 2 server first, if you are intending to run both the Cloubi 2 server and the Node.js development server simultaneously. Otherwise the default port for the Cloubi server will be blocked by the development server.
 
@@ -49,12 +76,12 @@ The rest of the section describes these processes in more detail.
 ### Install
 
 The theme has external dependencies such as the cloubi2-default-product-theme-components-vue-module. In order to load these dependencies to the local machine, run the
-`npm install`
+`$ npm install`
 command.
 
 ### Build
 
-`npm run build`
+`$ npm run build`
 
 ### <a name="deploy-local"></a>Deploy to local Cloubi 2 instance
 
@@ -63,7 +90,7 @@ The theme can be deployed to the a local Cloubi server to test it with a real se
 To deploy the theme to a server, first set the deployment target directory. It is done by copying *user.properties.template* as *user.properties* and changing *local.server.deploy.dir* property, so it points to your local Cloubi 2 deploy directory.
 
 After the server directory has been set and the server has booted up, build and deploy product theme to your local Cloubi 2 by running
-`npm run deploy`.
+`$ npm run deploy`.
 
 Note that any changes made to the theme requires a re-deployment to take effect on the server.
 
@@ -72,16 +99,27 @@ Note that any changes made to the theme requires a re-deployment to take effect 
 ### Run a Node.js development server
 
 To run the theme in a more rudimentary Node.js development server, run
-`npm run dev`.
+`$ npm run dev`.
 This server includes a hot-reload-mechanism, which automatically updates the browser with the edits made to the theme. Thus, it can be used to quickly iterate changes to it. However, it is strongly advised to test the theme against a real Cloubi server and its APIs (as described in [Deploy to local Cloubi 2 instance](#deploy-local)), as the Node.js development server does **not** fully represent the real server behaviour. It uses dummy implementations of the Cloubi APIs instead.
 
 > This method uses the `devel/main.js`-file as its entry point script. Changes made to that file **only apply** to the **development** version of the theme.
 
 ## <a name="customising-theme"></a> Customising the theme
 
-There are 4 main ways of customising the theme: [overwriting sass-variables for the UI component library](#overwrite-sass), [overwrite component styles](#overwrite-component-styles), [redefining the layout](#redefine-layout), and [rewriting the UI components](#rewrite-ui-components) in the component library. Their usage is covered in the following chapters.
+This chapter describes what approaches there are to customise the theme.
 
-### <a name="overwrite-sass"></a> Overwriting sass-variables
+### <a name="change-metadata"></a> Changing the theme's metadata
+
+The theme has additional data that such as its name and version that is shown in the products’ Appearance-tabs. They are defined in the `src/theme.properties`-file. The changeable options are the theme’s name, version, developer, and description. The navigation property needs to stay the same (`appearance/cloubi/blank/theme`) for Javascript themes.
+
+
+### Editing Theme Frame
+
+The theme frame is the overlay that is placed on top of the page content. It consists of the parts of the UI that are not provided by the Cloubi server and cannot be edited from the product structure or Froala editors. This includes for example all the various bars, side panels and tools that are placed in the user's view.
+
+There are 4 main ways of customising the theme frame: [overwriting sass-variables for the UI component library](#overwrite-sass), [overwrite component styles](#overwrite-component-styles), [redefining the layout](#redefine-layout), and [rewriting the UI components](#rewrite-ui-components) in the component library. Their usage is covered in the following chapters.
+
+#### <a name="overwrite-sass"></a> Overwriting sass-variables
 
 The UI component library uses SASS to define global CSS values, such as colours, fonts, and font sizes. These can be overriden by altering
 `config/sassVars.js`-file in the theme-project.
@@ -101,12 +139,12 @@ Note that the name of the value does not have the leading $-symbol.
 
 > Changing the font for the icons might not work directly through these values, because the names of the icons might not correspond to the component library's icon font's naming convention.
 
-### <a name="overwrite-component-styles"></a> Overwriting component styles
+#### <a name="overwrite-component-styles"></a> Overwriting component styles
 
 All components in cloubi-default-theme-components-vue use non scoped, and hierarchically named styles.
 You can redefine these styles to alter the looks of the components in your theme.
 
-You can do this in *.vue files <styles> section:
+You can do this in *.vue files `<styles>` section:
 ```
 ...
   <styles>
@@ -136,7 +174,7 @@ Or in separate *.scss file, for example in `style.scss`:
 
 The example would give you main menu with no images.
 
-### <a name="redefine-layout"></a> Redefining the layout
+#### <a name="redefine-layout"></a> Redefining the layout
 
 The theme layout is defined in the `src/components`-Vue-files. These can be altered to change the layout and behaviour of the theme.
 
@@ -166,7 +204,7 @@ or
 
 > Theme-specific content styling is defined in `src/_content.scss`. If the page content itself requires styles, implement them there.
 
-### <a name="rewrite-ui-components"></a> Rewriting UI components
+#### <a name="rewrite-ui-components"></a> Rewriting UI components
 
 If the UI components do not fit the theme after changing the sass variables, it is possible to clone the *cloubi2-default-product-theme-components-vue*-repository and edit the components directly. In this case, remember to update the `cloubi2-default-product-theme-components-vue` dependency in `package.json` to point to the new UI component library implementation. After editing the dependencies, run `npm install` once to install them.
 
@@ -179,9 +217,61 @@ Your `package.json` for development could look for example like this, where `my-
 ...
 ```
 
-### <a name="change-metadata"></a> Changing the theme's metadata
+### Editing the page content
 
-The theme has additional data that such as its name and version that is shown in the products’ Appearance-tabs. For each individual theme they are defined in the `src/theme.properties`-file. The changeable options are the theme’s name, version, developer, and description. The navigation property needs to stay the same (`appearance/cloubi/blank/theme`) for Javascript themes.
+There are 3 ways to edit the page content itself: with [CSS/Sass](#content-css-sass), using [element-specific Froala-selectable styles](#froala-styles) and by [replacing the default renderer with a custom renderer](#replace-page-renderer).
+
+#### <a name="content-css-sass"></a> Editing content with CSS/Sass
+
+The content’s styling can be edited with CSS or Sass directly. In the default theme such styles are defined in the `cloubi2-default-product-theme/src/_content.scss`-file.
+
+#### <a name="froala-styles"></a> Adding Froala-selectable styles
+
+It is also possible to add custom toggleable styles to the page content. These are available to be selected in the Froala-editor.
+
+![The Froala editor can be used to add styles to individual page elements.](https://github.com/ubiikkiltd/cloubi2-default-product-theme-vue/blob/dev/doc/Froala%20editor%20styles.png?raw=true "The Froala editor can be used to add styles to individual page elements.")
+
+To add such attribute, edit the cloubi2-default-product-theme/src/editor-configuration.json -file. The different elements that can be styled are: “paragraph”, “inline”, “table”, “cell”, and “item”. The name-property defines the CSS class while the title property is what the content creator will see in the editor. For example
+```
+“item”: [
+  { “name”: “css-class-name”, “title”: “Style 1” }
+]
+```
+would add an option on the `item`-type content to add `Style 1`-style. Once selected, the content would be assigned the “css-class-name”-class as follows:
+```
+<div class=”css-class-name”>
+  content
+</div>
+```
+
+The `includeDefault`-property either enables or disables the default Froala styles.
+
+
+#### <a name="replace-page-renderer"></a> Setting a custom renderer for a page type
+
+Sometimes it is necessary to create a custom Vue-component that will be rendered instead of the default server-rendered page. For example, the default navigation page might not contain the right information. In such cases an alternative renderer can be registered to the Cloubi Material API.
+
+The following code snippet adds a custom renderer to all navigation pages:
+```
+materialApi.registerContentTypeRenderer(
+  ‘navigation/menu’,
+  (page, contentId, callback) => {
+    // Create and mount a Vue component
+    const vueComponent = … // Add your own initialisation code here
+    vueComponent.$mount();
+
+    // Append the element to the page’s content element
+    const content = document.getElementById(contentId);
+    content.appendChild(vueComponent.$el);
+
+    // Call the callback once the content has been properly
+    // mounted
+		callback();
+  }
+)
+```
+
+Once the user navigates to a page with this type the custom component is used instead of the default server response.
 
 ## <a name="faq"></a>FAQ
 
