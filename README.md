@@ -30,8 +30,9 @@ These instructions cover the basic development use-cases for the theme project a
 
 ## <a name="setup-theme"></a> Setting up the theme project version control
 
-It is recommended to store the theme in version control. One option is to use Git. These
-First a new repository needs to be created. On Github it can be done by pressing the `+`-icon in the header bar and selecting `New repository`. Set up the repository as fits the new project with the form provided.
+It is recommended to store the theme in version control. One option is to use Git.
+
+The following describes the Github setup process. First a new repository needs to be created. On Github it can be done by pressing the `+`-icon in the header bar and selecting `New repository`. Set up the repository as fits the new project with the form provided.
 
 Once the empty repository has been created, clone it with
 `$ git clone your-repositorys-https-address/ssh-address`
@@ -272,7 +273,7 @@ materialApi.registerContentTypeRenderer(
 
     // Call the callback once the content has been properly
     // mounted
-		callback();
+    callback();
   }
 )
 ```
