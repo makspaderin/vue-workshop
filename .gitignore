@@ -1,0 +1,7 @@
+**/dist
+user.properties
+node_modules
+**/product-themes/**/dependencies
+package-lock.json
+/bin/
+/.vagrant/

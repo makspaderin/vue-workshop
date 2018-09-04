@@ -1,0 +1,43 @@
+@import url('https://use.fontawesome.com/releases/v5.0.13/css/all.css');
+
+$commonViewBgColor: #ededf0;
+$secondaryViewBgColor: #ffffff;
+$cloubi-bottom-bar-height: 5rem;
+
+@import '_content';
+
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: $commonViewBgColor;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.cloubi-navigation-menu-page {
+    border-radius: 2em;
+}
+
+.cloubi-navigation-menu-page-image {
+    border-radius: 1em;
+    margin: 10px;
+}
+
+.breadcrump-container {
+    display: inline-block;
+}
+
+@media (max-width: 760px) {
+  .cb-page-turner-container {
+    display: none;
+  }
+
+  .cb-side-panel:not(.cb-full-height) {
+    height: calc(100vh - #{$cloubi-navbar-height} - #{$cloubi-bottom-bar-height}) !important;
+  }
+
+}
+
